@@ -12,7 +12,9 @@ var FORM_ENDPOINT = '';
   var tabs = document.querySelectorAll('[data-tab]');
   function showTab(id) {
     document.querySelectorAll('[data-tab]').forEach(function (t) {
-      t.classList.toggle('is-active', t.dataset.tab === id);
+      var on = t.dataset.tab === id;
+      t.classList.toggle('is-active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
     });
     document.querySelectorAll('.panel').forEach(function (p) {
       p.classList.toggle('is-active', p.id === id);
@@ -50,6 +52,16 @@ var FORM_ENDPOINT = '';
     overlay.querySelectorAll('.modal').forEach(function (m) { m.classList.remove('is-open'); });
     current = null;
   }
+
+  /* Пробел и Enter на элементах с role=button: без этого с клавиатуры
+     не открывается ни одна модалка и ни один кейс. */
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var el = e.target.closest('[data-modal-open],[data-menu-open],[data-menu-close],[data-close]');
+    if (!el || el.tagName === 'BUTTON' || el.tagName === 'A' || el.tagName === 'INPUT') return;
+    e.preventDefault();
+    el.click();
+  });
 
   document.addEventListener('click', function (e) {
     var opener = e.target.closest('[data-modal-open]');
@@ -109,10 +121,18 @@ var FORM_ENDPOINT = '';
   document.querySelectorAll('[data-form]').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      var box = form.querySelector('.check input');
+      var lab = form.querySelector('.check');
+      if (lab) lab.classList.toggle('is-error', !!(box && !box.checked));
       if (!form.reportValidity()) return;
       send(form);
       form.reset();
       openModal('otpravleno');
     });
   });
+  /* тень у шапки, когда страница сдвинута — иначе она срезает контент кромкой */
+  var header = document.querySelector('.header');
+  var onScroll = function () { header.classList.toggle('is-scrolled', window.scrollY > 8); };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 })();
