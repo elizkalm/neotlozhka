@@ -8,10 +8,22 @@
 <meta property="og:title" content="Маркетинг-неотложка для бизнеса">
 <meta property="og:description" content="Спасаем быстро, с учётом ваших возможностей и ситуации.">
 <meta property="og:type" content="website">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta name="theme-color" content="#EFF2F3">
+<meta property="og:site_name" content="Маркетинг-неотложка">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Маркетинг-неотложка для бизнеса">
+<meta name="twitter:description" content="Спасаем быстро, с учётом ваших возможностей и ситуации. Бесплатный аудит за 30 минут.">
+<meta name="twitter:image" content="img/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Liter&family=Inter:wght@600;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
 
@@ -81,13 +93,13 @@
         <span class="caps caps--12 muted">ПАЦИЕНТ: ВАШ БИЗНЕС</span>
       </div>
       <ul class="sheet__list">
-        <li class="exam"><span class="exam__box"></span><span class="exam__text">Реклама не окупается — бюджет уходит каждый месяц, а заявок больше не становится</span><span class="exam__label">ОСТРО</span></li>
-        <li class="exam"><span class="exam__box"></span><span class="exam__text">Заявки нецелевые — менеджеры разбирают «левые» обращения, до продажи доходят единицы</span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></li>
-        <li class="exam"><span class="exam__box"></span><span class="exam__text">В поиске нас нет — по нужным запросам сайт на последних страницах или его не видно вовсе</span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></li>
-        <li class="exam"><span class="exam__box"></span><span class="exam__text">Трафик растёт, а заявок меньше — и непонятно, где потеря</span><span class="exam__label">ОСТРО</span></li>
-        <li class="exam"><span class="exam__box"></span><span class="exam__text">Есть подрядчики, но непонятно, за что платим — отчёты приходят, результата не видно</span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></li>
-        <li class="exam"><span class="exam__box"></span><span class="exam__text">Сайт нужен для лидов или партнёров — а текущий показывать стыдно</span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></li>
-        <li class="exam"><span class="exam__box"></span><span class="exam__text">Лиды и трафик есть, а продажи не растут — или падают</span><span class="exam__label">ОСТРО</span></li>
+        <li><label class="exam"><input type="checkbox"><span class="exam__box"></span><span class="exam__text">Реклама не окупается — бюджет уходит каждый месяц, а заявок больше не становится</span><span class="exam__label">ОСТРО</span></label></li>
+        <li><label class="exam"><input type="checkbox"><span class="exam__box"></span><span class="exam__text">Заявки нецелевые — менеджеры разбирают «левые» обращения, до продажи доходят единицы</span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></label></li>
+        <li><label class="exam"><input type="checkbox"><span class="exam__box"></span><span class="exam__text">В поиске нас нет — по нужным запросам сайт на последних страницах или его не видно вовсе</span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></label></li>
+        <li><label class="exam"><input type="checkbox"><span class="exam__box"></span><span class="exam__text">Трафик растёт, а заявок меньше — и непонятно, где потеря</span><span class="exam__label">ОСТРО</span></label></li>
+        <li><label class="exam"><input type="checkbox"><span class="exam__box"></span><span class="exam__text">Есть подрядчики, но непонятно, за что платим — отчёты приходят, результата не видно</span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></label></li>
+        <li><label class="exam"><input type="checkbox"><span class="exam__box"></span><span class="exam__text">Сайт нужен для лидов или партнёров — а текущий показывать стыдно</span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></label></li>
+        <li><label class="exam"><input type="checkbox"><span class="exam__box"></span><span class="exam__text">Лиды и трафик есть, а продажи не растут — или падают</span><span class="exam__label">ОСТРО</span></label></li>
       </ul>
       <div class="sheet__foot">
         <div class="sheet__diag">
@@ -410,7 +422,7 @@
       <form class="form card-raised" data-form="audit">
         <span class="caps caps--12 muted">ЗАЯВКА НА АУДИТ</span>
         <div class="form__row">
-          <input class="field" type="text" name="name" placeholder="Имя" required>
+          <input class="field" type="text" name="name" placeholder="Имя">
           <input class="field" type="tel" name="phone" placeholder="Телефон*" required>
         </div>
         <input class="field" type="text" name="site" placeholder="Ссылка на сайт/соц.сети (если есть)">
@@ -638,7 +650,7 @@
     <h3 class="h5">Разберём вашу ситуацию за тридцать минут</h3>
     <form class="form" data-form="audit">
       <div class="form__row">
-        <input class="field" type="text" name="name" placeholder="Имя" required>
+        <input class="field" type="text" name="name" placeholder="Имя">
         <input class="field" type="tel" name="phone" placeholder="Телефон*" required>
       </div>
       <input class="field" type="text" name="site" placeholder="Ссылка на сайт/соц.сети (если есть)">
@@ -657,7 +669,7 @@
     <h3 class="h5">Пришлём кейсы под вашу нишу</h3>
     <form class="form" data-form="podborka">
       <div class="form__row">
-        <input class="field" type="text" name="name" placeholder="Имя" required>
+        <input class="field" type="text" name="name" placeholder="Имя">
         <input class="field" type="text" name="contact" placeholder="Телеграм или почта*" required>
       </div>
       <input class="field" type="text" name="nisha" placeholder="Ниша или задача">
@@ -679,6 +691,6 @@
   </div>
 </div>
 
-<script src="script.js"></script>
+<script src="script.js?v=2"></script>
 </body>
 </html>
