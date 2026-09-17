@@ -368,7 +368,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 
 .cases{display:flex;flex-direction:column;gap:10px;margin-top:48px;}
 .case-row{
-  display:grid;grid-template-columns:60px 520px minmax(0,1fr) auto 50px;
+  display:grid;grid-template-columns:60px 520px minmax(0,1fr) 300px 50px;
   align-items:center;gap:24px;min-height:104px;padding:0 24px 0 32px;
   border-radius:var(--r-20);background:var(--white);
   cursor:pointer;transition:background .15s ease;
@@ -378,7 +378,11 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .case-row__tags{display:flex;gap:8px;justify-self:start;}
 .case-row__res{display:flex;align-items:baseline;gap:12px;justify-content:flex-end;}
 .case-row__res b{font-family:var(--font-num);font-weight:600;font-size:var(--t-num-m);line-height:.95;letter-spacing:-.03em;}
-.case-row__res b.is-text{font-family:var(--font);font-weight:400;font-size:28px;letter-spacing:-.02em;}
+.case-row__res b.is-text{font-family:var(--font);font-weight:400;font-size:24px;letter-spacing:-.02em;}
+/* У кейса 03 в слоте показателя не цифра, а фраза: в одну строку с
+   подписью она не влезала и наезжала на теги. Кладём в два яруса. */
+.case-row__res--text{flex-direction:column;align-items:flex-end;gap:2px;}
+.case-row__tags{flex-wrap:wrap;min-width:0;}
 .case-row__res em{font-style:normal;font-size:var(--t-small);color:var(--text-2);}
 
 .podborka{
@@ -488,7 +492,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .overlay[hidden]{display:none;}
 .overlay__scrim{position:fixed;inset:0;background:rgba(30,35,43,.6);backdrop-filter:blur(16px);}
 .modal{position:relative;display:none;width:100%;border-radius:var(--r-20);background:var(--ink);color:var(--text-dark-bg);padding:40px;}
-.modal.is-open{display:flex;flex-direction:column;gap:24px;}
+.modal.is-open{display:flex;flex-direction:column;gap:24px;margin:auto;}
 .modal--case{max-width:1100px;}
 .modal--form{max-width:640px;align-items:flex-start;}
 .modal--form>.h5,.modal--form>.caps{padding-right:60px;}
