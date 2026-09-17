@@ -19,6 +19,7 @@ var FORM_ENDPOINT = '';
     document.querySelectorAll('.panel').forEach(function (p) {
       p.classList.toggle('is-active', p.id === id);
     });
+    if (typeof placePanel === 'function') placePanel();
   }
   tabs.forEach(function (t) {
     t.addEventListener('click', function () { showTab(t.dataset.tab); });
@@ -135,6 +136,46 @@ var FORM_ENDPOINT = '';
       openModal('otpravleno');
     });
   });
+
+  /* ---------- перестановки, которых не сделать одним CSS ----------
+     Мобильный макет — самостоятельный, а не уменьшенный десктоп.
+     Две вещи там лежат в другом родителе, и css это не переносит:
+     легенда с кнопкой стоят ВНУТРИ белого листа приёма (узел 331:301),
+     а раскрытая услуга идёт сразу под своей строкой, аккордеоном
+     (узел 349:385). Ниже — перенос узлов с честным возвратом обратно. */
+  var mq = window.matchMedia('(max-width:767px)');
+  var moved = [];
+  function remember(node) {
+    moved.push({ node: node, parent: node.parentNode, next: node.nextSibling });
+  }
+  function toMobile() {
+    var sheet = document.querySelector('.sheet');
+    var side = document.querySelector('.symptoms__side');
+    if (sheet && side) {
+      ['.legend', '.call'].forEach(function (sel) {
+        var n = side.querySelector(':scope > ' + sel);
+        if (n) { remember(n); sheet.appendChild(n); }
+      });
+    }
+    placePanel();
+  }
+  function toDesktop() {
+    moved.reverse().forEach(function (m) { m.parent.insertBefore(m.node, m.next); });
+    moved = [];
+    var box = document.querySelector('.uslugi__panels');
+    if (box) document.querySelectorAll('.panel').forEach(function (p) { box.appendChild(p); });
+  }
+  /* раскрытая услуга встаёт сразу после своей строки */
+  function placePanel() {
+    if (!mq.matches) return;
+    var tab = document.querySelector('[data-tab].is-active');
+    var panel = tab && document.getElementById(tab.dataset.tab);
+    if (tab && panel && tab.nextSibling !== panel) tab.parentNode.insertBefore(panel, tab.nextSibling);
+  }
+  function applyLayout() { if (mq.matches) { toMobile(); } else { toDesktop(); } }
+  applyLayout();
+  mq.addEventListener('change', applyLayout);
+
   /* тень у шапки, когда страница сдвинута — иначе она срезает контент кромкой */
   var header = document.querySelector('.header');
   var onScroll = function () { header.classList.toggle('is-scrolled', window.scrollY > 8); };

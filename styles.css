@@ -629,6 +629,7 @@ body.is-locked{overflow:hidden;}
 
   .head{gap:16px;margin-bottom:32px;}
   .header__nav,.header__right .btn--sm,.header__right .socials{display:none;}
+  .header__right{margin-left:auto;gap:0;}
   .burger{display:flex;margin-left:auto;width:38px;height:38px;}
   .logo img{height:48px;}
 
@@ -637,7 +638,7 @@ body.is-locked{overflow:hidden;}
   .btn--sm{height:48px;font-size:16px;}
   .call{width:100%;}
   .call__main{flex:1;justify-content:space-between;height:56px;font-size:17px;padding:0 20px;}
-  .call__sign{width:48px;height:48px;font-size:17px;border-radius:var(--r-16);}
+  .call__sign{width:56px;height:56px;font-size:17px;border-radius:var(--r-18);}
   .arrowbtn,.iconbtn{width:38px;height:38px;border-radius:var(--r-13);}
   .pill{height:34px;font-size:13px;padding:0 14px;}
   .tag{height:28px;font-size:12px;padding:0 10px;}
@@ -648,7 +649,11 @@ body.is-locked{overflow:hidden;}
   .hero__actions{flex-direction:column-reverse;align-items:stretch;width:100%;}
   .hero__actions .call__main{justify-content:center;}
   .hero__list span{font-size:15px;}
-  .hero__image{margin-top:16px;}
+  /* Кадр первого экрана в мобильном макете — не вся картинка, а её кусок:
+     982 в ширину со сдвигом −296 при экране 390 (узел 340:4791). */
+  .hero__image{margin-top:16px;height:103.3vw;aspect-ratio:auto;overflow:hidden;}
+  .hero__image img{position:static;width:251.8vw;max-width:none;height:100%;
+    object-fit:cover;object-position:left center;margin-left:-75.9vw;transform:none;}
 
   /* Порядок мобильного макета (узел 331:301): заголовок → список симптомов →
      легенда → кнопка. display:contents распускает боковой блок в общую колонку —
@@ -659,19 +664,20 @@ body.is-locked{overflow:hidden;}
   .symptoms__side>.h2{order:2;width:100%;}
   .symptoms__side>.lead{order:3;width:100%;}
   .sheet{order:4;width:100%;margin-top:8px;}
-  .symptoms__side>.legend{order:5;width:100%;margin:8px 0 0;}
+  .sheet .legend{width:100%;margin:16px 0 0;}
+  .sheet .call{width:100%;margin-top:16px;}
   .symptoms__side>.note{display:none;}
   .symptoms__side>.call{order:6;}
   .h2 .brk{display:inline;}
   .sheet{padding:20px 20px 16px;border-radius:var(--r-16);}
-  .sheet__head{flex-direction:column;gap:4px;padding-bottom:16px;}
-  .exam{flex-wrap:wrap;gap:10px;padding:14px 0;}
-  .exam__text{flex:1 1 100%;order:2;font-size:15px;}
-  .exam__label{order:1;font-size:11px;}
-  .exam__box{order:0;}
-  .sheet__foot{flex-direction:column;align-items:flex-start;gap:16px;}
-  .sheet__sign{align-items:flex-start;}
-  .sheet__sign img{width:140px;}
+  .sheet__head{flex-direction:row;gap:12px;padding-bottom:16px;font-size:11px;}
+  .sheet__foot{display:none;}
+  /* В мобильном макете чекбокс стоит по центру пункта, а метка ОСТРО/ХРОНИЧЕСКИ
+     над текстом, а не рядом с квадратиком. */
+  .exam{display:grid;grid-template-columns:20px 1fr;column-gap:12px;row-gap:4px;align-items:center;padding:14px 0;}
+  .exam__box{grid-column:1;grid-row:1 / span 2;align-self:center;}
+  .exam__label{grid-column:2;grid-row:1;font-size:11px;}
+  .exam__text{grid-column:2;grid-row:2;font-size:15px;}
   .symptoms__side{gap:16px;}
   .legend{margin-top:8px;}
   .note{padding:20px;border-radius:var(--r-16);}
@@ -688,7 +694,13 @@ body.is-locked{overflow:hidden;}
   .kto__text>.honest{order:7;width:100%;}
   /* Повёрнутый бейдж вылезал за правый край на 3 px и давал горизонтальную
      прокрутку. Сдвигаем внутрь, а не режем: тени у бейджей обрезать нельзя. */
-  .badge--so{left:59.2%;}
+  /* Мобильная композиция бейджей своя (узел 359:4996): группа 460 в ширину
+     от −35, то есть выходит за оба края экрана и режется им. */
+  .kto__stage{width:117.9vw;margin-left:-14.1vw;aspect-ratio:460/262;}
+  .badge--el{left:4.3%;top:17.1%;width:35.4%;}
+  .badge--ig{left:31%;top:17%;width:34.3%;}
+  .badge--so{left:70.7%;top:5.7%;width:36%;}
+  #o-nas{overflow:hidden;}
   .promise,.honest{padding:20px;border-radius:var(--r-16);font-size:16px;}
 
 
@@ -706,6 +718,7 @@ body.is-locked{overflow:hidden;}
   .stats{gap:24px;}
   .stat__num.is-text{font-size:20px;}
   .case-row__res b.is-text{font-size:20px;}
+  .case-row__res--text{align-items:flex-start;}
   .case-row{grid-template-columns:1fr auto;gap:10px;padding:20px;border-radius:var(--r-16);min-height:0;}
   .case-row__num{grid-column:1;}
   .case-row__title{grid-column:1;font-size:18px;}
@@ -717,8 +730,8 @@ body.is-locked{overflow:hidden;}
 
   .uslugi{grid-template-columns:1fr;gap:24px;}
   .tab{min-height:0;padding:16px 20px;font-size:17px;border-radius:var(--r-16);}
-  .tab.is-active{padding-right:4px;}
-  .tab.is-active .tab__sign{width:44px;height:44px;border-radius:var(--r-13);}
+  .tab.is-active{padding-right:16px;}
+  .tab.is-active .tab__sign{width:38px;height:38px;border-radius:var(--r-13);}
   .price{flex-direction:column;align-items:flex-start;gap:6px;}
 
 
@@ -733,7 +746,13 @@ body.is-locked{overflow:hidden;}
   .card-raised{padding:20px;border-radius:var(--r-16);}
   .form__row{grid-template-columns:1fr;}
   .field{height:60px;padding:0 20px;font-size:16px;}
-  .audit__bg{display:none;}
+  /* В мобильном макете клавиатура не фон, а полоса во всю ширину внизу
+     секции — 390×202 (узел 354:426). */
+  .audit{display:flex;flex-direction:column;}
+  .audit__inner{order:1;}
+  .audit__bg{order:2;display:block;position:relative;right:auto;bottom:auto;
+    width:100%;max-width:none;height:51.8vw;object-fit:cover;object-position:center;
+    margin-top:40px;margin-bottom:calc(-1 * var(--section-y));}
   .uskorit{margin-top:32px;}
 
   .footer{padding:80px 0 60px;}
