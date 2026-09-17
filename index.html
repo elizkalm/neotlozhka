@@ -16,21 +16,26 @@
 <body>
 
 <!-- ШАПКА -->
-<header class="header" id="header">
-  <div class="container header__inner">
+<header class="header">
+  <div class="wrap header__inner">
     <a class="logo" href="#top"><img src="img/logo-full.svg" alt="Маркетинг-неотложка для бизнеса"></a>
+
     <nav class="header__nav">
-      <a href="#o-nas">О нас</a>
-      <a href="#keysy">Кейсы</a>
-      <a href="#uslugi">Услуги и цены</a>
-      <a href="#etapy">Как работаем</a>
+      <a class="pill pill--white" href="#o-nas">О нас</a>
+      <a class="pill pill--white" href="#keysy">Кейсы</a>
+      <a class="pill pill--white" href="#uslugi">Услуги и цены</a>
+      <a class="pill pill--white" href="#etapy">Как работаем</a>
     </nav>
-    <button class="btn btn--accent header__cta" data-modal-open="audit">
-      <span>Вызвать неотложку</span><i class="btn__icon">+</i>
-    </button>
-    <button class="burger" aria-label="Меню" data-menu-open>
-      <span></span><span></span>
-    </button>
+
+    <div class="header__right">
+      <span class="socials">
+        <a href="https://t.me/neotlozhka" target="_blank" rel="noopener" aria-label="MAX"><img src="img/social-max.svg" alt=""></a>
+        <a href="https://t.me/neotlozhka" target="_blank" rel="noopener" aria-label="Telegram"><img src="img/social-tg.svg" alt=""></a>
+        <a href="https://t.me/neotlozhka" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="img/social-wa.svg" alt=""></a>
+      </span>
+      <button class="btn btn--dark btn--sm" data-modal-open="audit">Вызвать неотложку</button>
+      <button class="burger" aria-label="Меню" data-menu-open><span></span><span></span></button>
+    </div>
   </div>
 </header>
 
@@ -38,26 +43,26 @@
 
 <!-- 01. ПЕРВЫЙ ЭКРАН -->
 <section class="hero">
-  <div class="container">
-    <div class="hero__top">
-      <div class="hero__col">
+  <div class="wrap hero__top">
+    <div class="hero__col">
       <h1 class="h1">Маркетинг-неотложка<br>для бизнеса</h1>
-      <p class="hero__lead lead">Спасаем быстро, с учётом ваших возможностей и ситуации</p>
+      <p class="hero__lead small muted">Спасаем быстро, с учётом ваших<br>возможностей и ситуации</p>
       <div class="hero__actions">
-        <a class="btn btn--light" href="#keysy">Смотреть кейсы</a>
-        <button class="btn btn--accent" data-modal-open="audit">
-          <span>Вызвать неотложку</span><i class="btn__icon">+</i>
-        </button>
+        <a class="btn btn--white" href="#keysy">Смотреть кейсы</a>
+        <span class="call" data-modal-open="audit" role="button" tabindex="0">
+          <span class="call__main">Вызвать неотложку</span><span class="call__sign">+</span>
+        </span>
       </div>
-      </div>
-      <ul class="hero__list">
-        <li><i class="marker">+</i><span>Проанализируем текущую ситуацию и ваши цели</span></li>
-        <li><i class="marker">+</i><span>Проведём маркетинговое исследование</span></li>
-        <li><i class="marker">+</i><span>Подготовим индивидуальный план продвижения на основе реальных цифр</span></li>
-        <li><i class="marker">+</i><span>Возьмём на себя реализацию стратегии: создадим сайт, тексты, запустим рекламу или SEO</span></li>
-      </ul>
     </div>
+
+    <ul class="hero__list">
+      <li><i class="marker">+</i><span>Проанализируем текущую ситуацию и ваши цели</span></li>
+      <li><i class="marker">+</i><span>Проведём маркетинговое исследование</span></li>
+      <li><i class="marker">+</i><span>Подготовим индивидуальный план продвижения на основе реальных цифр</span></li>
+      <li><i class="marker">+</i><span>Возьмём на себя реализацию стратегии: создадим сайт, тексты, запустим рекламу или SEO</span></li>
+    </ul>
   </div>
+
   <div class="hero__image">
     <picture>
       <source srcset="img/hero-blisters.webp" type="image/webp">
@@ -68,110 +73,114 @@
 
 <!-- 02. С ЧЕМ ПРИХОДЯТ -->
 <section class="section section--pale" id="simptomy">
-  <div class="container">
-    <div class="section__head">
-      <span class="pill pill--light">/01 · Симптомы</span>
-      <h2 class="h2">С чем к нам приходят</h2>
-    </div>
+  <div class="wrap"><div class="symptoms">
 
-    <div class="symptoms">
-      <div class="sheet">
-        <div class="sheet__head">
-          <span class="caps caps--12">ФОРМА № 025/У · ПЕРВИЧНЫЙ ОСМОТР</span>
-          <span class="caps caps--12">ПАЦИЕНТ: ВАШ БИЗНЕС</span>
+    <div class="sheet">
+      <div class="sheet__head">
+        <span class="caps caps--12 muted">ФОРМА № 025/У · ПЕРВИЧНЫЙ ОСМОТР</span>
+        <span class="caps caps--12 muted">ПАЦИЕНТ: ВАШ БИЗНЕС</span>
+      </div>
+      <ul class="sheet__list">
+        <li class="exam"><span class="exam__box"></span><span class="exam__text">Реклама не окупается — бюджет уходит каждый месяц, а заявок больше не становится</span><span class="exam__label">ОСТРО</span></li>
+        <li class="exam"><span class="exam__box"></span><span class="exam__text">Заявки нецелевые — менеджеры разбирают «левые» обращения, до продажи доходят единицы</span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></li>
+        <li class="exam"><span class="exam__box"></span><span class="exam__text">В поиске нас нет — по нужным запросам сайт на последних страницах или его не видно вовсе</span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></li>
+        <li class="exam"><span class="exam__box"></span><span class="exam__text">Трафик растёт, а заявок меньше — и непонятно, где потеря</span><span class="exam__label">ОСТРО</span></li>
+        <li class="exam"><span class="exam__box"></span><span class="exam__text">Есть подрядчики, но непонятно, за что платим — отчёты приходят, результата не видно</span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></li>
+        <li class="exam"><span class="exam__box"></span><span class="exam__text">Сайт нужен для лидов или партнёров — а текущий показывать стыдно</span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></li>
+        <li class="exam"><span class="exam__box"></span><span class="exam__text">Лиды и трафик есть, а продажи не растут — или падают</span><span class="exam__label">ОСТРО</span></li>
+      </ul>
+      <div class="sheet__foot">
+        <div class="sheet__diag">
+          <span class="caps caps--12 muted">ДИАГНОЗ ПРЕДВАРИТЕЛЬНЫЙ</span>
+          <p class="caption">ожидает осмотра</p>
         </div>
-        <ul class="sheet__list">
-          <li class="exam"><span class="exam__box"></span><span class="exam__text">Реклама не окупается — бюджет уходит каждый месяц, а заявок больше не становится</span><span class="exam__label">ОСТРО</span></li>
-          <li class="exam"><span class="exam__box"></span><span class="exam__text">Заявки нецелевые — менеджеры разбирают «левые» обращения, до продажи доходят единицы</span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></li>
-          <li class="exam"><span class="exam__box"></span><span class="exam__text">В поиске нас нет — по нужным запросам сайт на последних страницах или его не видно вовсе</span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></li>
-          <li class="exam"><span class="exam__box"></span><span class="exam__text">Трафик растёт, а заявок меньше — и непонятно, где потеря</span><span class="exam__label">ОСТРО</span></li>
-          <li class="exam"><span class="exam__box"></span><span class="exam__text">Есть подрядчики, но непонятно, за что платим — отчёты приходят, результата не видно</span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></li>
-          <li class="exam"><span class="exam__box"></span><span class="exam__text">Сайт нужен для лидов или партнёров — а текущий показывать стыдно</span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></li>
-          <li class="exam"><span class="exam__box"></span><span class="exam__text">Лиды и трафик есть, а продажи не растут — или падают</span><span class="exam__label">ОСТРО</span></li>
-        </ul>
-        <div class="sheet__foot">
-          <div>
-            <span class="caps caps--12 muted">ДИАГНОЗ ПРЕДВАРИТЕЛЬНЫЙ</span>
-            <p class="sheet__diag">ожидает осмотра</p>
-          </div>
-          <div class="sheet__sign">
-            <img src="img/signature.png" alt="">
-            <span class="micro muted">подпись дежурного маркетолога</span>
-          </div>
+        <div class="sheet__sign">
+          <img src="img/signature.png" alt="">
+          <span class="micro muted">подпись дежурного маркетолога</span>
         </div>
       </div>
-
-      <aside class="symptoms__side">
-        <p class="lead">Отметьте, что узнали. Один пункт — уже повод для звонка, а не для ожидания следующего квартала.</p>
-        <dl class="legend">
-          <div><dt class="caps caps--12 accent">ОСТРО</dt><dd>— теряете деньги прямо сейчас</dd></div>
-          <div><dt class="caps caps--12 muted">ХРОНИЧЕСКИ</dt><dd>— теряете понемногу и давно</dd></div>
-        </dl>
-        <div class="note">
-          <span class="caps caps--12 muted">ЗАЧЕМ ОСМОТР</span>
-          <p>Чтобы не гадать на кофейной гуще, а на основании цифр объяснить причины сложившейся ситуации.</p>
-        </div>
-        <button class="btn btn--accent" data-modal-open="audit">
-          <span>Вызвать неотложку</span><i class="btn__icon">+</i>
-        </button>
-      </aside>
     </div>
-  </div>
+
+    <div class="symptoms__side">
+      <span class="pill pill--white">/01 · Симптомы</span>
+      <h2 class="h2">С чем к нам<br>приходят</h2>
+      <p class="small">Отметьте, что узнали. Один пункт — уже повод для звонка, а не для ожидания следующего квартала.</p>
+
+      <dl class="legend">
+        <div><dt class="caps caps--12 accent">ОСТРО</dt><dd class="micro muted">— теряете деньги прямо сейчас</dd></div>
+        <div><dt class="caps caps--12 muted">ХРОНИЧЕСКИ</dt><dd class="micro muted">— теряете понемногу и давно</dd></div>
+      </dl>
+
+      <div class="note">
+        <span class="caps caps--12 muted">ЗАЧЕМ ОСМОТР</span>
+        <p class="small">Чтобы не гадать на кофейной гуще, а на основании цифр объяснить причины сложившейся ситуации.</p>
+      </div>
+
+      <span class="call" data-modal-open="audit" role="button" tabindex="0">
+        <span class="call__main">Вызвать неотложку</span><span class="call__sign">+</span>
+      </span>
+    </div>
+  </div></div>
 </section>
 
 <!-- 03. КТО МЫ -->
 <section class="section" id="o-nas">
-  <div class="container kto">
+  <div class="wrap kto">
     <div class="kto__text">
-      <div class="section__head">
-        <span class="pill pill--light">/02 · О нас</span>
-        <h2 class="h2">Кто мы и почему неотложка</h2>
-      </div>
-      <p>Мы не просто маркетологи. Мы проджект-менеджеры и практики с бэкграундом в разных нишах — от крупных интернет-магазинов до сложных b2b-продаж.</p>
-      <p>Мы управляли проектами в разных условиях и знаем, что бизнес не может ждать, когда речь идет о падении заявок и продаж. Поэтому мгновенно приходим на помощь.</p>
+      <span class="caps caps--12 muted">/02 · О нас</span>
+      <h2 class="h2">Кто мы и почему неотложка</h2>
+      <p class="small">Мы не просто маркетологи. Мы проджект-менеджеры и практики с бэкграундом в разных нишах — от крупных интернет-магазинов до сложных b2b-продаж.</p>
+      <p class="caption muted">Мы управляли проектами в разных условиях и знаем, что бизнес не может ждать, когда речь идет о падении заявок и продаж. Поэтому мгновенно приходим на помощь.</p>
+
+      <div class="promise">Уже на первой встрече показываем предварительный план «лечения»</div>
+
       <div class="honest">
-        <span class="caps caps--12 accent">ЧЕСТНО</span>
-        <p class="honest__lead">Уже на первой встрече показываем предварительный план «лечения»</p>
-        <p class="muted">Иногда неотложка не даёт мгновенного чуда. Но даже при ограниченном бюджете и загрузке решения дадут результат вдолгую.</p>
+        <span class="caps caps--12 muted">ЧЕСТНО</span>
+        <p class="caption">Иногда неотложка не даёт мгновенного чуда. Но даже при ограниченном бюджете и загрузке решения дадут результат вдолгую.</p>
       </div>
     </div>
-    <div class="kto__badges">
-      <figure class="badge"><img src="img/badge-sofya.webp" alt="Софья Марголина" loading="lazy"></figure>
-      <figure class="badge badge--mid"><img src="img/badge-elizaveta.webp" alt="Елизавета Калмыкова" loading="lazy"></figure>
-      <figure class="badge"><img src="img/badge-igor.webp" alt="Игорь Глушенков" loading="lazy"></figure>
+
+    <div class="kto__stage">
+      <figure class="badge badge--el"><img src="img/badge-elizaveta.webp" alt="Елизавета Калмыкова" loading="lazy"></figure>
+      <figure class="badge badge--ig"><img src="img/badge-igor.webp" alt="Игорь Глушенков" loading="lazy"></figure>
+      <figure class="badge badge--so"><img src="img/badge-sofya.webp" alt="Софья Марголина" loading="lazy"></figure>
     </div>
   </div>
 </section>
 
 <!-- 04. КАК УСТРОЕН ПРИЁМ -->
 <section class="section section--dark" id="etapy">
-  <div class="container">
-    <div class="section__head">
-      <span class="pill pill--dark">/03 · Этапы</span>
+  <div class="wrap">
+    <div class="head">
+      <span class="pill pill--raised">/03 · Этапы</span>
       <h2 class="h2">Как устроен приём</h2>
     </div>
+
     <ol class="steps">
       <li class="step">
-        <span class="step__num">01</span>
-        <h3 class="h5">Диагностируем</h3>
-        <p>Смотрим Метрику, Вебмастер, Директ и вашу ситуацию. Считаем unit-экономику, если её нет.</p>
-        <ul class="tags">
-          <li class="tag tag--dark">бесплатно</li>
-          <li class="tag tag--dark">30 минут · выезд</li>
-          <li class="tag tag--dark">4–5 дней</li>
-        </ul>
+        <div class="step__top"><span class="step__num">01</span><h3 class="h4">Диагностируем</h3></div>
+        <div class="step__body">
+          <p class="base">Смотрим Метрику, Вебмастер, Директ и вашу ситуацию. Считаем unit-экономику, если её нет.</p>
+          <div class="pills">
+            <span class="pill pill--accent">бесплатно</span>
+            <span class="pill pill--raised">30 минут · выезд</span>
+            <span class="pill pill--raised">4–5 дней</span>
+          </div>
+        </div>
       </li>
       <li class="step">
-        <span class="step__num">02</span>
-        <h3 class="h5">Назначаем</h3>
-        <p>Готовим план по каждому направлению: типы кампаний, бюджет на каждую, примеры семантики и офферов.</p>
-        <ul class="tags"><li class="tag tag--dark">4–7 дней</li></ul>
+        <div class="step__top"><span class="step__num">02</span><h3 class="h4">Назначаем</h3></div>
+        <div class="step__body">
+          <p class="base">Готовим план по каждому направлению: типы кампаний, бюджет на каждую, примеры семантики и офферов.</p>
+          <div class="pills"><span class="pill pill--raised">4–7 дней</span></div>
+        </div>
       </li>
       <li class="step">
-        <span class="step__num">03</span>
-        <h3 class="h5">Лечим</h3>
-        <p>Берём реализацию на себя или курируем ваших подрядчиков. Отчитываемся по согласованному плану.</p>
-        <ul class="tags"><li class="tag tag--dark">от 10 дней</li></ul>
+        <div class="step__top"><span class="step__num">03</span><h3 class="h4">Лечим</h3></div>
+        <div class="step__body">
+          <p class="base">Берём реализацию на себя или курируем ваших подрядчиков. Отчитываемся по согласованному плану.</p>
+          <div class="pills"><span class="pill pill--raised">от 10 дней</span></div>
+        </div>
       </li>
     </ol>
   </div>
@@ -179,166 +188,178 @@
 
 <!-- 05. КЕЙСЫ -->
 <section class="section" id="keysy">
-  <div class="container">
-    <div class="section__head section__head--row">
-      <div>
-        <span class="pill pill--light">/05 · Кейсы</span>
+  <div class="wrap">
+    <div class="cases__head">
+      <div class="head">
+        <span class="pill pill--white">/05 · Кейсы</span>
         <h2 class="h2">Лучшие кейсы</h2>
       </div>
-      <p class="section__note">Пять проектов в разных нишах — от аренды спецтехники до салона красоты. Оставьте заявку, и мы подберём релевантную подборку под вашу.</p>
+      <p class="micro muted cases__note">Пять проектов в разных нишах — от аренды спецтехники до салона красоты. Оставьте заявку, и мы подберём релевантную подборку под вашу.</p>
     </div>
 
     <article class="case-main" data-modal-open="case-01">
-      <div class="case-main__photo" aria-hidden="true"></div>
+      <div class="case-main__photo">
+        <span class="pill pill--dark case-main__date">03.2024 — 09.2025</span>
+      </div>
       <div class="case-main__body">
-        <div class="case-main__meta">
-          <span class="pill pill--pale">Выписка № 01 · аренда спецтехники</span>
-          <span class="muted">03.2024 — 09.2025</span>
-        </div>
+        <span class="pill pill--pale">Выписка № 01 · аренда спецтехники</span>
         <h3 class="h3">Увеличили конверсию сайта втрое и вывели запросы в ТОП-5</h3>
-        <p class="muted case-main__from">Поступил с позициями не выше ТОП-30 и простоями в парке</p>
+        <hr class="rule">
         <div class="stats">
           <div class="stat"><span class="stat__num">+90</span><span class="stat__cap">Позиций в топ-10</span></div>
           <div class="stat"><span class="stat__num">+64</span><span class="stat__cap">Позиций в топ-3</span></div>
           <div class="stat"><span class="stat__num">101</span><span class="stat__cap">Ключевых слов</span></div>
         </div>
-        <div class="case-main__foot">
-          <span class="caps caps--12 muted">seo · реклама · конверсия сайта втрое · 1,5 года</span>
-          <span class="btn btn--dark"><span>Подробнее</span><i class="btn__icon btn__icon--arrow">→</i></span>
-        </div>
+        <hr class="rule">
+        <span class="caps caps--12 muted">seo · реклама · конверсия сайта втрое · 1,5 года</span>
+        <p class="caption">Поступил с позициями не выше ТОП-30 и простоями в парке</p>
+        <span class="call call--arrow">
+          <span class="call__main">Подробнее</span><span class="call__sign"><img src="img/arrow.svg" alt=""></span>
+        </span>
       </div>
     </article>
 
     <ul class="cases">
       <li class="case-row" data-modal-open="case-02">
-        <span class="case-row__num">02</span>
-        <span class="case-row__title">Сувенирная морская продукция</span>
+        <span class="case-row__num micro muted">02</span>
+        <span class="case-row__title caption">Сувенирная морская продукция</span>
         <span class="case-row__tags"><i class="tag">SEO</i><i class="tag">аналитика</i><i class="tag">реклама</i></span>
         <span class="case-row__res"><b>×2</b><em>трафик из поиска</em></span>
+        <span class="arrowbtn"><img src="img/arrow.svg" alt=""></span>
       </li>
       <li class="case-row" data-modal-open="case-03">
-        <span class="case-row__num">03</span>
-        <span class="case-row__title">Медицинское оборудование</span>
+        <span class="case-row__num micro muted">03</span>
+        <span class="case-row__title caption">Медицинское оборудование</span>
         <span class="case-row__tags"><i class="tag">аналитика</i><i class="tag">реклама</i></span>
-        <span class="case-row__res"><b class="case-row__res--text">Новое направление</b><em>заявки там, где их не было</em></span>
+        <span class="case-row__res"><b class="is-text">Новое направление</b><em>заявки там, где их не было</em></span>
+        <span class="arrowbtn"><img src="img/arrow.svg" alt=""></span>
       </li>
       <li class="case-row" data-modal-open="case-04">
-        <span class="case-row__num">04</span>
-        <span class="case-row__title">Онлайн-курс по IT-рекрутингу</span>
+        <span class="case-row__num micro muted">04</span>
+        <span class="case-row__title caption">Онлайн-курс по IT-рекрутингу</span>
         <span class="case-row__tags"><i class="tag">тексты</i><i class="tag">сайт</i><i class="tag">метрика</i></span>
         <span class="case-row__res"><b>6–8%</b><em>конверсия сайта</em></span>
+        <span class="arrowbtn"><img src="img/arrow.svg" alt=""></span>
       </li>
       <li class="case-row" data-modal-open="case-05">
-        <span class="case-row__num">05</span>
-        <span class="case-row__title">Салон красоты</span>
+        <span class="case-row__num micro muted">05</span>
+        <span class="case-row__title caption">Салон красоты</span>
         <span class="case-row__tags"><i class="tag">тексты</i><i class="tag">сайт</i><i class="tag">метрика</i></span>
         <span class="case-row__res"><b>2%</b><em>конверсия в лид</em></span>
+        <span class="arrowbtn"><img src="img/arrow.svg" alt=""></span>
       </li>
     </ul>
 
     <div class="podborka">
-      <p>Пять кейсов здесь — остальные подберём под вашу нишу и пришлём в мессенджер или на почту</p>
-      <button class="btn btn--accent" data-modal-open="podborka">
-        <span>Получить подборку</span><i class="btn__icon">+</i>
-      </button>
+      <p class="caption">Пять кейсов здесь — остальные подберём под вашу нишу и пришлём в мессенджер или на почту</p>
+      <span class="call" data-modal-open="podborka" role="button" tabindex="0">
+        <span class="call__main">Получить подборку</span><span class="call__sign">+</span>
+      </span>
     </div>
   </div>
 </section>
 
 <!-- 06. УСЛУГИ И ЦЕНЫ -->
 <section class="section section--pale" id="uslugi">
-  <div class="container">
-    <div class="section__head">
-      <span class="pill pill--light">/04 · Услуги</span>
+  <div class="wrap">
+    <div class="head">
+      <span class="pill pill--white">/04 · Услуги</span>
       <h2 class="h2">Что мы делаем</h2>
     </div>
+
     <div class="uslugi">
       <div class="uslugi__tabs" role="tablist">
-        <button class="tab is-active" role="tab" data-tab="u1">Разработка маркетинговой стратегии</button>
-        <button class="tab" role="tab" data-tab="u2">Реализация маркетинговой стратегии</button>
-        <button class="tab" role="tab" data-tab="u3">Разработка сайта</button>
-        <button class="tab" role="tab" data-tab="u4">Настройка и ведение контекстной рекламы</button>
-        <button class="tab" role="tab" data-tab="u5">Проджект и маркетолог на аутсорсе</button>
-        <button class="tab" role="tab" data-tab="u6">Подбор подрядчиков</button>
+        <button class="tab is-active" role="tab" data-tab="u1"><span>Разработка маркетинговой стратегии</span><i class="tab__sign"><img src="img/arrow.svg" alt=""></i></button>
+        <button class="tab" role="tab" data-tab="u2"><span>Реализация маркетинговой стратегии</span><i class="tab__sign"><img src="img/arrow.svg" alt=""></i></button>
+        <button class="tab" role="tab" data-tab="u3"><span>Разработка сайта</span><i class="tab__sign"><img src="img/arrow.svg" alt=""></i></button>
+        <button class="tab" role="tab" data-tab="u4"><span>Настройка и ведение контекстной рекламы</span><i class="tab__sign"><img src="img/arrow.svg" alt=""></i></button>
+        <button class="tab" role="tab" data-tab="u5"><span>Проджект и маркетолог на аутсорсе</span><i class="tab__sign"><img src="img/arrow.svg" alt=""></i></button>
+        <button class="tab" role="tab" data-tab="u6"><span>Подбор подрядчиков</span><i class="tab__sign"><img src="img/arrow.svg" alt=""></i></button>
       </div>
 
       <div class="uslugi__panels">
         <div class="panel is-active" id="u1">
           <h3 class="h3">Маркетинговая стратегия</h3>
-          <p>Исследуем вашу нишу, конкурентов, текущую ситуацию и проект. Готовим подробный документ по каждому направлению — с понятными действиями и результатом по каждому этапу.</p>
+          <p class="caption muted">Исследуем вашу нишу, конкурентов, текущую ситуацию и проект. Готовим подробный документ по каждому направлению — с понятными действиями и результатом по каждому этапу.</p>
           <span class="caps caps--12 muted">ЧТО ВХОДИТ</span>
           <ul class="checklist">
-            <li><i class="marker">+</i>Типы рекламных кампаний с бюджетом на каждую</li>
-            <li><i class="marker">+</i>Примеры семантики и офферов, которые стоит использовать</li>
-            <li><i class="marker">+</i>Расчёт бюджета с учётом рыночных цен</li>
-            <li><i class="marker">+</i>Готовый инструмент — можно передать подрядчикам</li>
+            <li><i class="marker">+</i><span class="caption">Типы рекламных кампаний с бюджетом на каждую</span></li>
+            <li><i class="marker">+</i><span class="caption">Примеры семантики и офферов, которые стоит использовать</span></li>
+            <li><i class="marker">+</i><span class="caption">Расчёт бюджета с учётом рыночных цен</span></li>
+            <li><i class="marker">+</i><span class="caption">Готовый инструмент — можно передать подрядчикам</span></li>
           </ul>
-          <div class="price"><b>60 000 ₽</b><em>документ · разово · передаётся подрядчикам</em></div>
+          <div class="price"><b>60 000 ₽</b><em class="caps caps--12 muted">документ · разово · передаётся подрядчикам</em></div>
+          <button class="btn btn--outline">Смотреть пример</button>
         </div>
 
         <div class="panel" id="u2">
           <h3 class="h3">Реализация стратегии</h3>
-          <p>Берём на себя разработку сайта, настройку и ведение контекстной и таргетированной рекламы. По другим направлениям сами подбираем подрядчиков, согласовываем с вами бюджет и полностью отвечаем за их работу.</p>
+          <p class="caption muted">Берём на себя разработку сайта, настройку и ведение контекстной и таргетированной рекламы. По другим направлениям сами подбираем подрядчиков, согласовываем с вами бюджет и полностью отвечаем за их работу.</p>
           <span class="caps caps--12 muted">ЧТО ВХОДИТ</span>
           <ul class="checklist">
-            <li><i class="marker">+</i>Сайт, контекст и таргет делаем сами</li>
-            <li><i class="marker">+</i>Подрядчиков по остальным направлениям подбираем и ведём</li>
-            <li><i class="marker">+</i>Отчитываемся по согласованному плану, а не по факту работ</li>
-            <li><i class="marker">+</i>За работу подрядчиков отвечаем мы</li>
+            <li><i class="marker">+</i><span class="caption">Сайт, контекст и таргет делаем сами</span></li>
+            <li><i class="marker">+</i><span class="caption">Подрядчиков по остальным направлениям подбираем и ведём</span></li>
+            <li><i class="marker">+</i><span class="caption">Отчитываемся по согласованному плану, а не по факту работ</span></li>
+            <li><i class="marker">+</i><span class="caption">За работу подрядчиков отвечаем мы</span></li>
           </ul>
-          <div class="price"><b>по проекту</b><em>цена зависит от состава работ</em></div>
+          <div class="price"><b>по проекту</b><em class="caps caps--12 muted">цена зависит от состава работ</em></div>
+          <button class="btn btn--outline">Смотреть пример</button>
         </div>
 
         <div class="panel" id="u3">
           <h3 class="h3">Разработка сайта</h3>
-          <p>Создадим сайт под вашу задачу — собирать заявки или показывать партнёрам. Проведём маркетинговый анализ, подготовим тексты и дизайн под нишу и аудиторию. При небольшом бюджете предложим лендинг на стандартных блоках, но с маркетинговой проработкой.</p>
+          <p class="caption muted">Создадим сайт под вашу задачу — собирать заявки или показывать партнёрам. Проведём маркетинговый анализ, подготовим тексты и дизайн под нишу и аудиторию. При небольшом бюджете предложим лендинг на стандартных блоках, но с маркетинговой проработкой.</p>
           <span class="caps caps--12 muted">ЧТО ВХОДИТ</span>
           <ul class="checklist">
-            <li><i class="marker">+</i>Тильда, WordPress или вёрстка — выбираем под задачу и бюджет</li>
-            <li><i class="marker">+</i>Маркетинговый анализ до дизайна, а не после</li>
-            <li><i class="marker">+</i>Тексты под нишу и аудиторию</li>
-            <li><i class="marker">+</i>Если лендинг вашей нише нерентабелен — скажем честно</li>
+            <li><i class="marker">+</i><span class="caption">Тильда, WordPress или вёрстка — выбираем под задачу и бюджет</span></li>
+            <li><i class="marker">+</i><span class="caption">Маркетинговый анализ до дизайна, а не после</span></li>
+            <li><i class="marker">+</i><span class="caption">Тексты под нишу и аудиторию</span></li>
+            <li><i class="marker">+</i><span class="caption">Если лендинг вашей нише нерентабелен — скажем честно</span></li>
           </ul>
-          <div class="price"><b>от 60 000 ₽</b><em>60 000 стандартные блоки · 90 000 дизайн с нуля · 150 000 под ключ с текстами</em></div>
+          <div class="price"><b>от 60 000 ₽</b><em class="caps caps--12 muted">60 000 стандартные блоки · 90 000 дизайн с нуля · 150 000 под ключ с текстами</em></div>
+          <button class="btn btn--outline">Смотреть пример</button>
         </div>
 
         <div class="panel" id="u4">
           <h3 class="h3">Контекстная реклама</h3>
-          <p>В команде директолог, который автоматизирует данные из Метрики и обучает на них кампании — это даёт более целевые действия и снижает стоимость лида. Если при чистом трафике сайт не конвертит, останавливаем открутку и разбираем сайт и оффер.</p>
+          <p class="caption muted">В команде директолог, который автоматизирует данные из Метрики и обучает на них кампании — это даёт более целевые действия и снижает стоимость лида. Если при чистом трафике сайт не конвертит, останавливаем открутку и разбираем сайт и оффер.</p>
           <span class="caps caps--12 muted">ЧТО ВХОДИТ</span>
           <ul class="checklist">
-            <li><i class="marker">+</i>Стратегия и расчёт бюджета на тестовый запуск</li>
-            <li><i class="marker">+</i>Прогноз результатов — цифры для решения до старта</li>
-            <li><i class="marker">+</i>Кампании обучаются на данных Метрики</li>
-            <li><i class="marker">+</i>Остановим, если дело не в трафике, а в сайте</li>
+            <li><i class="marker">+</i><span class="caption">Стратегия и расчёт бюджета на тестовый запуск</span></li>
+            <li><i class="marker">+</i><span class="caption">Прогноз результатов — цифры для решения до старта</span></li>
+            <li><i class="marker">+</i><span class="caption">Кампании обучаются на данных Метрики</span></li>
+            <li><i class="marker">+</i><span class="caption">Остановим, если дело не в трафике, а в сайте</span></li>
           </ul>
-          <div class="price"><b>от 45 000 ₽ / мес</b><em>ведение рекламы</em></div>
+          <div class="price"><b>от 45 000 ₽ / мес</b><em class="caps caps--12 muted">ведение рекламы</em></div>
+          <button class="btn btn--outline">Смотреть пример</button>
         </div>
 
         <div class="panel" id="u5">
           <h3 class="h3">Проджект и маркетолог на аутсорсе</h3>
-          <p>Нет штатного маркетолога, но есть подрядчики? Возьмём на себя роль менеджера и маркетолога в одном лице: выстроим стратегию развития проекта и будем контролировать её исполнение.</p>
+          <p class="caption muted">Нет штатного маркетолога, но есть подрядчики? Возьмём на себя роль менеджера и маркетолога в одном лице: выстроим стратегию развития проекта и будем контролировать её исполнение.</p>
           <span class="caps caps--12 muted">ЧТО ВХОДИТ</span>
           <ul class="checklist">
-            <li><i class="marker">+</i>Стратегия развития проекта и измеримые цели</li>
-            <li><i class="marker">+</i>Контроль подрядчиков, сроков и бюджета</li>
-            <li><i class="marker">+</i>Понятно, за что платите и какой получите результат</li>
-            <li><i class="marker">+</i>Отчёты собираем вручную под ваши показатели</li>
+            <li><i class="marker">+</i><span class="caption">Стратегия развития проекта и измеримые цели</span></li>
+            <li><i class="marker">+</i><span class="caption">Контроль подрядчиков, сроков и бюджета</span></li>
+            <li><i class="marker">+</i><span class="caption">Понятно, за что платите и какой получите результат</span></li>
+            <li><i class="marker">+</i><span class="caption">Отчёты собираем вручную под ваши показатели</span></li>
           </ul>
-          <div class="price"><b>15 000 ₽ / мес</b><em>за один проект</em></div>
+          <div class="price"><b>15 000 ₽ / мес</b><em class="caps caps--12 muted">за один проект</em></div>
+          <button class="btn btn--outline">Смотреть пример</button>
         </div>
 
         <div class="panel" id="u6">
           <h3 class="h3">Подбор подрядчиков</h3>
-          <p>Ищете агентство для долгого сотрудничества, получаете десяток коммерческих предложений и не знаете, как выбрать? Проанализируем их, созвонимся с сильнейшими и поможем выбрать. За плечами работа в разных агентствах — знаем, где у них подводные камни.</p>
+          <p class="caption muted">Ищете агентство для долгого сотрудничества, получаете десяток коммерческих предложений и не знаете, как выбрать? Проанализируем их, созвонимся с сильнейшими и поможем выбрать. За плечами работа в разных агентствах — знаем, где у них подводные камни.</p>
           <span class="caps caps--12 muted">ЧТО ВХОДИТ</span>
           <ul class="checklist">
-            <li><i class="marker">+</i>Разбор коммерческих предложений</li>
-            <li><i class="marker">+</i>Созвоны с претендентами и проверка обещаний</li>
-            <li><i class="marker">+</i>Рекомендация с аргументами, а не «вот этот»</li>
-            <li><i class="marker">+</i>Готовы выйти на встречу с вашим подрядчиком</li>
+            <li><i class="marker">+</i><span class="caption">Разбор коммерческих предложений</span></li>
+            <li><i class="marker">+</i><span class="caption">Созвоны с претендентами и проверка обещаний</span></li>
+            <li><i class="marker">+</i><span class="caption">Рекомендация с аргументами, а не «вот этот»</span></li>
+            <li><i class="marker">+</i><span class="caption">Готовы выйти на встречу с вашим подрядчиком</span></li>
           </ul>
-          <div class="price"><b>8 000 ₽</b><em>консультация · разово</em></div>
+          <div class="price"><b>8 000 ₽</b><em class="caps caps--12 muted">консультация · разово</em></div>
+          <button class="btn btn--outline">Смотреть пример</button>
         </div>
       </div>
     </div>
@@ -347,25 +368,27 @@
 
 <!-- 07. ПЛАТИТЕ ЗА РЕЗУЛЬТАТ -->
 <section class="section">
-  <div class="container platite">
-    <div class="platite__left">
-      <div class="section__head">
-        <span class="pill pill--light">/06 · Как мы работаем</span>
-        <h2 class="h2">Платите за результат,<br>а не за часы</h2>
-      </div>
-      <p class="lead">Нам важно помочь достигнуть цели, а не закрыть пункты в ТЗ</p>
-      <div class="zero"><span class="zero__num">0 ₽</span><span class="muted">за потраченные часы и количество закрытых задач</span></div>
+  <div class="wrap">
+    <div class="head head--tight">
+      <span class="pill pill--white">/06 · Как мы работаем</span>
+      <h2 class="h2">Платите за результат, а не за часы</h2>
+      <p class="micro muted">Нам важно помочь достигнуть цели, а не закрыть пункты в ТЗ</p>
     </div>
-    <div class="platite__right">
-      <p>Мы не присылаем сухих отчётов «выполнили все пункты по ТЗ». Сначала задаём неудобные вопросы, потом сами исследуем запрос, собираем требования и формируем предпроектное ТЗ — вам останется согласовать его или внести корректировки.</p>
-      <p class="lead">Разберём вашу ситуацию по первичным данным — бесплатно, за тридцать минут.</p>
+
+    <div class="platite">
+      <div class="platite__left">
+        <div class="zero"><span class="zero__num">0 ₽</span><span class="caption muted">за потраченные часы и количество закрытых задач</span></div>
+        <p class="caption">Мы не присылаем сухих отчётов «выполнили все пункты по ТЗ». Сначала задаём неудобные вопросы, потом сами исследуем запрос, собираем требования и формируем предпроектное ТЗ — вам останется согласовать его или внести корректировки.</p>
+        <p class="caption muted">Разберём вашу ситуацию по первичным данным — бесплатно, за тридцать минут.</p>
+      </div>
+
       <div class="questions">
         <span class="caps caps--12 muted">СНАЧАЛА ЗАДАЁМ НЕУДОБНЫЕ ВОПРОСЫ</span>
         <ul>
-          <li>А для чего сайт или текст?</li>
-          <li>Кому будете отправлять?</li>
-          <li>Какой ожидаете результат?</li>
-          <li>Сколько сейчас продаж и какая конверсия лида в продажу?</li>
+          <li class="small">А для чего сайт или текст?</li>
+          <li class="small">Кому будете отправлять?</li>
+          <li class="small">Какой ожидаете результат?</li>
+          <li class="small">Сколько сейчас продаж и какая конверсия лида в продажу?</li>
         </ul>
         <p class="micro muted">список зависит от контекста — вопросов будет больше. Нормально, что вы можете не знать ответа на все, — мы разберёмся и поможем.</p>
       </div>
@@ -376,27 +399,15 @@
 <!-- 08. БЕСПЛАТНЫЙ АУДИТ -->
 <section class="section section--dark audit" id="audit">
   <img class="audit__bg" src="img/audit-keyboard.webp" alt="" loading="lazy">
-  <div class="container audit__inner">
-    <div class="audit__left">
-      <div class="section__head">
-        <span class="pill pill--dark">/08 · Первый шаг</span>
-        <h2 class="h2">Начнём с бесплатного аудита</h2>
-      </div>
-      <p class="lead">Посмотрим, что происходит с трафиком и заявками, и честно скажем, где теряете. Тридцать минут, без обязательств.</p>
-
-      <div class="uskorit">
-        <span class="caps caps--12 muted">ЧТО УСКОРИТ РАЗБОР — ЕСЛИ ЕСТЬ ПОД РУКОЙ</span>
-        <ul class="tags">
-          <li class="tag tag--dark">Яндекс Метрика</li>
-          <li class="tag tag--dark">Вебмастер и Search Console</li>
-          <li class="tag tag--dark">Директ</li>
-        </ul>
-        <p class="micro muted">Доступы нужны только в режиме просмотра, почты для выдачи прав пришлём после заявки. Нет доступов или даже сайта — всё равно приходите: разберём по запросу и презентуем гипотезы на встрече.</p>
-      </div>
+  <div class="wrap audit__inner">
+    <div class="head">
+      <span class="pill pill--raised">/08 · Первый шаг</span>
+      <h2 class="h2">Начнём с бесплатного аудита</h2>
+      <p class="micro muted">Посмотрим, что происходит с трафиком и заявками, и честно скажем,<br>где теряете. Тридцать минут, без обязательств.</p>
     </div>
 
-    <div class="audit__right">
-      <form class="form card-dark" data-form="audit">
+    <div class="audit__cols">
+      <form class="form card-raised" data-form="audit">
         <span class="caps caps--12 muted">ЗАЯВКА НА АУДИТ</span>
         <div class="form__row">
           <input class="field" type="text" name="name" placeholder="Имя" required>
@@ -404,25 +415,32 @@
         </div>
         <input class="field" type="text" name="site" placeholder="Ссылка на сайт/соц.сети (если есть)">
         <label class="check">
-          <input type="checkbox" required>
-          <span class="check__box"></span>
-          <span class="check__text">Даю согласие на обработку персональных данных и принимаю <a href="privacy.html">политику конфиденциальности</a></span>
+          <input type="checkbox" required><span class="check__box"></span>
+          <span class="check__text micro">Даю согласие на обработку персональных данных и принимаю <a href="privacy.html">политику конфиденциальности</a></span>
         </label>
-        <button class="btn btn--accent btn--wide" type="submit">
-          <span>Записаться на аудит</span><i class="btn__icon">+</i>
-        </button>
+        <button class="btn btn--accent btn--wide" type="submit">Записаться на аудит</button>
         <p class="micro muted">Больше ничего не нужно — остальное спросим на встрече</p>
       </form>
 
-      <div class="poluchite card-dark2">
+      <div class="poluchite">
         <span class="caps caps--12 muted">ЧТО ВЫ ПОЛУЧИТЕ</span>
-        <ul class="checklist checklist--dark">
-          <li><i class="marker">+</i>Разбор показателей по трафику, конверсиям и рекламе</li>
-          <li><i class="marker">+</i>Краткий план действий по вашему проекту</li>
-          <li><i class="marker">+</i>Ориентировочный бюджет и сроки по каждому предложению</li>
+        <ul class="checklist">
+          <li><i class="marker">+</i><span class="caption">Разбор показателей по трафику, конверсиям и рекламе</span></li>
+          <li><i class="marker">+</i><span class="caption">Краткий план действий по вашему проекту</span></li>
+          <li><i class="marker">+</i><span class="caption">Ориентировочный бюджет и сроки по каждому предложению</span></li>
         </ul>
-        <div class="zero zero--dark"><span class="zero__num">0 ₽</span><span class="muted">30 минут · без обязательств</span></div>
+        <div class="zero"><span class="zero__num">0 ₽</span><span class="caption muted">30 минут · без обязательств</span></div>
       </div>
+    </div>
+
+    <div class="uskorit">
+      <span class="caps caps--12 muted">ЧТО УСКОРИТ РАЗБОР — ЕСЛИ ЕСТЬ ПОД РУКОЙ</span>
+      <div class="pills">
+        <span class="pill pill--raised">Яндекс Метрика</span>
+        <span class="pill pill--raised">Вебмастер и Search Console</span>
+        <span class="pill pill--raised">Директ</span>
+      </div>
+      <p class="micro muted">Доступы нужны только в режиме просмотра, почты для выдачи прав пришлём после заявки. Нет доступов или даже сайта — всё равно приходите: разберём по запросу и презентуем гипотезы на встрече.</p>
     </div>
   </div>
 </section>
@@ -431,50 +449,60 @@
 
 <!-- ПОДВАЛ -->
 <footer class="footer">
-  <div class="container footer__inner">
-    <div class="footer__brand">
-      <a class="logo" href="#top"><img src="img/logo-full.svg" alt="Маркетинг-неотложка для бизнеса"></a>
-      <p class="muted">Спасаем бизнес быстро, с учётом ваших возможностей и ситуации.</p>
-      <span class="pill pill--pale">Отвечаем в течение 30 минут</span>
-    </div>
-    <nav class="footer__cols">
-      <div>
+  <div class="wrap">
+    <hr class="rule">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a class="logo" href="#top"><img src="img/logo-full.svg" alt="Маркетинг-неотложка для бизнеса"></a>
+        <p class="caption muted">Спасаем бизнес быстро, с учётом ваших возможностей и ситуации.</p>
+        <span class="dot micro">Отвечаем в течение 30 минут</span>
+      </div>
+
+      <nav class="footer__col">
         <span class="caps caps--12 muted">РАЗДЕЛЫ</span>
-        <a href="#simptomy">С чем приходят</a>
-        <a href="#o-nas">О нас</a>
-        <a href="#etapy">Как работаем</a>
-        <a href="#keysy">Кейсы</a>
-        <a href="#uslugi">Услуги и цены</a>
-      </div>
-      <div>
+        <a class="caption" href="#simptomy">С чем приходят</a>
+        <a class="caption" href="#o-nas">О нас</a>
+        <a class="caption" href="#etapy">Как работаем</a>
+        <a class="caption" href="#keysy">Кейсы</a>
+        <a class="caption" href="#uslugi">Услуги и цены</a>
+      </nav>
+
+      <nav class="footer__col">
         <span class="caps caps--12 muted">УСЛУГИ</span>
-        <a href="#uslugi" data-tab-link="u1">Маркетинговая стратегия</a>
-        <a href="#uslugi" data-tab-link="u4">Контекстная реклама</a>
-        <a href="#uslugi" data-tab-link="u5">Проджект и маркетолог на аутсорсе</a>
-        <a href="#uslugi" data-tab-link="u3">Разработка сайта</a>
-        <a href="#uslugi" data-tab-link="u2">Реализация стратегии</a>
-        <a href="#uslugi" data-tab-link="u6">Подбор подрядчиков</a>
-      </div>
-      <div>
+        <a class="caption" href="#uslugi" data-tab-link="u1">Маркетинговая стратегия</a>
+        <a class="caption" href="#uslugi" data-tab-link="u4">Контекстная реклама</a>
+        <a class="caption" href="#uslugi" data-tab-link="u5">Проджект и маркетолог на аутсорсе</a>
+        <a class="caption" href="#uslugi" data-tab-link="u3">Разработка сайта</a>
+        <a class="caption" href="#uslugi" data-tab-link="u2">Реализация стратегии</a>
+        <a class="caption" href="#uslugi" data-tab-link="u6">Подбор подрядчиков</a>
+      </nav>
+
+      <div class="footer__col">
         <span class="caps caps--12 muted">СВЯЗАТЬСЯ</span>
-        <a href="tel:+79213455321">+7 921 345-53-21</a>
-        <a href="https://t.me/neotlozhka" target="_blank" rel="noopener">t.me/neotlozhka</a>
-        <button class="btn btn--accent footer__cta" data-modal-open="audit">
-          <span>Вызвать неотложку</span><i class="btn__icon">+</i>
-        </button>
+        <a class="small" href="tel:+79213455321">+7 921 345-53-21</a>
+        <a class="small" href="https://t.me/neotlozhka" target="_blank" rel="noopener">t.me/neotlozhka</a>
+        <span class="socials">
+          <a href="https://t.me/neotlozhka" target="_blank" rel="noopener" aria-label="MAX"><img src="img/social-max.svg" alt=""></a>
+          <a href="https://t.me/neotlozhka" target="_blank" rel="noopener" aria-label="Telegram"><img src="img/social-tg.svg" alt=""></a>
+          <a href="https://t.me/neotlozhka" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="img/social-wa.svg" alt=""></a>
+        </span>
+        <span class="call footer__cta" data-modal-open="audit" role="button" tabindex="0">
+          <span class="call__main">Вызвать неотложку</span><span class="call__sign">+</span>
+        </span>
       </div>
-    </nav>
-  </div>
-  <div class="container footer__bottom">
-    <span class="micro muted">© 2026 Маркетинг-неотложка</span>
-    <a class="micro muted" href="privacy.html">Политика конфиденциальности</a>
+    </div>
+    <hr class="rule">
+    <div class="footer__bottom">
+      <span class="micro muted">© 2026 Маркетинг-неотложка</span>
+      <a class="micro muted" href="privacy.html">Политика конфиденциальности</a>
+    </div>
   </div>
 </footer>
 
 <!-- МОБИЛЬНОЕ МЕНЮ -->
 <div class="menu" data-menu hidden>
   <div class="menu__head">
-    <span class="logo__text"><b>Маркетинг-неотложка</b><i>для бизнеса</i></span>
+    <a class="logo" href="#top"><img src="img/logo-full.svg" alt=""></a>
     <button class="iconbtn" data-menu-close aria-label="Закрыть">×</button>
   </div>
   <nav class="menu__nav">
@@ -486,9 +514,9 @@
   </nav>
   <div class="menu__foot">
     <a class="menu__phone" href="tel:+79213455321">+7 921 345-53-21</a>
-    <button class="btn btn--accent btn--wide" data-modal-open="audit" data-menu-close>
-      <span>Вызвать неотложку</span><i class="btn__icon">+</i>
-    </button>
+    <span class="call call--wide" data-modal-open="audit" data-menu-close role="button" tabindex="0">
+      <span class="call__main">Вызвать неотложку</span><span class="call__sign">+</span>
+    </span>
   </div>
 </div>
 
@@ -496,7 +524,6 @@
 <div class="overlay" data-overlay hidden>
   <div class="overlay__scrim" data-close></div>
 
-  <!-- кейсы -->
   <div class="modal modal--case" data-modal="case-01">
     <button class="modal__close" data-close aria-label="Закрыть">×</button>
     <div class="modal__head">
@@ -504,19 +531,19 @@
       <span class="pill pill--pale">03.2024 — 09.2025</span>
     </div>
     <h3 class="h5">Увеличили конверсию сайта втрое и вывели запросы в ТОП-5</h3>
-    <div class="modal__shot"><span class="pill pill--light">01 · SEO · реклама</span></div>
+    <div class="modal__shot"><span class="pill pill--white">01 · SEO · реклама</span></div>
     <div class="modal__cols">
       <div><span class="caps caps--12 muted">ПОСТУПИЛ С</span>
-        <ul class="dlist"><li><i class="marker marker--x">×</i>Нецелевые заявки, в основном от физлиц</li><li><i class="marker marker--x">×</i>Простои в парке по основной технике</li><li><i class="marker marker--x">×</i>Позиции не выше ТОП-30, периодически ниже</li></ul></div>
+        <ul class="dlist"><li><i class="marker marker--x">×</i><span class="caption">Нецелевые заявки, в основном от физлиц</span></li><li><i class="marker marker--x">×</i><span class="caption">Простои в парке по основной технике</span></li><li><i class="marker marker--x">×</i><span class="caption">Позиции не выше ТОП-30, периодически ниже</span></li></ul></div>
       <div><span class="caps caps--12 muted">НАЗНАЧЕНО</span>
-        <ul class="dlist"><li><i class="marker">+</i>Стратегия SEO-продвижения</li><li><i class="marker">+</i>Кураторство контекстной рекламы</li><li><i class="marker">+</i>План по повышению конверсии сайта</li></ul></div>
+        <ul class="dlist"><li><i class="marker">+</i><span class="caption">Стратегия SEO-продвижения</span></li><li><i class="marker">+</i><span class="caption">Кураторство контекстной рекламы</span></li><li><i class="marker">+</i><span class="caption">План по повышению конверсии сайта</span></li></ul></div>
     </div>
     <div class="modal__out"><span class="caps caps--12 muted">ВЫПИСАН С</span>
       <div class="stats"><div class="stat"><span class="stat__num">+90</span><span class="stat__cap">Позиций в топ-10</span></div><div class="stat"><span class="stat__num">+64</span><span class="stat__cap">Позиций в топ-3</span></div><div class="stat"><span class="stat__num">101</span><span class="stat__cap">Ключевых слов</span></div></div>
-      <p class="muted">За 1,5 года компания вышла в ТОП среди конкурентов и стабильно удерживает позиции</p>
+      <p class="caption muted">За 1,5 года компания вышла в ТОП среди конкурентов и стабильно удерживает позиции</p>
     </div>
     <div class="modal__foot">
-      <a href="https://andreasrent.ru" target="_blank" rel="noopener">andreasrent.ru</a>
+      <a class="caption" href="https://andreasrent.ru" target="_blank" rel="noopener">andreasrent.ru</a>
       <div class="pager"><span class="micro muted">01 / 05</span><button class="iconbtn" data-prev>←</button><button class="iconbtn" data-next>→</button></div>
     </div>
   </div>
@@ -525,19 +552,19 @@
     <button class="modal__close" data-close aria-label="Закрыть">×</button>
     <div class="modal__head"><span class="pill pill--pale">Выписка № 02 · сувенирная морская продукция</span></div>
     <h3 class="h5">Увеличили заказы за счёт охвата высококонкурентных запросов</h3>
-    <div class="modal__shot"><span class="pill pill--light">02 · SEO · аналитика · реклама</span></div>
+    <div class="modal__shot"><span class="pill pill--white">02 · SEO · аналитика · реклама</span></div>
     <div class="modal__cols">
       <div><span class="caps caps--12 muted">ПОСТУПИЛ С</span>
-        <ul class="dlist"><li><i class="marker marker--x">×</i>Заявки только по прямым запросам: «купить модель корабля»</li><li><i class="marker marker--x">×</i>Околотематические запросы не приносили обращений</li><li><i class="marker marker--x">×</i>Ключевые запросы по моделям уже были в ТОП-10</li></ul></div>
+        <ul class="dlist"><li><i class="marker marker--x">×</i><span class="caption">Заявки только по прямым запросам: «купить модель корабля»</span></li><li><i class="marker marker--x">×</i><span class="caption">Околотематические запросы не приносили обращений</span></li><li><i class="marker marker--x">×</i><span class="caption">Ключевые запросы по моделям уже были в ТОП-10</span></li></ul></div>
       <div><span class="caps caps--12 muted">НАЗНАЧЕНО</span>
-        <ul class="dlist"><li><i class="marker">+</i>Проработали подарочную тематику: подарок начальнику, директору</li><li><i class="marker">+</i>Подборки с единой концепцией</li><li><i class="marker">+</i>Контекстная реклама</li><li><i class="marker">+</i>Контент-стратегия для укрепления позиций</li></ul></div>
+        <ul class="dlist"><li><i class="marker">+</i><span class="caption">Проработали подарочную тематику: подарок начальнику, директору</span></li><li><i class="marker">+</i><span class="caption">Подборки с единой концепцией</span></li><li><i class="marker">+</i><span class="caption">Контекстная реклама</span></li><li><i class="marker">+</i><span class="caption">Контент-стратегия для укрепления позиций</span></li></ul></div>
     </div>
     <div class="modal__out"><span class="caps caps--12 muted">ВЫПИСАН С</span>
       <div class="stats"><div class="stat"><span class="stat__num">×2</span><span class="stat__cap">Трафик из поиска</span></div><div class="stat"><span class="stat__num">ТОП-30</span><span class="stat__cap">По большинству запросов</span></div></div>
-      <p class="muted">Выросли обращения и заказы по подарочному направлению</p>
+      <p class="caption muted">Выросли обращения и заказы по подарочному направлению</p>
     </div>
     <div class="modal__foot">
-      <a href="https://modeli-korabli.ru" target="_blank" rel="noopener">modeli-korabli.ru</a>
+      <a class="caption" href="https://modeli-korabli.ru" target="_blank" rel="noopener">modeli-korabli.ru</a>
       <div class="pager"><span class="micro muted">02 / 05</span><button class="iconbtn" data-prev>←</button><button class="iconbtn" data-next>→</button></div>
     </div>
   </div>
@@ -546,19 +573,19 @@
     <button class="modal__close" data-close aria-label="Закрыть">×</button>
     <div class="modal__head"><span class="pill pill--pale">Выписка № 03 · медицинское оборудование</span></div>
     <h3 class="h5">Увеличили объём заявок по приоритетным направлениям</h3>
-    <div class="modal__shot"><span class="pill pill--light">03 · аналитика · реклама</span></div>
+    <div class="modal__shot"><span class="pill pill--white">03 · аналитика · реклама</span></div>
     <div class="modal__cols">
       <div><span class="caps caps--12 muted">ПОСТУПИЛ С</span>
-        <ul class="dlist"><li><i class="marker marker--x">×</i>Мало заявок и продаж</li><li><i class="marker marker--x">×</i>Нет стабильных заявок по водолечебному оборудованию</li><li><i class="marker marker--x">×</i>Ограниченный бюджет, а результат нужен ощутимый</li></ul></div>
+        <ul class="dlist"><li><i class="marker marker--x">×</i><span class="caption">Мало заявок и продаж</span></li><li><i class="marker marker--x">×</i><span class="caption">Нет стабильных заявок по водолечебному оборудованию</span></li><li><i class="marker marker--x">×</i><span class="caption">Ограниченный бюджет, а результат нужен ощутимый</span></li></ul></div>
       <div><span class="caps caps--12 muted">НАЗНАЧЕНО</span>
-        <ul class="dlist"><li><i class="marker">+</i>Гипотезы по контекстной рекламе в рамках бюджета</li><li><i class="marker">+</i>Реализация поочерёдно, до достижения результата</li><li><i class="marker">+</i>Улучшили визуал страниц для конверсии</li></ul></div>
+        <ul class="dlist"><li><i class="marker">+</i><span class="caption">Гипотезы по контекстной рекламе в рамках бюджета</span></li><li><i class="marker">+</i><span class="caption">Реализация поочерёдно, до достижения результата</span></li><li><i class="marker">+</i><span class="caption">Улучшили визуал страниц для конверсии</span></li></ul></div>
     </div>
     <div class="modal__out"><span class="caps caps--12 muted">ВЫПИСАН С</span>
-      <div class="stats"><div class="stat"><span class="stat__num stat__num--text">Новое направление</span><span class="stat__cap">заявки там, где их не было</span></div></div>
-      <p class="muted">Заявки выросли в целом, пошли обращения по приоритетному водолечебному оборудованию</p>
+      <div class="stats"><div class="stat"><span class="stat__num is-text">Новое направление</span><span class="stat__cap">заявки там, где их не было</span></div></div>
+      <p class="caption muted">Заявки выросли в целом, пошли обращения по приоритетному водолечебному оборудованию</p>
     </div>
     <div class="modal__foot">
-      <a href="https://pik-med.ru" target="_blank" rel="noopener">pik-med.ru</a>
+      <a class="caption" href="https://pik-med.ru" target="_blank" rel="noopener">pik-med.ru</a>
       <div class="pager"><span class="micro muted">03 / 05</span><button class="iconbtn" data-prev>←</button><button class="iconbtn" data-next>→</button></div>
     </div>
   </div>
@@ -567,19 +594,19 @@
     <button class="modal__close" data-close aria-label="Закрыть">×</button>
     <div class="modal__head"><span class="pill pill--pale">Выписка № 04 · онлайн-курс по IT-рекрутингу</span></div>
     <h3 class="h5">Сайт для онлайн-курса — первые заявки сразу после запуска рекламы</h3>
-    <div class="modal__shot"><span class="pill pill--light">04 · тексты · сайт · метрика</span></div>
+    <div class="modal__shot"><span class="pill pill--white">04 · тексты · сайт · метрика</span></div>
     <div class="modal__cols">
       <div><span class="caps caps--12 muted">ПОСТУПИЛ С</span>
-        <ul class="dlist"><li><i class="marker marker--x">×</i>Нужен сайт, который передаёт ценности курса</li><li><i class="marker marker--x">×</i>Ценности надо раскрыть на языке аудитории</li><li><i class="marker marker--x">×</i>Подвести к бесплатному демо-курсу</li></ul></div>
+        <ul class="dlist"><li><i class="marker marker--x">×</i><span class="caption">Нужен сайт, который передаёт ценности курса</span></li><li><i class="marker marker--x">×</i><span class="caption">Ценности надо раскрыть на языке аудитории</span></li><li><i class="marker marker--x">×</i><span class="caption">Подвести к бесплатному демо-курсу</span></li></ul></div>
       <div><span class="caps caps--12 muted">НАЗНАЧЕНО</span>
-        <ul class="dlist"><li><i class="marker">+</i>Оффер и концепция на основе маркетингового анализа</li><li><i class="marker">+</i>Тексты и дизайн под нишу</li><li><i class="marker">+</i>Вёрстка и тестирование</li><li><i class="marker">+</i>Метрика и настроенные цели</li><li><i class="marker">+</i>Корректировки после запуска рекламы</li></ul></div>
+        <ul class="dlist"><li><i class="marker">+</i><span class="caption">Оффер и концепция на основе маркетингового анализа</span></li><li><i class="marker">+</i><span class="caption">Тексты и дизайн под нишу</span></li><li><i class="marker">+</i><span class="caption">Вёрстка и тестирование</span></li><li><i class="marker">+</i><span class="caption">Метрика и настроенные цели</span></li><li><i class="marker">+</i><span class="caption">Корректировки после запуска рекламы</span></li></ul></div>
     </div>
     <div class="modal__out"><span class="caps caps--12 muted">ВЫПИСАН С</span>
       <div class="stats"><div class="stat"><span class="stat__num">6–8%</span><span class="stat__cap">Конверсия сайта</span></div><div class="stat"><span class="stat__num">50%</span><span class="stat__cap">Откликов закрылись в продажу</span></div></div>
-      <p class="muted">Клиент получил тёплые целевые отклики</p>
+      <p class="caption muted">Клиент получил тёплые целевые отклики</p>
     </div>
     <div class="modal__foot">
-      <span class="muted">сайт не публикуем</span>
+      <span class="caption muted">сайт не публикуем</span>
       <div class="pager"><span class="micro muted">04 / 05</span><button class="iconbtn" data-prev>←</button><button class="iconbtn" data-next>→</button></div>
     </div>
   </div>
@@ -588,24 +615,23 @@
     <button class="modal__close" data-close aria-label="Закрыть">×</button>
     <div class="modal__head"><span class="pill pill--pale">Выписка № 05 · салон красоты</span></div>
     <h3 class="h5">Имиджевый сайт для салона красоты</h3>
-    <div class="modal__shot"><span class="pill pill--light">05 · тексты · сайт · метрика</span></div>
+    <div class="modal__shot"><span class="pill pill--white">05 · тексты · сайт · метрика</span></div>
     <div class="modal__cols">
       <div><span class="caps caps--12 muted">ПОСТУПИЛ С</span>
-        <ul class="dlist"><li><i class="marker marker--x">×</i>Нужно отстроиться от конкурентов концепцией</li><li><i class="marker marker--x">×</i>Передать атмосферу салона и вызвать доверие</li><li><i class="marker marker--x">×</i>Привлечь аудиторию 20–35 лет</li></ul></div>
+        <ul class="dlist"><li><i class="marker marker--x">×</i><span class="caption">Нужно отстроиться от конкурентов концепцией</span></li><li><i class="marker marker--x">×</i><span class="caption">Передать атмосферу салона и вызвать доверие</span></li><li><i class="marker marker--x">×</i><span class="caption">Привлечь аудиторию 20–35 лет</span></li></ul></div>
       <div><span class="caps caps--12 muted">НАЗНАЧЕНО</span>
-        <ul class="dlist"><li><i class="marker">+</i>Оффер и концепция сайта</li><li><i class="marker">+</i>Тексты с ценностями: честность, прямота, забота</li><li><i class="marker">+</i>Визуальный стиль под разные категории аудитории</li></ul></div>
+        <ul class="dlist"><li><i class="marker">+</i><span class="caption">Оффер и концепция сайта</span></li><li><i class="marker">+</i><span class="caption">Тексты с ценностями: честность, прямота, забота</span></li><li><i class="marker">+</i><span class="caption">Визуальный стиль под разные категории аудитории</span></li></ul></div>
     </div>
     <div class="modal__out"><span class="caps caps--12 muted">ВЫПИСАН С</span>
       <div class="stats"><div class="stat"><span class="stat__num">2%</span><span class="stat__cap">Конверсия в лид</span></div></div>
-      <p class="muted">Партнёры и клиенты сразу положительно оценили сайт</p>
+      <p class="caption muted">Партнёры и клиенты сразу положительно оценили сайт</p>
     </div>
     <div class="modal__foot">
-      <a href="https://salonkaksalon.ru" target="_blank" rel="noopener">salonkaksalon.ru</a>
+      <a class="caption" href="https://salonkaksalon.ru" target="_blank" rel="noopener">salonkaksalon.ru</a>
       <div class="pager"><span class="micro muted">05 / 05</span><button class="iconbtn" data-prev>←</button><button class="iconbtn" data-next>→</button></div>
     </div>
   </div>
 
-  <!-- формы -->
   <div class="modal modal--form" data-modal="audit">
     <button class="modal__close" data-close aria-label="Закрыть">×</button>
     <span class="caps caps--12 muted">ЗАЯВКА НА АУДИТ</span>
@@ -618,9 +644,9 @@
       <input class="field" type="text" name="site" placeholder="Ссылка на сайт/соц.сети (если есть)">
       <label class="check">
         <input type="checkbox" required><span class="check__box"></span>
-        <span class="check__text">Даю согласие на обработку персональных данных и принимаю <a href="privacy.html">политику конфиденциальности</a></span>
+        <span class="check__text micro">Даю согласие на обработку персональных данных и принимаю <a href="privacy.html">политику конфиденциальности</a></span>
       </label>
-      <button class="btn btn--accent btn--wide" type="submit"><span>Записаться на аудит</span><i class="btn__icon">+</i></button>
+      <button class="btn btn--accent btn--wide" type="submit">Записаться на аудит</button>
       <p class="micro muted">Больше ничего не нужно — остальное спросим на встрече</p>
     </form>
   </div>
@@ -637,9 +663,9 @@
       <input class="field" type="text" name="nisha" placeholder="Ниша или задача">
       <label class="check">
         <input type="checkbox" required><span class="check__box"></span>
-        <span class="check__text">Даю согласие на обработку персональных данных и принимаю <a href="privacy.html">политику конфиденциальности</a></span>
+        <span class="check__text micro">Даю согласие на обработку персональных данных и принимаю <a href="privacy.html">политику конфиденциальности</a></span>
       </label>
-      <button class="btn btn--accent btn--wide" type="submit"><span>Получить подборку</span><i class="btn__icon">+</i></button>
+      <button class="btn btn--accent btn--wide" type="submit">Получить подборку</button>
       <p class="micro muted">Пришлём в мессенджер или на почту</p>
     </form>
   </div>
@@ -648,8 +674,8 @@
     <button class="modal__close" data-close aria-label="Закрыть">×</button>
     <span class="caps caps--12 muted">ЗАЯВКА ПРИНЯТА</span>
     <h3 class="h5">Спасибо! Ответим в течение тридцати минут</h3>
-    <p class="muted">Напишем в мессенджер или позвоним — как вам удобнее. Если сейчас нерабочее время, ответим утром.</p>
-    <button class="btn btn--light btn--wide" data-close>Закрыть</button>
+    <p class="caption muted">Напишем в мессенджер или позвоним — как вам удобнее. Если сейчас нерабочее время, ответим утром.</p>
+    <button class="btn btn--white btn--wide" data-close>Закрыть</button>
   </div>
 </div>
 
