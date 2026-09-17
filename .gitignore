@@ -1,0 +1,7 @@
+# тяжёлые исходники картинок — в репозиторий не едут,
+# на сайте используются сжатые .webp рядом с ними
+img/hero-blisters.png
+img/badge-*.png
+img/audit-keyboard.png
+.DS_Store
+Thumbs.db
