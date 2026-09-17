@@ -143,7 +143,7 @@ var FORM_ENDPOINT = '';
      легенда с кнопкой стоят ВНУТРИ белого листа приёма (узел 331:301),
      а раскрытая услуга идёт сразу под своей строкой, аккордеоном
      (узел 349:385). Ниже — перенос узлов с честным возвратом обратно. */
-  var mq = window.matchMedia('(max-width:767px)');
+  var mq = window.matchMedia('(max-width:1023px)');
   var moved = [];
   function remember(node) {
     moved.push({ node: node, parent: node.parentNode, next: node.nextSibling });

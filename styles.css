@@ -485,6 +485,10 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .menu{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;
   background:var(--ink);color:var(--text-dark-bg);padding:20px;}
 .menu[hidden]{display:none;}
+/* В макете меню логотип полный, а кнопка вызова 64 в высоту при квадрате
+   56 — между ними виден зазор (узел 382:518). */
+.menu .call__main{height:64px;}
+.menu .call__sign{width:56px;height:56px;border-radius:var(--r-18);}
 .menu__head{display:flex;align-items:center;justify-content:space-between;gap:16px;}
 .menu__head .logo img{height:44px;width:auto;}
 .menu__nav{display:flex;flex-direction:column;gap:8px;margin-top:40px;}
@@ -572,20 +576,45 @@ body.is-locked{overflow:hidden;}
   .wrap{max-width:704px;}
   .header__nav{display:none;}
   .header__right .btn--sm{display:none;}
+  .header__right{margin-left:auto;}
   .burger{display:flex;}
 
   .hero__top{grid-template-columns:1fr;gap:32px;}
   .hero__list{display:grid;grid-template-columns:1fr 1fr;gap:0 32px;}
-  .hero__image{margin-top:16px;}
+  /* Кадр тянется за поля секции и становится выше: на этой ширине картинка
+     в габаритах десктопа превращалась в узкую полоску. */
+  .hero__image{margin:16px calc(-1 * var(--gutter)) 0;width:auto;height:52vw;aspect-ratio:auto;}
+  .hero__image img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;transform:none;}
 
-  .symptoms{grid-template-columns:1fr;gap:40px;margin:0;}
-  .symptoms__side{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
-  .symptoms__side .pill,.symptoms__side .h2,.symptoms__side>.lead{grid-column:1 / -1;}
-  .symptoms__side .pill{justify-self:start;}
-  .legend{margin-top:0;}
+  /* Порядок как в мобильном макете: заголовок → описание → лист → врезка.
+     Двухколоночный боковой блок уводил «зачем осмотр» вправо, а лист
+     оказывался раньше заголовка. */
+  .symptoms{display:flex;flex-direction:column;align-items:flex-start;gap:24px;margin:0;}
+  .symptoms__side{display:contents;}
+  .symptoms__side>.pill{order:1;}
+  .symptoms__side>.h2{order:2;width:100%;}
+  .symptoms__side>.lead{order:3;width:100%;}
+  .sheet{order:4;width:100%;}
+  .sheet .legend{width:100%;margin:16px 0 0;}
+  .sheet .call{width:100%;margin-top:16px;}
+  .symptoms__side>.note{order:5;width:100%;}
 
   .kto{grid-template-columns:1fr;gap:40px;}
+  /* Композиция бейджей — мобильная (узел 359:4996): десктопная на этой
+     ширине сжимается в три марки размером с ноготь. */
+  .kto__stage{width:calc(100% + 2 * var(--gutter));margin-left:calc(-1 * var(--gutter));aspect-ratio:460/262;}
+  .badge--el{left:4.3%;top:17.1%;width:35.4%;}
+  .badge--ig{left:31%;top:17%;width:34.3%;}
+  .badge--so{left:70.7%;top:5.7%;width:36%;}
+  #o-nas{overflow:hidden;}
+  /* Этапы: на этой ширине десктопные координаты номера и заголовка
+     накладывались друг на друга. */
   .steps{grid-template-columns:1fr;gap:24px;}
+  .step{min-height:0;}
+  .step__top{height:120px;}
+  .step__num{left:24px;top:16px;}
+  .step__top .h4{left:96px;top:66px;}
+  .step__body{padding:0 24px 24px;gap:20px;}
   .cases__head{grid-template-columns:1fr;gap:20px;align-items:start;}
   .case-main{grid-template-columns:1fr;gap:24px;}
   .case-main__photo{min-height:300px;}
@@ -593,15 +622,23 @@ body.is-locked{overflow:hidden;}
   .case-row__tags{grid-column:2;grid-row:2;}
   .case-row__res{grid-column:2;grid-row:3;justify-content:flex-start;}
   .arrowbtn{grid-column:3;grid-row:1 / span 3;}
-  .uslugi{grid-template-columns:1fr;gap:32px;}
-  .uslugi__tabs{display:grid;grid-template-columns:1fr 1fr;}
+  /* Услуги здесь аккордеон, как в мобильном макете: две колонки вкладок
+     отрывали раскрытую услугу от её названия. */
+  .uslugi{grid-template-columns:1fr;gap:24px;}
+  .uslugi__tabs{display:flex;flex-direction:column;gap:12px;}
   .tab{min-height:0;height:auto;padding:16px 20px;}
+  .tab.is-active{padding-right:16px;height:auto;}
+  .tab.is-active .tab__sign{width:44px;height:44px;border-radius:var(--r-13);}
   .btn,.call__main{height:56px;font-size:17px;}
-  .call__sign{width:48px;height:48px;font-size:17px;}
+  .call__sign{width:56px;height:56px;font-size:17px;border-radius:var(--r-18);}
   .platite{grid-template-columns:1fr;gap:32px;}
   .audit__cols{grid-template-columns:1fr;gap:32px;}
   .field{font-size:16px;height:60px;padding:0 20px;}
-  .audit__bg{display:none;}
+  .audit{display:flex;flex-direction:column;}
+  .audit__inner{order:1;}
+  .audit__bg{order:2;display:block;position:relative;right:auto;bottom:auto;
+    width:100%;max-width:none;height:34vw;object-fit:cover;object-position:center;
+    margin-top:48px;margin-bottom:calc(-1 * var(--section-y));}
   .footer__inner{grid-template-columns:1fr 1fr 1fr;gap:32px;}
   .footer__brand{grid-column:1 / -1;}
   .modal__cols{grid-template-columns:1fr;gap:24px;}
