@@ -18,7 +18,9 @@
   --surface-pale:#DAE4F0;
   --white:#FFFFFF;
 
-  --font:'Liter',Georgia,serif;
+  /* Запасная гарнитура обязана быть гротеском: у Liter нет знака рубля, и
+     со старым запасным Georgia символ ₽ в ценах выходил антиквой. */
+  --font:'Liter','Helvetica Neue',Arial,sans-serif;
   --font-num:'Inter',system-ui,sans-serif;
 
   --r-20:20px; --r-18:18px; --r-16:16px; --r-13:13px; --r-10:10px; --r-8:8px; --r-3:3px;
@@ -250,7 +252,10 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .header.is-scrolled{box-shadow:0 1px 0 var(--line);}
 .header__inner{display:flex;align-items:center;gap:24px;padding-top:20px;padding-bottom:18px;}
 .logo img{height:63px;width:auto;}
-.header__nav{display:flex;gap:1px;margin-left:auto;}
+/* В макете (узел 94:546) пункты стоят на 612…1137 при логотипе 79…269 и
+   правом блоке 1480…1841 — то есть ровно посередине между ними, по 343 с
+   каждой стороны. margin-left:auto прижимал их вправо: было 904…1427. */
+.header__nav{display:flex;gap:1px;margin:0 auto;}
 .header__nav .pill{font-size:var(--t-base);transition:background .15s ease;}
 .header__nav .pill:hover{background:var(--surface-pale);}
 .header__right{display:flex;align-items:center;gap:24px;margin-left:24px;}
@@ -397,12 +402,14 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .uslugi__tabs{display:flex;flex-direction:column;gap:10px;}
 .tab{
   display:flex;align-items:center;justify-content:space-between;gap:16px;
-  min-height:90px;height:90px;padding:20px 24px;border-radius:var(--r-20);
+  min-height:72px;height:72px;padding:16px 24px;border-radius:var(--r-20);
   background:var(--white);color:var(--ink);font-size:var(--t-big);text-align:left;line-height:1.15;
   transition:background .15s ease,color .15s ease;
 }
 .tab:hover{background:var(--surface);}
-.tab.is-active{background:var(--ink);color:var(--white);padding:4px 4px 4px 24px;}
+/* Справа было 4 — красная стрелка упиралась в край плашки. Делаем поле
+   равным вертикальному, чтобы кнопка стояла в одинаковом воздухе. */
+.tab.is-active{background:var(--ink);color:var(--white);height:90px;min-height:90px;padding:20px 20px 20px 24px;}
 .tab__sign{display:none;}
 .tab.is-active .tab__sign{
   display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;
@@ -437,7 +444,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    08. Бесплатный аудит
    ========================================================================== */
 .audit{position:relative;overflow:hidden;}
-.audit__bg{position:absolute;right:-2%;bottom:-8%;width:74%;max-width:1418px;pointer-events:none;}
+.audit__bg{position:absolute;right:0;bottom:0;width:26%;max-width:500px;pointer-events:none;}
 .audit__inner{position:relative;}
 .audit__cols{display:grid;grid-template-columns:560fr 741fr;gap:60px;align-items:start;max-width:1361px;}
 .card-raised{background:var(--ink-up);border-radius:var(--r-20);padding:32px;}
@@ -466,6 +473,9 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .footer__col a{transition:color .15s ease;}
 .footer__col a:hover{color:var(--accent);}
 .footer__col .socials{margin-top:4px;}
+.footer .call__main{height:56px;padding:0 20px;font-size:var(--t-base);white-space:nowrap;}
+.footer .call__sign{width:48px;height:48px;border-radius:var(--r-16);}
+.footer .call:hover .call__sign{width:56px;height:56px;}
 .footer__cta{margin-top:12px;}
 .footer__bottom{display:flex;justify-content:space-between;gap:20px;padding-top:20px;}
 
