@@ -63,9 +63,12 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    строчным, а пробел между словами есть в разметке и никуда не девается. */
 .h2 .brk{display:block;}
 /* У Liter нет Medium. В макете вес имитирован обводкой 0,7 снаружи;
-   CSS рисует обводку по центру контура — отсюда 1,4, а paint-order
-   кладёт её под заливку, иначе буква станет тоньше. Только H1 и H2. */
-.h1,.h2{-webkit-text-stroke:1.4px currentColor;paint-order:stroke fill;}
+   CSS рисует обводку по центру контура — отсюда 1,4: наружу уходит ровно
+   0,7, внутренняя половина ложится на саму букву. Только H1 и H2.
+   paint-order:stroke fill убран намеренно: он кладёт заливку ПОВЕРХ обводки,
+   и на стыке двух слоёв остаётся видимый светлый контур. В порядке по
+   умолчанию обводка накрывает край заливки, шва нет, а толщина та же. */
+.h1,.h2{-webkit-text-stroke:1.4px currentColor;}
 .h3{font-size:var(--t-h3);line-height:.9;letter-spacing:-.02em;}
 .h4{font-size:var(--t-h4);line-height:.9;}
 .h5{font-size:var(--t-h5);line-height:1;letter-spacing:-.02em;}
@@ -130,10 +133,24 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
   display:inline-flex;align-items:center;justify-content:center;
   width:56px;height:56px;border-radius:var(--r-18);
   background:var(--accent);color:var(--white);font-size:var(--t-big);line-height:1;
-  transition:filter .15s ease;
+  transition:filter .15s ease,width .18s ease,height .18s ease,border-radius .18s ease;
 }
-.call:hover .call__main{background:var(--ink-up-2);}
-.call:hover .call__sign{filter:brightness(1.08);}
+/* При наведении красный квадрат дорастает до высоты тёмной части, зазор
+   закрывается и две плашки читаются как одна кнопка с красным торцом.
+   Скруглениями управляем с двух сторон сразу, иначе в месте стыка
+   остаётся светлый клин. */
+.call{transition:gap .18s ease;}
+.call:hover{gap:0;}
+.call:hover .call__main{
+  background:var(--ink-up-2);
+  border-top-right-radius:0;border-bottom-right-radius:0;
+}
+.call:hover .call__sign{
+  width:64px;height:64px;
+  border-top-left-radius:0;border-bottom-left-radius:0;
+  border-top-right-radius:var(--r-20);border-bottom-right-radius:var(--r-20);
+}
+.call__main{transition:background .15s ease,border-radius .18s ease;}
 .call--wide{width:100%;}
 .call--wide .call__main{flex:1;justify-content:space-between;}
 
@@ -262,7 +279,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    ========================================================================== */
 .symptoms{
   display:grid;grid-template-columns:677fr 560fr;
-  column-gap:17.2%;margin-left:4.09%;margin-right:8.4%;align-items:start;
+  column-gap:23.27%;margin-left:0;margin-right:8.4%;align-items:start;
 }
 .sheet{position:relative;background:var(--white);border-radius:var(--r-20);padding:32px 40px 28px;overflow:hidden;}
 .sheet::before{content:'';position:absolute;left:0;right:0;top:0;height:5px;background:var(--accent);}
@@ -395,7 +412,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .price{display:flex;align-items:baseline;gap:24px;margin-top:16px;}
 .price b{font-weight:400;font-size:var(--t-big);letter-spacing:-.02em;}
 .price em{font-style:normal;}
-.btn--outline{margin-top:8px;}
+.panel .btn--outline{margin-top:8px;}
 
 /* ==========================================================================
    07. Платите за результат
@@ -615,7 +632,6 @@ body.is-locked{overflow:hidden;}
   .hero__top{grid-template-columns:1fr;gap:24px;}
   .hero__col{gap:24px;width:100%;}
   .hero__actions{flex-direction:column-reverse;align-items:stretch;width:100%;}
-  .hero__actions .btn--white{background:transparent;border:1px solid var(--ink);}
   .hero__actions .call__main{justify-content:center;}
   .hero__list span{font-size:15px;}
   .hero__image{margin-top:16px;}
