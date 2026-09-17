@@ -42,8 +42,17 @@ var FORM_ENDPOINT = '';
     document.body.classList.add('is-locked');
     overlay.scrollTop = 0;
     current = name;
-    var focusable = target.querySelector('input, button, a');
-    if (focusable) focusable.focus({ preventScroll: true });
+    /* Фокус — на первое осмысленное поле. Крестик в разметке идёт первым,
+       поэтому по общему селектору всегда выигрывал он, и вокруг × вспыхивал
+       красный контур даже при открытии мышью. Если полей нет (модалки кейсов),
+       уводим фокус на саму карточку: с клавиатуры дальше по Tab идёт крестик. */
+    var focusable = target.querySelector('.field, input:not([type="checkbox"]), textarea, select');
+    if (focusable) {
+      focusable.focus({ preventScroll: true });
+    } else {
+      target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+    }
   }
 
   function closeModal() {

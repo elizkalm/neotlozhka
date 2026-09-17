@@ -57,6 +57,11 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .h1,.h2,.h3,.h4,.h5{margin:0;font-weight:400;}
 .h1{font-size:var(--t-h1);line-height:.9;letter-spacing:0;}
 .h2{font-size:var(--t-h2);line-height:.9;letter-spacing:-.02em;}
+/* Ручной перенос в заголовке. Не <br>: спрятать его на мобильной через
+   display:none — значит склеить слова без пробела («С чем к намприходят»).
+   Блочный span переносит строку на десктопе и на мобильной снова становится
+   строчным, а пробел между словами есть в разметке и никуда не девается. */
+.h2 .brk{display:block;}
 /* У Liter нет Medium. В макете вес имитирован обводкой 0,7 снаружи;
    CSS рисует обводку по центру контура — отсюда 1,4, а paint-order
    кладёт её под заливку, иначе буква станет тоньше. Только H1 и H2. */
@@ -426,8 +431,11 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    Подвал
    ========================================================================== */
 .footer{background:var(--surface);padding:var(--section-y) 0 var(--section-y);}
-/* левая колонка 560, дальше промежуток 60 — правая часть начинается на 700 */
-.footer__inner{display:grid;grid-template-columns:560fr 380fr 400fr 340fr;gap:60px;padding:44px 0;}
+/* Колонки подвала из макета (узел 158:683): 560 / 340 / 340 / 340, промежуток 60.
+   Сумма долей = 1580 = ширина контента 1760 минус три промежутка по 60, поэтому
+   на 1920 доли дают ровно макетные числа и правая часть начинается на 700.
+   Ниже 1920 колонки ужимаются пропорционально — так же, как в остальных секциях. */
+.footer__inner{display:grid;grid-template-columns:560fr 340fr 340fr 340fr;gap:60px;padding:44px 0;}
 .footer__brand{display:flex;flex-direction:column;align-items:flex-start;gap:20px;}
 .footer__brand .logo img{height:84px;}
 .footer__brand p{max-width:420px;}
@@ -488,6 +496,9 @@ body.is-locked{overflow:hidden;}
 /* Видимый фокус: без него с клавиатуры не понять, где находишься */
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;}
 .field:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+/* Карточка кейса принимает фокус при открытии, чтобы он не садился на крестик.
+   Сама она не интерактивна — контур вокруг всей карточки только мешает. */
+.modal[tabindex="-1"]:focus,.modal[tabindex="-1"]:focus-visible{outline:none;}
 .check input:focus-visible + .check__box{outline:2px solid var(--accent);outline-offset:3px;}
 
 /* ==========================================================================
@@ -509,7 +520,7 @@ body.is-locked{overflow:hidden;}
 
 @media (max-width:1279px){
   :root{
-    --gutter:48px;--section-y:104px;
+    --gutter:40px;--section-y:104px;
     --t-h1:54px;--t-h2:40px;--t-h3:34px;--t-h4:28px;--t-h5:24px;
     --t-lead:20px;--t-big:18px;--t-base:17px;--t-small:15px;
     --t-caption:14px;--t-micro:12px;
@@ -609,11 +620,19 @@ body.is-locked{overflow:hidden;}
   .hero__list span{font-size:15px;}
   .hero__image{margin-top:16px;}
 
-  .symptoms{grid-template-columns:1fr;gap:32px;margin:0;}
-  .sheet{order:2;}
-  .symptoms__side{order:1;}
-  .symptoms__side .legend,.symptoms__side .note,.symptoms__side .call{order:3;}
-  .h2 br{display:none;}
+  /* Порядок мобильного макета (узел 331:301): заголовок → список симптомов →
+     легенда → кнопка. display:contents распускает боковой блок в общую колонку —
+     без этого он идёт целиком перед листом и призыв виден раньше симптомов. */
+  .symptoms{display:flex;flex-direction:column;align-items:flex-start;gap:16px;margin:0;}
+  .symptoms__side{display:contents;}
+  .symptoms__side>.pill{order:1;}
+  .symptoms__side>.h2{order:2;width:100%;}
+  .symptoms__side>.lead{order:3;width:100%;}
+  .sheet{order:4;width:100%;margin-top:8px;}
+  .symptoms__side>.legend{order:5;width:100%;margin:8px 0 0;}
+  .symptoms__side>.note{display:none;}
+  .symptoms__side>.call{order:6;}
+  .h2 .brk{display:inline;}
   .sheet{padding:20px 20px 16px;border-radius:var(--r-16);}
   .sheet__head{flex-direction:column;gap:4px;padding-bottom:16px;}
   .exam{flex-wrap:wrap;gap:10px;padding:14px 0;}
@@ -627,8 +646,19 @@ body.is-locked{overflow:hidden;}
   .legend{margin-top:8px;}
   .note{padding:20px;border-radius:var(--r-16);}
 
-  .kto{grid-template-columns:1fr;gap:32px;}
-  .kto__text{gap:20px;}
+  /* Порядок мобильного макета (узел 347:357): заголовок → бейджи → текст. */
+  .kto{display:flex;flex-direction:column;align-items:flex-start;gap:20px;}
+  .kto__text{display:contents;}
+  .kto__text>.caption{order:1;}
+  .kto__text>.h2{order:2;width:100%;}
+  .kto__stage{order:3;}
+  .kto__text>.lead{order:4;width:100%;}
+  .kto__text>p{order:5;width:100%;}
+  .kto__text>.promise{order:6;width:100%;}
+  .kto__text>.honest{order:7;width:100%;}
+  /* Повёрнутый бейдж вылезал за правый край на 3 px и давал горизонтальную
+     прокрутку. Сдвигаем внутрь, а не режем: тени у бейджей обрезать нельзя. */
+  .badge--so{left:59.2%;}
   .promise,.honest{padding:20px;border-radius:var(--r-16);font-size:16px;}
 
 
