@@ -516,6 +516,19 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .modal__close:hover{background:var(--ink-up-2);}
 .modal__head{display:flex;flex-wrap:wrap;gap:8px;padding-right:60px;}
 .modal__shot{display:flex;align-items:flex-start;padding:20px;min-height:260px;border-radius:var(--r-16);background:var(--surface-pale);}
+/* Слот снимков кейса: картинка лежит на бледной плашке, метка кейса поверх,
+   внизу подписи-переключатели. Снимки широкие и мелкие по высоте, поэтому
+   вписываем целиком (contain), а не кадрируем — иначе цифры не прочитать. */
+.modal__shot--has-img{position:relative;flex-direction:column;gap:16px;padding:20px;}
+.shot__stage{position:relative;width:100%;border-radius:var(--r-13);overflow:hidden;background:var(--white);}
+.shot__img{display:none;width:100%;cursor:zoom-in;}
+.shot__img img{width:100%;height:auto;}
+.shot__img.is-active{display:block;}
+.shot__thumbs{display:flex;flex-wrap:wrap;gap:8px;}
+.shot__thumb{height:34px;padding:0 14px;border-radius:var(--r-10);background:var(--white);
+  color:var(--ink);font-size:14px;line-height:1;letter-spacing:.04em;transition:background .15s ease,color .15s ease;}
+.shot__thumb:hover{background:var(--surface);}
+.shot__thumb.is-active{background:var(--ink);color:var(--white);}
 .modal__cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
 .modal__out .stat__num{font-size:var(--t-num-l);}
 .modal__out{display:flex;flex-direction:column;gap:16px;padding:24px;border-radius:var(--r-16);background:var(--ink-up);}

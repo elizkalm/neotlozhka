@@ -176,6 +176,22 @@ var FORM_ENDPOINT = '';
   applyLayout();
   mq.addEventListener('change', applyLayout);
 
+
+  /* ---------- снимки внутри модалки кейса ---------- */
+  document.querySelectorAll("[data-shots]").forEach(function (box) {
+    var imgs = box.querySelectorAll(".shot__img");
+    var tabs = box.querySelectorAll(".shot__thumb");
+    tabs.forEach(function (t) {
+      t.addEventListener("click", function () {
+        var i = Number(t.dataset.shot);
+        imgs.forEach(function (im, k) { im.classList.toggle("is-active", k === i); });
+        tabs.forEach(function (tb, k) {
+          tb.classList.toggle("is-active", k === i);
+          tb.setAttribute("aria-selected", k === i ? "true" : "false");
+        });
+      });
+    });
+  });
   /* тень у шапки, когда страница сдвинута — иначе она срезает контент кромкой */
   var header = document.querySelector('.header');
   var onScroll = function () { header.classList.toggle('is-scrolled', window.scrollY > 8); };
