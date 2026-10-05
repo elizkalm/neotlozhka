@@ -276,7 +276,6 @@
 
 <!-- 06. УСЛУГИ И ЦЕНЫ -->
 <section class="section section--pale" id="uslugi">
-  <img class="uslugi__photo" src="img/uslugi-strategy.webp" alt="" loading="lazy">
   <div class="wrap">
     <div class="head">
       <span class="pill pill--white">/05 · Услуги</span>
@@ -305,6 +304,7 @@
             <li><i class="marker">+</i><span class="base">Готовый инструмент — можно передать подрядчикам</span></li>
           </ul>
           <div class="price"><b>60 000 ₽</b><em class="caps caps--16 muted">документ · разово · передаётся подрядчикам</em></div>
+          <img class="panel__photo" src="img/uslugi-strategy.webp" alt="" loading="lazy">
         </div>
 
         <div class="panel" id="u2" role="tabpanel">
@@ -545,14 +545,9 @@
     <h3 class="h3">Увеличили конверсию сайта втрое и вывели запросы в ТОП-5</h3>
     <hr class="rule rule--dotted">
     <div class="modal__body">
-    <div class="modal__shot modal__shot--has-img" data-shots>
+    <div class="modal__shot">
+      <img src="img/case01-park.webp" alt="Парк спецтехники клиента: автокран на площадке" loading="lazy">
       <span class="pill pill--white">01 · SEO · реклама</span>
-      <div class="shot__stage">
-        <a class="shot__img is-active" href="img/case01-seo.webp" target="_blank" rel="noopener" title="Открыть снимок целиком"><img src="img/case01-seo.webp" alt="Динамика позиций в поиске по запросам аренды спецтехники" loading="lazy"></a>
-      </div>
-      <div class="shot__thumbs" role="tablist" aria-label="Снимки кейса">
-        <button class="shot__thumb is-active" role="tab" aria-selected="true" data-shot="0">позиции в поиске</button>
-      </div>
     </div>
     <div class="modal__info">
       <div><span class="caps caps--16 muted">ПОСТУПИЛ С</span>
@@ -566,6 +561,19 @@
       <p class="caption muted">За 1,5 года компания вышла в ТОП среди конкурентов и стабильно удерживает позиции</p>
       </div>
     </div>
+    </div>
+    <hr class="rule rule--dotted">
+    <div class="shots" data-shots>
+      <div class="shots__head">
+        <span class="caps caps--16 muted">ЧТО ПОКАЗЫВАЕТ АНАЛИТИКА</span>
+        <div class="shot__thumbs" role="tablist" aria-label="Снимки аналитики">
+          <button class="shot__thumb is-active" role="tab" aria-selected="true" data-shot="0">позиции в поиске</button>
+        </div>
+      </div>
+      <button class="shot__img is-active" data-zoom="img/case01-seo.webp" aria-label="Увеличить снимок">
+        <img src="img/case01-seo.webp" alt="Динамика позиций в поиске по запросам аренды спецтехники" loading="lazy">
+        <span class="shot__zoom">Увеличить</span>
+      </button>
     </div>
     <hr class="rule rule--dotted">
     <div class="modal__foot">
@@ -726,5 +734,10 @@
 </div>
 
 <script src="script.js?v=2"></script>
+<div class="lightbox" data-lightbox hidden>
+  <button class="lightbox__close" data-lightbox-close aria-label="Закрыть"><span>×</span></button>
+  <div class="lightbox__stage"><img alt=""></div>
+  <p class="lightbox__hint micro">Снимок открыт полностью. Esc или клик по фону — закрыть</p>
+</div>
 </body>
 </html>

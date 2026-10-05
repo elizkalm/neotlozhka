@@ -87,6 +87,9 @@ var FORM_ENDPOINT = '';
   });
 
   document.addEventListener('keydown', function (e) {
+    /* Esc закрывает сначала просмотр снимка, потом модалку */
+    var lbOpen = lb && !lb.hidden;
+    if (e.key === 'Escape' && lbOpen) { closeShot(); return; }
     if (overlay.hidden) return;
     if (e.key === 'Escape') closeModal();
     if (current && CASES.indexOf(current) > -1) {
@@ -177,7 +180,26 @@ var FORM_ENDPOINT = '';
   mq.addEventListener('change', applyLayout);
 
 
-  /* ---------- снимки внутри модалки кейса ---------- */
+  /* ---------- снимки аналитики и просмотр во весь экран ---------- */
+  var lb = document.querySelector("[data-lightbox]");
+  var lbImg = lb && lb.querySelector("img");
+  function openShot(src, alt) {
+    if (!lb) return;
+    lbImg.src = src;
+    lbImg.alt = alt || "";
+    lb.hidden = false;
+    document.body.classList.add("is-locked");
+  }
+  function closeShot() {
+    if (!lb) return;
+    lb.hidden = true;
+    if (!document.querySelector("[data-overlay]:not([hidden])")) document.body.classList.remove("is-locked");
+  }
+  if (lb) {
+    lb.addEventListener("click", function (e) {
+      if (e.target === lb || e.target.closest("[data-lightbox-close]")) closeShot();
+    });
+  }
   document.querySelectorAll("[data-shots]").forEach(function (box) {
     var imgs = box.querySelectorAll(".shot__img");
     var tabs = box.querySelectorAll(".shot__thumb");
@@ -189,6 +211,12 @@ var FORM_ENDPOINT = '';
           tb.classList.toggle("is-active", k === i);
           tb.setAttribute("aria-selected", k === i ? "true" : "false");
         });
+      });
+    });
+    imgs.forEach(function (b) {
+      b.addEventListener("click", function () {
+        var im = b.querySelector("img");
+        openShot(b.dataset.zoom || im.src, im.alt);
       });
     });
   });
