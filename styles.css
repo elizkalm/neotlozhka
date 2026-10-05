@@ -268,12 +268,13 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 /* Ряд первого экрана в макете (узел 210:237) шириной 1562, а не во все 1760:
    справа остаётся 198. Без этого список «что сделаем» уезжал на целую
    колонку вправо — стоял на 1269 вместо 1137 и тянулся до правого поля. */
-.hero__top{display:grid;grid-template-columns:minmax(0,1017fr) 505px minmax(0,158fr);
-  gap:40px;align-items:start;}
+/* Левая кромка списка совпадает с правой колонкой следующей секции:
+   левая колонка 1052 из 1760, список начинается на 1132 — та же доля, что у правой колонки секции симптомов. */
+.hero__top{display:grid;grid-template-columns:59.77% minmax(0,1fr);gap:0;align-items:start;}
 .hero__col{display:flex;flex-direction:column;align-items:flex-start;gap:46px;}
 .hero__lead{margin:0;}
 .hero__actions{display:flex;flex-wrap:wrap;gap:10px;}
-.hero__list{display:flex;flex-direction:column;}
+.hero__list{display:flex;flex-direction:column;width:505px;max-width:100%;}
 /* Числа из макета (узел 140:35): пункт — горизонтальный ряд с выравниванием
    по верху, промежуток 12, поля 8 сверху и снизу, разделитель пунктирный
    со штрихом 2 и пробелом 4. Маркер 26, текст 20/132%. */
@@ -333,7 +334,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 /* В макете (узел 463:533) группа стоит на 901 и занимает 967.77×849.69 при
    секции 1920. Картинка выгружена из макета целиком, вместе с тенями,
    поэтому ширины достаточно — ничего не обрезается и не пересчитывается. */
-.kto{display:grid;grid-template-columns:minmax(0,820fr) minmax(0,1100fr);gap:0;align-items:start;}
+.kto{display:grid;grid-template-columns:minmax(560px,1fr) minmax(0,968px);gap:0;align-items:start;}
 #o-nas{overflow:hidden;}
 .kto__text{display:flex;flex-direction:column;align-items:flex-start;gap:28px;}
 .kto__text .h2{margin:4px 0 0;}
@@ -348,7 +349,9 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 /* Одно правило для всех декоративных картинок: задана ширина в пикселях,
    высота считается сама, cover не используется. Файл команды обрезан по
    содержимому, поэтому его ширина — это ширина самих бейджей с тенями. */
-.kto__stage{position:relative;width:968px;max-width:100%;align-self:start;}
+/* В макете группа начинается на y=93, а текстовый блок на 233 — то есть
+   картинка выходит выше общего поля секции на 67. */
+.kto__stage{position:relative;width:100%;max-width:968px;align-self:start;margin-top:-67px;}
 .kto__stage img{width:100%;height:auto;display:block;}
 .kto__stage img{width:100%;height:auto;}
 .kto__stage .badge{position:absolute;margin:0;}
@@ -548,16 +551,11 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 /* Снимки аналитики: широкая полоса во всю ширину модалки. В колонке 420
    дашборд 1867×298 превращался в нечитаемую ленту. По клику открывается
    во весь экран поверх модалки, без перехода на другую страницу. */
-.shots{display:flex;flex-direction:column;gap:16px;}
-.shots__head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;}
-.shot__thumbs{display:flex;flex-wrap:wrap;gap:8px;}
-.shot__thumb{height:34px;padding:0 14px;border-radius:var(--r-10);background:var(--surface);
-  color:var(--ink);font-size:14px;line-height:1;letter-spacing:.04em;transition:background .15s ease,color .15s ease;}
-.shot__thumb:hover{background:var(--surface-pale);}
-.shot__thumb.is-active{background:var(--ink);color:var(--white);}
-.shot__img{display:none;position:relative;width:100%;padding:0;border-radius:var(--r-13);
+.shots{display:flex;flex-direction:column;gap:28px;}
+.shot{margin:0;display:flex;flex-direction:column;gap:10px;}
+.shot__cap{line-height:1.32;}
+.shot__img{display:block;position:relative;width:100%;padding:0;border-radius:var(--r-13);
   overflow:hidden;background:var(--surface);cursor:zoom-in;}
-.shot__img.is-active{display:block;}
 .shot__img img{width:auto;max-width:100%;height:auto;display:block;margin:0 auto;}
 
 /* Просмотр снимка во весь экран */
@@ -623,21 +621,6 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .modal__close span{display:block;}
 .modal__head{display:flex;flex-wrap:wrap;gap:8px;padding-right:60px;}
 .modal__shot{display:flex;align-items:flex-start;padding:20px;min-height:260px;border-radius:var(--r-16);background:var(--surface-pale);}
-/* Слот снимков кейса: картинка лежит на бледной плашке, метка кейса поверх,
-   внизу подписи-переключатели. Снимки широкие и мелкие по высоте, поэтому
-   вписываем целиком (contain), а не кадрируем — иначе цифры не прочитать. */
-.modal__shot--has-img{position:relative;flex-direction:column;gap:16px;padding:20px;}
-.shot__stage{position:relative;width:100%;border-radius:var(--r-13);overflow:hidden;background:var(--white);}
-.shot__img{display:none;width:100%;cursor:zoom-in;}
-.shot__img img{width:100%;height:auto;}
-.shot__img.is-active{display:block;}
-.shot__thumbs{display:flex;flex-wrap:wrap;gap:8px;}
-/* один снимок — переключать нечего */
-.shot__thumbs:has(> :only-child){display:none;}
-.shot__thumb{height:34px;padding:0 14px;border-radius:var(--r-10);background:var(--white);
-  color:var(--ink);font-size:14px;line-height:1;letter-spacing:.04em;transition:background .15s ease,color .15s ease;}
-.shot__thumb:hover{background:var(--surface);}
-.shot__thumb.is-active{background:var(--ink);color:var(--white);}
 .modal__cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
 .modal__out .stat__num{font-size:var(--t-num-l);}
 .modal__out{display:flex;flex-direction:column;gap:16px;padding:24px;border-radius:var(--r-16);background:var(--ink-up);}
@@ -672,7 +655,6 @@ body.is-locked{overflow:hidden;}
     --t-num-xl:64px;--t-num-l:52px;--t-num-m:34px;--t-num-outline:160px;
   }
   .case-main__photo{min-height:420px;}
-  .symptoms{column-gap:10%;margin-right:2%;}
 }
 
 @media (max-width:1279px){
@@ -688,7 +670,6 @@ body.is-locked{overflow:hidden;}
   .step{min-height:0;}
   .step__top{height:120px;}
   .step__top .h4{top:66px;}
-  .symptoms{column-gap:6%;margin-left:0;margin-right:0;}
   .footer__inner{grid-template-columns:1.4fr 1fr 1.3fr 1fr;gap:40px;}
 }
 
