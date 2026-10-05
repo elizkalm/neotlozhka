@@ -540,21 +540,20 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    Мобильное меню
    ========================================================================== */
 .menu{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;
-  background:var(--ink);color:var(--text-dark-bg);padding:20px;}
+  background:var(--ink);color:var(--text-dark-bg);padding:30px 20px;}
 .menu[hidden]{display:none;}
 /* В макете меню логотип полный, а кнопка вызова 64 в высоту при квадрате
    56 — между ними виден зазор (узел 382:518). */
 .menu .call__main{height:64px;}
 .menu .call__sign{width:56px;height:56px;border-radius:var(--r-18);}
 .menu__head{display:flex;align-items:center;justify-content:space-between;gap:16px;}
-.menu__head .logo img{height:44px;width:auto;}
-.menu__nav{display:flex;flex-direction:column;gap:8px;margin-top:40px;}
-.menu__nav a{font-size:var(--t-h5);line-height:1.35;letter-spacing:-.02em;}
-.menu__foot{margin-top:auto;display:flex;flex-direction:column;gap:16px;padding-top:40px;}
-.menu__phone{font-size:var(--t-base);}
-/* фон меню — ink, поэтому кнопка поднимается на шаг выше, иначе сливается */
-.menu .call__main{background:var(--ink-up-2);}
-.menu .call:hover .call__main{background:#3B4250;}
+.menu__head .logo img{height:52px;width:auto;}
+.menu__nav{display:flex;flex-direction:column;gap:0;margin-top:106px;}
+
+.menu__foot{margin-top:auto;display:flex;flex-direction:column;gap:6px;padding-top:40px;}
+.menu__foot .call{margin-top:38px;}
+
+
 
 /* ==========================================================================
    Модалки
@@ -675,6 +674,26 @@ body.is-locked{overflow:hidden;}
 .adv__title{letter-spacing:0;}
 .adv__text{margin:0;}
 
+
+/* ---------- мобильное меню ----------
+   Числа из макета (узел 382:518): фон ink, шапка на 30 от верха, логотип
+   светлый и без подложки, крестик 44 на ink-2 с радиусом 15, пункты 22
+   шагом 60 с разделителями, внизу телефон 24, телеграм 16 вторичным
+   и белая кнопка вызова с красным квадратом. */
+.menu__close{display:inline-flex;align-items:center;justify-content:center;
+  width:44px;height:44px;border-radius:15px;background:var(--ink-up-2);
+  color:var(--text-dark-bg);font-size:20px;line-height:1;flex:0 0 auto;
+  transition:background .15s ease;}
+.menu__close:hover{background:var(--line-dark);}
+.menu__nav a{display:flex;align-items:center;height:60px;
+  font-size:22px;line-height:1.1;color:var(--text-dark-bg);
+  border-bottom:1px solid rgba(244,244,244,.16);}
+.menu__nav a:last-child{border-bottom:0;}
+.menu__phone{font-size:24px;line-height:1.1;color:var(--text-dark-bg);}
+.menu__tg{font-size:16px;line-height:1.35;color:var(--text-2);}
+/* В меню кнопка белая, а не тёмная — на тёмном фоне она главная */
+.call--light .call__main{background:var(--white);color:var(--ink);}
+.call--light:hover .call__main{background:var(--surface-pale);}
 @media (max-width:1599px){
   :root{
     --gutter:80px;--section-y:130px;
