@@ -220,6 +220,10 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .check__text{color:var(--text-2);}
 .check.is-error .check__box{border-color:var(--accent);}
 .check.is-error .check__text{color:var(--accent);}
+/* Браузер проверяет поля по порядку и до галочки доходит последним, так что
+   своё сообщение нужнее системного — иначе кажется, что согласие не обязательно */
+.check__err{display:block;width:100%;margin-top:6px;color:var(--accent);}
+.check__err[hidden]{display:none;}
 .check__text a{text-decoration:underline;}
 
 /* списки с маркерами */
@@ -338,7 +342,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    нормально: картинка намеренно заходит за правое поле.
    overflow здесь НЕ ставим: у файла снизу всего 37 прозрачных пикселей,
    любая обрезка съедает тень. */
-.kto{display:grid;grid-template-columns:46.65% 55%;gap:0;align-items:start;}
+.kto{display:grid;grid-template-columns:46.65% 1fr;gap:0;align-items:start;}
 #o-nas{padding-bottom:101px;}
 .kto__text{display:flex;flex-direction:column;align-items:flex-start;gap:28px;padding-top:73px;}
 .kto__text .h2{margin:4px 0 0;}
@@ -356,7 +360,11 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 /* В макете группа начинается на y=93, а текстовый блок на 233 — то есть
    картинка выходит выше общего поля секции на 67. */
 /* В макете картинка начинается на y=93, а текст на 233 при поле секции 160 */
-.kto__stage{position:relative;width:100%;align-self:start;margin-top:-67px;}
+/* Файл обрезан по видимому содержимому — прозрачных полей больше нет,
+   поэтому край картинки это и есть край бейджей с тенью. Ширина 845 при
+   1920 — на 20 % больше макета, правый край упирается в край блока. */
+.kto__stage{position:relative;width:44.01vw;justify-self:end;align-self:start;
+  margin-top:-8px;margin-right:calc(-1 * var(--gutter));}
 .kto__stage img{width:100%;height:auto;display:block;}
 .kto__stage img{width:100%;height:auto;}
 .kto__stage .badge{position:absolute;margin:0;}
@@ -650,6 +658,18 @@ body.is-locked{overflow:hidden;}
    Адаптив. Макеты есть только на 1920 и 390 — промежуточное решение вёрстки,
    см. ds/CONTRACT.md.
    ========================================================================== */
+/* ---------- /07 чем мы отличаемся ----------
+   Сетка 3×2 по 560 с промежутком 40, как в макете (узел 463:536).
+   Верхнего поля у секции нет: она продолжает «Платите за результат»,
+   и между ними должен быть один отступ, а не два. */
+.otlichiya{padding-top:0;}
+.advs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;}
+.adv{display:flex;flex-direction:column;gap:24px;align-items:flex-start;
+  padding:40px;border-radius:var(--r-20);background:var(--white);}
+.adv__icon{width:96px;height:96px;flex:0 0 auto;}
+.adv__title{letter-spacing:0;}
+.adv__text{margin:0;}
+
 @media (max-width:1599px){
   :root{
     --gutter:80px;--section-y:130px;
@@ -739,6 +759,8 @@ body.is-locked{overflow:hidden;}
   .btn,.call__main{height:56px;font-size:17px;}
   .call__sign{width:56px;height:56px;font-size:17px;border-radius:var(--r-18);}
   .platite{grid-template-columns:1fr;gap:32px;}
+  .advs{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;}
+  .adv{padding:28px;}
   .audit__cols{grid-template-columns:1fr;gap:32px;}
   .field{font-size:16px;height:60px;padding:0 20px;}
   .audit__bg{width:420px;max-width:45%;}
@@ -903,6 +925,17 @@ body.is-locked{overflow:hidden;}
     margin-top:40px;margin-bottom:calc(-1 * var(--section-y));}
   .uskorit{margin-top:32px;}
 
+/* Шесть карточек в столбик — это длинно, поэтому на телефоне они едут
+     лентой вбок с прилипанием к краю. Полоса прокрутки скрыта, но сам жест
+     остаётся обычным. */
+  .otlichiya .wrap{padding-right:0;}
+  .advs{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:82%;
+    gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+    scrollbar-width:none;padding-right:var(--gutter);}
+  .advs::-webkit-scrollbar{display:none;}
+  .adv{scroll-snap-align:start;padding:20px;border-radius:var(--r-16);gap:16px;}
+  .adv__icon{width:64px;height:64px;}
+
   .footer{padding:80px 0 60px;}
   .footer__inner{grid-template-columns:1fr;gap:32px;padding:32px 0;}
   .footer__bottom{flex-direction:column;gap:12px;}
@@ -927,3 +960,4 @@ body.is-locked{overflow:hidden;}
   *{transition:none !important;animation:none !important;}
   html{scroll-behavior:auto;}
 }
+
