@@ -330,7 +330,10 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 /* ==========================================================================
    03. Кто мы
    ========================================================================== */
-.kto{display:grid;grid-template-columns:820fr 940fr;gap:0;align-items:start;}
+/* В макете (узел 463:533) группа стоит на 901 и занимает 967.77×849.69 при
+   секции 1920. Картинка выгружена из макета целиком, вместе с тенями,
+   поэтому ширины достаточно — ничего не обрезается и не пересчитывается. */
+.kto{display:grid;grid-template-columns:minmax(0,820fr) minmax(0,1100fr);gap:0;align-items:start;}
 #o-nas{overflow:hidden;}
 .kto__text{display:flex;flex-direction:column;align-items:flex-start;gap:28px;}
 .kto__text .h2{margin:4px 0 0;}
@@ -345,7 +348,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 /* Одно правило для всех декоративных картинок: задана ширина в пикселях,
    высота считается сама, cover не используется. Файл команды обрезан по
    содержимому, поэтому его ширина — это ширина самих бейджей с тенями. */
-.kto__stage{position:relative;width:620px;max-width:100%;justify-self:center;}
+.kto__stage{position:relative;width:968px;max-width:100%;align-self:start;}
 .kto__stage img{width:100%;height:auto;display:block;}
 .kto__stage img{width:100%;height:auto;}
 .kto__stage .badge{position:absolute;margin:0;}
@@ -443,12 +446,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 /* Панель услуги — сетка: слева текст шириной 630 как в макете, справа
    фотография. Раньше фото лежало абсолютным слоем поверх панели и на
    узких ширинах наезжало на список. Колонкой это невозможно. */
-.panel.is-active{display:grid;grid-template-columns:minmax(0,630fr) minmax(0,470fr);
-  column-gap:40px;row-gap:16px;align-items:start;}
-.panel>.h3,.panel>p{grid-column:1 / -1;}
-.panel>.caps,.panel>.checklist,.panel>.price{grid-column:1;}
-.panel__photo{grid-column:2;grid-row:3 / span 3;align-self:center;
-  width:100%;max-width:470px;height:auto;justify-self:end;}
+.panel.is-active{display:flex;flex-direction:column;align-items:flex-start;gap:16px;}
 .panel .h3{margin-bottom:4px;}
 /* Ширины из макета (узел 277:434): описание 900, список «что входит» 630
    при панели 1140. Без этого текст тянулся во всю панель и лез под фото. */
