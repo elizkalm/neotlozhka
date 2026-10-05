@@ -531,8 +531,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .footer__col a:hover{color:var(--accent);}
 .footer__col .socials{margin-top:4px;}
 .footer .call__main{height:56px;padding:0 20px;font-size:var(--t-base);white-space:nowrap;}
-.footer .call__sign{width:48px;height:48px;border-radius:var(--r-16);}
-.footer .call:hover .call__sign{height:56px;}
+.footer .call__sign{width:56px;height:56px;border-radius:var(--r-18);}
 .footer__cta{margin-top:12px;}
 .footer__bottom{display:flex;justify-content:space-between;gap:20px;padding-top:20px;}
 
@@ -544,7 +543,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .menu[hidden]{display:none;}
 /* В макете меню логотип полный, а кнопка вызова 64 в высоту при квадрате
    56 — между ними виден зазор (узел 382:518). */
-.menu .call__main{height:64px;}
+.menu .call__main{height:56px;}
 .menu .call__sign{width:56px;height:56px;border-radius:var(--r-18);}
 .menu__head{display:flex;align-items:center;justify-content:space-between;gap:16px;}
 .menu__head .logo img{height:52px;width:auto;}
@@ -786,6 +785,14 @@ body.is-locked{overflow:hidden;}
   .uslugi{grid-template-columns:1fr;gap:24px;}
   .uslugi__tabs{display:flex;flex-direction:column;gap:12px;}
   .tab{min-height:0;height:auto;padding:16px 20px;}
+  /* На закрытых услугах нужен знак, иначе непонятно, что их открывают.
+     В макете это кнопка 38 с плюсом. */
+  .tab{position:relative;padding-right:72px;}
+  .tab:not(.is-active)::after{content:"+";position:absolute;right:16px;top:50%;
+    transform:translateY(-50%);width:38px;height:38px;border-radius:var(--r-13);
+    background:var(--accent);color:var(--white);font-size:20px;line-height:38px;
+    text-align:center;}
+  .uslugi__tabs{gap:12px;}
   .tab.is-active{padding-right:16px;height:auto;}
   /* Раскрытая услуга — белая карточка вместе со своей строкой, как в
      мобильном макете. Раньше текст лежал прямо на фоне секции и выглядел
@@ -914,7 +921,7 @@ body.is-locked{overflow:hidden;}
      прокрутку. Сдвигаем внутрь, а не режем: тени у бейджей обрезать нельзя. */
   /* Мобильная композиция бейджей своя (узел 359:4996): группа 460 в ширину
      от −35, то есть выходит за оба края экрана и режется им. */
-  .kto__stage{width:117.9vw;margin-left:-14.1vw;aspect-ratio:460/262;}
+  .kto__stage{width:117.9vw;margin-left:-14.1vw;aspect-ratio:585/433;}
   .badge--el{left:4.3%;top:17.1%;width:35.4%;}
   .badge--ig{left:31%;top:17%;width:34.3%;}
   .badge--so{left:70.7%;top:5.7%;width:36%;}
@@ -948,6 +955,14 @@ body.is-locked{overflow:hidden;}
 
   .uslugi{grid-template-columns:1fr;gap:24px;}
   .tab{min-height:0;padding:16px 20px;font-size:17px;border-radius:var(--r-16);}
+  /* На закрытых услугах нужен знак, иначе непонятно, что их открывают.
+     В макете это кнопка 38 с плюсом. */
+  .tab{position:relative;padding-right:72px;}
+  .tab:not(.is-active)::after{content:"+";position:absolute;right:16px;top:50%;
+    transform:translateY(-50%);width:38px;height:38px;border-radius:var(--r-13);
+    background:var(--accent);color:var(--white);font-size:20px;line-height:38px;
+    text-align:center;}
+  .uslugi__tabs{gap:12px;}
   .tab.is-active{padding-right:16px;}
   .tab.is-active .tab__sign{width:38px;height:38px;border-radius:var(--r-13);}
   /* Раскрытая услуга — белая карточка вместе со своей строкой, как в
