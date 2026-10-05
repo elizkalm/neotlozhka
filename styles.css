@@ -268,7 +268,8 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 /* Ряд первого экрана в макете (узел 210:237) шириной 1562, а не во все 1760:
    справа остаётся 198. Без этого список «что сделаем» уезжал на целую
    колонку вправо — стоял на 1269 вместо 1137 и тянулся до правого поля. */
-.hero__top{display:grid;grid-template-columns:1017fr 505fr 158fr;gap:40px;align-items:start;}
+.hero__top{display:grid;grid-template-columns:minmax(0,1017fr) 505px minmax(0,158fr);
+  gap:40px;align-items:start;}
 .hero__col{display:flex;flex-direction:column;align-items:flex-start;gap:46px;}
 .hero__lead{margin:0;}
 .hero__actions{display:flex;flex-wrap:wrap;gap:10px;}
@@ -341,10 +342,10 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    подложки бейджей склеиваются в один серый короб. */
 /* Бейджи приехали одной картинкой с готовыми тенями и прозрачностью —
    три позиционированных слоя с поворотами больше не нужны. */
-/* Файл команды обрезан по содержимому: прозрачных полей вокруг нет,
-   поэтому высоту блока задаёт сама картинка — секция кончается ровно
-   там, где кончается тень, без пустой полосы и без обрезки. */
-.kto__stage{position:relative;width:117.55%;margin-left:.1%;}
+/* Одно правило для всех декоративных картинок: задана ширина в пикселях,
+   высота считается сама, cover не используется. Файл команды обрезан по
+   содержимому, поэтому его ширина — это ширина самих бейджей с тенями. */
+.kto__stage{position:relative;width:620px;max-width:100%;justify-self:center;}
 .kto__stage img{width:100%;height:auto;display:block;}
 .kto__stage img{width:100%;height:auto;}
 .kto__stage .badge{position:absolute;margin:0;}
@@ -447,7 +448,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .panel>.h3,.panel>p{grid-column:1 / -1;}
 .panel>.caps,.panel>.checklist,.panel>.price{grid-column:1;}
 .panel__photo{grid-column:2;grid-row:3 / span 3;align-self:center;
-  width:100%;height:auto;}
+  width:100%;max-width:470px;height:auto;justify-self:end;}
 .panel .h3{margin-bottom:4px;}
 /* Ширины из макета (узел 277:434): описание 900, список «что входит» 630
    при панели 1140. Без этого текст тянулся во всю панель и лез под фото. */
@@ -477,11 +478,10 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    08. Бесплатный аудит
    ========================================================================== */
 .audit{position:relative;overflow:hidden;}
-/* Клавиатура занимает свободную полосу справа от текста, а не процент от
-   экрана: контент аудита ограничен 1361, всё, что правее, — её место.
-   Поэтому она не может ни наехать на текст, ни оказаться крошечной.
-   Там, где этой полосы не остаётся, она уходит вниз лентой — ниже. */
-.audit__bg{position:absolute;bottom:0;right:0;left:calc(var(--gutter) + 1361px);
+/* Клавиатура — угол справа внизу фиксированной ширины. Лентой во всю
+   ширину её сделать нельзя: картинка почти квадратная, и растянуть её
+   можно только обрезав. На телефоне стоит отдельный файл 390×202. */
+.audit__bg{position:absolute;right:0;bottom:0;width:640px;max-width:40%;
   pointer-events:none;display:block;}
 .audit__bg img{width:100%;height:auto;display:block;}
 .audit__bg img{width:100%;height:auto;display:block;}
@@ -670,12 +670,6 @@ body.is-locked{overflow:hidden;}
    см. ds/CONTRACT.md.
    ========================================================================== */
 @media (max-width:1599px){
-  /* Полосы справа больше нет: клавиатура становится лентой внизу секции */
-  .audit{display:flex;flex-direction:column;}
-  .audit__inner{order:1;}
-  .audit__bg{order:2;position:relative;left:auto;right:auto;bottom:auto;
-    width:100%;height:28vw;margin-top:48px;margin-bottom:calc(-1 * var(--section-y));}
-  .audit__bg img{height:100%;object-fit:cover;object-position:center;}
   :root{
     --gutter:80px;--section-y:130px;
     --t-h1:64px;--t-h2:48px;--t-h3:40px;--t-h4:34px;--t-h5:28px;
@@ -716,10 +710,9 @@ body.is-locked{overflow:hidden;}
 
   .hero__top{grid-template-columns:1fr;gap:32px;}
   .hero__list{display:grid;grid-template-columns:1fr 1fr;gap:0 32px;}
-  /* Кадр тянется за поля секции и становится выше: на этой ширине картинка
-     в габаритах десктопа превращалась в узкую полоску. */
-  .hero__image{margin:16px calc(-1 * var(--gutter)) 0;width:auto;height:52vw;aspect-ratio:auto;}
-  .hero__image img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;transform:none;}
+  /* Картинка показывается целиком, во всю ширину секции, как на десктопе */
+  .hero__image{margin:16px calc(-1 * var(--gutter)) 0;width:auto;}
+  .hero__image img{width:100%;height:auto;}
 
   /* Порядок как в мобильном макете: заголовок → описание → лист → врезка.
      Двухколоночный боковой блок уводил «зачем осмотр» вправо, а лист
@@ -769,11 +762,7 @@ body.is-locked{overflow:hidden;}
   .platite{grid-template-columns:1fr;gap:32px;}
   .audit__cols{grid-template-columns:1fr;gap:32px;}
   .field{font-size:16px;height:60px;padding:0 20px;}
-  .audit{display:flex;flex-direction:column;}
-  .audit__inner{order:1;}
-  .audit__bg{order:2;display:block;position:relative;right:auto;bottom:auto;
-    width:100%;max-width:none;height:34vw;object-fit:cover;object-position:center;
-    margin-top:48px;margin-bottom:calc(-1 * var(--section-y));}
+  .audit__bg{width:420px;max-width:45%;}
   .footer__inner{grid-template-columns:1fr 1fr 1fr;gap:32px;}
   .footer__brand{grid-column:1 / -1;}
   .modal__cols{grid-template-columns:1fr;gap:24px;}
