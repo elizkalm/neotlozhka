@@ -155,9 +155,10 @@
     </div>
 
     <div class="kto__stage">
-      <figure class="badge badge--el"><img src="img/badge-elizaveta.webp" alt="Елизавета Калмыкова — дизайнер" loading="lazy"></figure>
-      <figure class="badge badge--ig"><img src="img/badge-igor.webp" alt="Игорь Глушенков — специалист по рекламе" loading="lazy"></figure>
-      <figure class="badge badge--so"><img src="img/badge-sofya.webp" alt="Софья Марголина — маркетолог" loading="lazy"></figure>
+      <picture>
+        <source media="(max-width:1023px)" srcset="img/team-mob.webp">
+        <img src="img/team-pc.webp" alt="Бейджи команды: Елизавета Калмыкова — дизайнер, Игорь Глушенков — специалист по рекламе, Софья Марголина — маркетолог" loading="lazy">
+      </picture>
     </div>
   </div>
 </section>
@@ -212,6 +213,7 @@
 
     <article class="case-main" data-modal-open="case-01" role="button" tabindex="0" aria-label="Открыть разбор кейса: аренда спецтехники">
       <div class="case-main__photo">
+        <img src="img/case01-park.webp" alt="Парк спецтехники клиента: автокран на площадке" loading="lazy">
         <span class="pill pill--dark case-main__date">03.2024 — 09.2025</span>
       </div>
       <div class="case-main__body">
@@ -405,7 +407,10 @@
 
 <!-- 08. БЕСПЛАТНЫЙ АУДИТ -->
 <section class="section section--dark audit" id="audit">
-  <img class="audit__bg" src="img/audit-keyboard.webp" alt="" loading="lazy">
+  <picture class="audit__bg">
+    <source media="(max-width:767px)" srcset="img/audit-mob.webp">
+    <img src="img/audit-pc.webp" alt="" loading="lazy">
+  </picture>
   <div class="wrap audit__inner">
     <div class="head">
       <span class="pill pill--raised">/08 · Первый шаг</span>

@@ -124,7 +124,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .btn--sm{height:50px;font-size:var(--t-base);padding:0 20px;}
 
 /* ui / кнопка-вызов — тёмная кнопка и отдельный красный квадрат, зазор 1px */
-.call{display:inline-flex;align-items:center;gap:1px;cursor:pointer;user-select:none;}
+.call{display:inline-flex;align-items:center;gap:0;cursor:pointer;user-select:none;}
 .call__main{
   display:inline-flex;align-items:center;height:64px;padding:0 24px;
   border-radius:var(--r-20);background:var(--ink);color:var(--white);
@@ -135,20 +135,19 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
   display:inline-flex;align-items:center;justify-content:center;
   width:56px;height:56px;border-radius:var(--r-18);
   background:var(--accent);color:var(--white);font-size:var(--t-big);line-height:1;
-  transition:filter .15s ease,width .18s ease,height .18s ease,border-radius .18s ease;
+  border-left:1px solid transparent;background-clip:padding-box;
+  transition:height .18s ease,border-radius .18s ease,background-clip 0s;
 }
 /* При наведении красный квадрат дорастает до высоты тёмной части, зазор
    закрывается и две плашки читаются как одна кнопка с красным торцом.
    Скруглениями управляем с двух сторон сразу, иначе в месте стыка
    остаётся светлый клин. */
-.call{transition:gap .18s ease;}
-.call:hover{gap:0;}
 .call:hover .call__main{
   background:var(--ink-up-2);
   border-top-right-radius:0;border-bottom-right-radius:0;
 }
 .call:hover .call__sign{
-  width:64px;height:64px;
+  height:64px;background-clip:border-box;
   border-top-left-radius:0;border-bottom-left-radius:0;
   border-top-right-radius:var(--r-20);border-bottom-right-radius:var(--r-20);
 }
@@ -266,7 +265,10 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    01. Первый экран
    ========================================================================== */
 .hero{padding-top:var(--section-y);overflow:hidden;}
-.hero__top{display:grid;grid-template-columns:1017fr 505fr;gap:40px;align-items:start;}
+/* Ряд первого экрана в макете (узел 210:237) шириной 1562, а не во все 1760:
+   справа остаётся 198. Без этого список «что сделаем» уезжал на целую
+   колонку вправо — стоял на 1269 вместо 1137 и тянулся до правого поля. */
+.hero__top{display:grid;grid-template-columns:1017fr 505fr 158fr;gap:40px;align-items:start;}
 .hero__col{display:flex;flex-direction:column;align-items:flex-start;gap:46px;}
 .hero__lead{margin:0;}
 .hero__actions{display:flex;flex-wrap:wrap;gap:10px;}
@@ -299,7 +301,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    значит «да, это про меня». Поэтому строка подсвечивается, текст остаётся
    тёмным, а метка ОСТРО/ХРОНИЧЕСКИ краснеет. Решение дизайнера 2026-10-05. */
 .exam input:checked ~ .exam__text{color:var(--ink);}
-.exam:has(input:checked){background:var(--surface-pale);border-radius:var(--r-10);
+.exam:has(input:checked){background:var(--surface);border-radius:var(--r-10);
   margin-left:-12px;margin-right:-12px;padding-left:12px;padding-right:12px;
   border-bottom-color:transparent;}
 .exam:has(input:checked) .exam__label{color:var(--accent);}
@@ -332,7 +334,10 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 /* Углы наклона и сдвиги сняты из макета: 10,8° / −3,8° / −15,5°.
    Тремя отдельными картинками, а не сведённой: у сведённой светлые
    подложки бейджей склеиваются в один серый короб. */
-.kto__stage{position:relative;width:100%;aspect-ratio:982/751;}
+/* Бейджи приехали одной картинкой с готовыми тенями и прозрачностью —
+   три позиционированных слоя с поворотами больше не нужны. */
+.kto__stage{position:relative;width:100%;}
+.kto__stage img{width:100%;height:auto;}
 .kto__stage .badge{position:absolute;margin:0;}
 .kto__stage .badge img{width:100%;}
 .badge--el{left:0;top:0;width:40.6%;transform:rotate(10.8deg);z-index:1;}
@@ -371,7 +376,8 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
   cursor:pointer;transition:transform .15s ease;
 }
 .case-main:hover{transform:translateY(-2px);}
-.case-main__photo{position:relative;border-radius:var(--r-16);background:var(--surface-pale);min-height:534px;}
+.case-main__photo{position:relative;border-radius:var(--r-16);background:var(--surface-pale);min-height:534px;overflow:hidden;}
+.case-main__photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 .case-main__date{position:absolute;left:20px;bottom:20px;}
 .case-main__body{display:flex;flex-direction:column;align-items:flex-start;gap:24px;}
 .case-main__body .h3{margin-top:-4px;}
@@ -451,7 +457,8 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    08. Бесплатный аудит
    ========================================================================== */
 .audit{position:relative;overflow:hidden;}
-.audit__bg{position:absolute;right:0;bottom:0;width:26%;max-width:500px;pointer-events:none;}
+.audit__bg{position:absolute;right:0;bottom:0;width:26%;max-width:500px;pointer-events:none;display:block;}
+.audit__bg img{width:100%;height:auto;display:block;}
 .audit__inner{position:relative;}
 .audit__cols{display:grid;grid-template-columns:560fr 741fr;gap:60px;align-items:start;max-width:1361px;}
 .card-raised{background:var(--ink-up);border-radius:var(--r-20);padding:32px;}
@@ -482,7 +489,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .footer__col .socials{margin-top:4px;}
 .footer .call__main{height:56px;padding:0 20px;font-size:var(--t-base);white-space:nowrap;}
 .footer .call__sign{width:48px;height:48px;border-radius:var(--r-16);}
-.footer .call:hover .call__sign{width:56px;height:56px;}
+.footer .call:hover .call__sign{height:56px;}
 .footer__cta{margin-top:12px;}
 .footer__bottom{display:flex;justify-content:space-between;gap:20px;padding-top:20px;}
 
