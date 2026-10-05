@@ -621,10 +621,11 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .modal--case .modal__shot{position:relative;min-height:420px;padding:20px;overflow:hidden;}
 /* Фотографии проектов разных пропорций: вписываем целиком, иначе портретный
    кадр в широкой плашке показывает треть картинки */
-.modal--case .modal__shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;}
+.modal--case .modal__shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
 .modal--case .modal__shot .pill{position:relative;z-index:1;}
 .modal--case .modal__foot{border-top:0;padding-top:0;}
 .modal--case .modal__foot a{color:var(--accent);text-decoration:underline;text-underline-offset:4px;}
+.modal__link{line-height:1.32;}
 .modal--case .iconbtn{width:50px;height:50px;border-radius:var(--r-20);background:var(--ink);color:var(--white);}
 .modal--case .iconbtn:hover{background:var(--ink-up-2);}
 .modal--case .marker--x{background:var(--surface-pale);color:var(--text-2);}
