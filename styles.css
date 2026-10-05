@@ -507,7 +507,36 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .overlay__scrim{position:fixed;inset:0;background:rgba(30,35,43,.6);backdrop-filter:blur(16px);}
 .modal{position:relative;display:none;width:100%;border-radius:var(--r-20);background:var(--ink);color:var(--text-dark-bg);padding:40px;}
 .modal.is-open{display:flex;flex-direction:column;gap:24px;margin:auto;}
-.modal--case{max-width:1100px;}
+/* ---------- модалка кейса ----------
+   В макете (узел 285:509) карточка СВЕТЛАЯ: белый фон, тёмный текст,
+   красный крестик 64 в правом верхнем углу рядом с датой, заголовок 48,
+   пунктирные разделители и две колонки — снимок 420 и разбор 644.
+   Раньше здесь была тёмная карточка, и это было совсем не то окно. */
+.modal--case{
+  max-width:1200px;padding:48px;gap:28px;
+  background:var(--white);color:var(--ink);
+}
+.modal--case .modal__head{align-items:flex-start;justify-content:space-between;gap:16px;padding-right:0;}
+.modal--case .modal__head-r{display:inline-flex;align-items:center;gap:12px;}
+.modal--case .modal__close{position:static;width:64px;height:64px;border-radius:var(--r-20);
+  background:var(--accent);color:var(--white);font-size:24px;}
+.modal--case .modal__close:hover{filter:brightness(1.08);background:var(--accent);}
+.modal--case .h3{letter-spacing:-.02em;}
+.rule--dotted{height:0;border:0;border-top:1px dashed rgba(30,35,43,.22);margin:0;}
+.modal--case .modal__body{display:grid;grid-template-columns:420px minmax(0,1fr);gap:40px;align-items:start;}
+.modal--case .modal__info{display:flex;flex-direction:column;gap:20px;}
+.modal--case .modal__info>div{display:flex;flex-direction:column;gap:12px;}
+/* «Выписан с» в макете без тёмной плашки — обычный блок на белом */
+.modal--case .modal__out{background:none;padding:0;border-radius:0;gap:12px;}
+.modal--case .modal__out .stat__num{color:var(--ink);font-size:var(--t-num-m);}
+.modal--case .muted{color:var(--text-2);}
+.modal--case .modal__shot{min-height:420px;}
+.modal--case .modal__foot{border-top:0;padding-top:0;}
+.modal--case .modal__foot a{color:var(--accent);text-decoration:underline;text-underline-offset:4px;}
+.modal--case .iconbtn{width:50px;height:50px;border-radius:var(--r-20);background:var(--ink);color:var(--white);}
+.modal--case .iconbtn:hover{background:var(--ink-up-2);}
+.modal--case .marker--x{background:var(--surface-pale);color:var(--text-2);}
+
 .modal--form{max-width:640px;align-items:flex-start;}
 .modal--form>.h5,.modal--form>.caps{padding-right:60px;}
 .modal--form .form{width:100%;}
@@ -525,6 +554,8 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .shot__img img{width:100%;height:auto;}
 .shot__img.is-active{display:block;}
 .shot__thumbs{display:flex;flex-wrap:wrap;gap:8px;}
+/* один снимок — переключать нечего */
+.shot__thumbs:has(> :only-child){display:none;}
 .shot__thumb{height:34px;padding:0 14px;border-radius:var(--r-10);background:var(--white);
   color:var(--ink);font-size:14px;line-height:1;letter-spacing:.04em;transition:background .15s ease,color .15s ease;}
 .shot__thumb:hover{background:var(--surface);}
@@ -655,6 +686,10 @@ body.is-locked{overflow:hidden;}
   .footer__inner{grid-template-columns:1fr 1fr 1fr;gap:32px;}
   .footer__brand{grid-column:1 / -1;}
   .modal__cols{grid-template-columns:1fr;gap:24px;}
+  .modal--case{padding:28px;gap:20px;}
+  .modal--case .modal__body{grid-template-columns:1fr;gap:24px;}
+  .modal--case .modal__shot{min-height:240px;}
+  .modal--case .modal__close{width:56px;height:56px;}
 }
 
 /* мобильная: собственная шкала DS/Моб */
@@ -724,6 +759,10 @@ body.is-locked{overflow:hidden;}
   .sheet__foot{display:none;}
   /* В мобильном макете чекбокс стоит по центру пункта, а метка ОСТРО/ХРОНИЧЕСКИ
      над текстом, а не рядом с квадратиком. */
+  /* В мобильном макете три пункта осмотра короче десктопных (узел 331:306).
+     Хвост фразы лежит отдельным span и на узкой ширине не показывается —
+     так текст остаётся одним абзацем и не дублируется в разметке. */
+  .exam__text .tail{display:none;}
   .exam{display:grid;grid-template-columns:20px 1fr;column-gap:12px;row-gap:4px;align-items:center;padding:14px 0;}
   .exam__box{grid-column:1;grid-row:1 / span 2;align-self:center;}
   .exam__label{grid-column:2;grid-row:1;font-size:11px;}
@@ -815,6 +854,12 @@ body.is-locked{overflow:hidden;}
   .modal__head{padding-right:0;}
   .modal__shot{min-height:180px;}
   .modal__cols{grid-template-columns:1fr;gap:24px;}
+  .modal--case{padding:20px;padding-top:20px;gap:16px;}
+  .modal--case .modal__body{grid-template-columns:1fr;gap:20px;}
+  .modal--case .modal__shot{min-height:200px;}
+  .modal--case .modal__head{flex-direction:column;align-items:flex-start;gap:8px;padding-right:72px;}
+  .modal--case .modal__head-r{display:contents;}
+  .modal--case .modal__close{position:absolute;top:20px;right:20px;width:56px;height:56px;border-radius:var(--r-16);font-size:20px;}
   .modal__foot{flex-direction:column;align-items:flex-start;gap:16px;}
   .pager{align-self:flex-end;}
 }

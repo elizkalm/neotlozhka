@@ -96,10 +96,10 @@
       </div>
       <ul class="sheet__list">
         <li><label class="exam"><input type="checkbox"><span class="exam__box"></span><span class="exam__text">Реклама не окупается — бюджет уходит каждый месяц, а заявок больше не становится</span><span class="exam__label">ОСТРО</span></label></li>
-        <li><label class="exam"><input type="checkbox"><span class="exam__box"></span><span class="exam__text">Заявки нецелевые — менеджеры разбирают «левые» обращения, до продажи доходят единицы</span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></label></li>
-        <li><label class="exam"><input type="checkbox"><span class="exam__box"></span><span class="exam__text">В поиске нас нет — по нужным запросам сайт на последних страницах или его не видно вовсе</span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></label></li>
+        <li><label class="exam"><input type="checkbox"><span class="exam__box"></span><span class="exam__text">Заявки нецелевые — менеджеры разбирают «левые» обращения<span class="tail">, до продажи доходят единицы</span></span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></label></li>
+        <li><label class="exam"><input type="checkbox"><span class="exam__box"></span><span class="exam__text">В поиске нас нет — по нужным запросам сайт на последних страницах<span class="tail"> или его не видно вовсе</span></span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></label></li>
         <li><label class="exam"><input type="checkbox"><span class="exam__box"></span><span class="exam__text">Трафик растёт, а заявок меньше — и непонятно, где потеря</span><span class="exam__label">ОСТРО</span></label></li>
-        <li><label class="exam"><input type="checkbox"><span class="exam__box"></span><span class="exam__text">Есть подрядчики, но непонятно, за что платим — отчёты приходят, результата не видно</span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></label></li>
+        <li><label class="exam"><input type="checkbox"><span class="exam__box"></span><span class="exam__text">Есть подрядчики, но непонятно, за что платим<span class="tail"> — отчёты приходят, результата не видно</span></span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></label></li>
         <li><label class="exam"><input type="checkbox"><span class="exam__box"></span><span class="exam__text">Сайт нужен для лидов или партнёров — а текущий показывать стыдно</span><span class="exam__label exam__label--chronic">ХРОНИЧЕСКИ</span></label></li>
         <li><label class="exam"><input type="checkbox"><span class="exam__box"></span><span class="exam__text">Лиды и трафик есть, а продажи не растут — или падают</span><span class="exam__label">ОСТРО</span></label></li>
       </ul>
@@ -204,7 +204,7 @@
   <div class="wrap">
     <div class="cases__head">
       <div class="head">
-        <span class="pill pill--white">/05 · Кейсы</span>
+        <span class="pill pill--white">/04 · Кейсы</span>
         <h2 class="h2">Лучшие кейсы</h2>
       </div>
       <p class="base muted cases__note">Пять проектов в разных нишах — от аренды спецтехники до салона красоты. Оставьте заявку, и мы подберём релевантную подборку под вашу.</p>
@@ -276,7 +276,7 @@
 <section class="section section--pale" id="uslugi">
   <div class="wrap">
     <div class="head">
-      <span class="pill pill--white">/04 · Услуги</span>
+      <span class="pill pill--white">/05 · Услуги</span>
       <h2 class="h2">Что мы делаем</h2>
     </div>
 
@@ -532,33 +532,36 @@
   <div class="overlay__scrim" data-close></div>
 
   <div class="modal modal--case" data-modal="case-01">
-    <button class="modal__close" data-close aria-label="Закрыть">×</button>
     <div class="modal__head">
       <span class="pill pill--pale">Выписка № 01 · аренда спецтехники</span>
-      <span class="pill pill--pale">03.2024 — 09.2025</span>
+      <span class="modal__head-r"><span class="pill pill--pale">03.2024 — 09.2025</span><button class="modal__close" data-close aria-label="Закрыть">×</button></span>
     </div>
-    <h3 class="h5">Увеличили конверсию сайта втрое и вывели запросы в ТОП-5</h3>
+    <h3 class="h3">Увеличили конверсию сайта втрое и вывели запросы в ТОП-5</h3>
+    <hr class="rule rule--dotted">
+    <div class="modal__body">
     <div class="modal__shot modal__shot--has-img" data-shots>
       <span class="pill pill--white">01 · SEO · реклама</span>
       <div class="shot__stage">
         <a class="shot__img is-active" href="img/case01-seo.webp" target="_blank" rel="noopener" title="Открыть снимок целиком"><img src="img/case01-seo.webp" alt="Динамика позиций в поиске по запросам аренды спецтехники" loading="lazy"></a>
-        <a class="shot__img" href="img/case01-cpl.webp" target="_blank" rel="noopener" title="Открыть снимок целиком"><img src="img/case01-cpl.webp" alt="Помесячная таблица: входящие запросы, квалифицированные лиды и стоимость лида" loading="lazy"></a>
       </div>
       <div class="shot__thumbs" role="tablist" aria-label="Снимки кейса">
         <button class="shot__thumb is-active" role="tab" aria-selected="true" data-shot="0">позиции в поиске</button>
-        <button class="shot__thumb" role="tab" aria-selected="false" data-shot="1">стоимость лида</button>
       </div>
     </div>
-    <div class="modal__cols">
+    <div class="modal__info">
       <div><span class="caps caps--16 muted">ПОСТУПИЛ С</span>
         <ul class="dlist"><li><i class="marker marker--x">×</i><span class="base">Нецелевые заявки, в основном от физлиц</span></li><li><i class="marker marker--x">×</i><span class="base">Простои в парке по основной технике</span></li><li><i class="marker marker--x">×</i><span class="base">Позиции не выше ТОП-30, периодически ниже</span></li></ul></div>
+      <hr class="rule rule--dotted">
       <div><span class="caps caps--16 muted">НАЗНАЧЕНО</span>
         <ul class="dlist"><li><i class="marker">+</i><span class="base">Стратегия SEO-продвижения</span></li><li><i class="marker">+</i><span class="base">Кураторство контекстной рекламы</span></li><li><i class="marker">+</i><span class="base">План по повышению конверсии сайта</span></li></ul></div>
-    </div>
-    <div class="modal__out"><span class="caps caps--16 muted">ВЫПИСАН С</span>
+      <hr class="rule rule--dotted">
+      <div class="modal__out"><span class="caps caps--16 muted">ВЫПИСАН С</span>
       <div class="stats"><div class="stat"><span class="stat__num">+90</span><span class="stat__cap">Позиций в топ-10</span></div><div class="stat"><span class="stat__num">+64</span><span class="stat__cap">Позиций в топ-3</span></div><div class="stat"><span class="stat__num">101</span><span class="stat__cap">Ключевых слов</span></div></div>
       <p class="caption muted">За 1,5 года компания вышла в ТОП среди конкурентов и стабильно удерживает позиции</p>
+      </div>
     </div>
+    </div>
+    <hr class="rule rule--dotted">
     <div class="modal__foot">
       <a class="caption" href="https://andreasrent.ru" target="_blank" rel="noopener">andreasrent.ru</a>
       <div class="pager"><span class="micro muted">01 / 05</span><button class="iconbtn" data-prev>←</button><button class="iconbtn" data-next>→</button></div>
@@ -568,18 +571,24 @@
   <div class="modal modal--case" data-modal="case-02">
     <button class="modal__close" data-close aria-label="Закрыть">×</button>
     <div class="modal__head"><span class="pill pill--pale">Выписка № 02 · сувенирная морская продукция</span></div>
-    <h3 class="h5">Увеличили заказы за счёт охвата высококонкурентных запросов</h3>
+    <h3 class="h3">Увеличили заказы за счёт охвата высококонкурентных запросов</h3>
+    <hr class="rule rule--dotted">
+    <div class="modal__body">
     <div class="modal__shot"><span class="pill pill--white">02 · SEO · аналитика · реклама</span></div>
-    <div class="modal__cols">
+    <div class="modal__info">
       <div><span class="caps caps--16 muted">ПОСТУПИЛ С</span>
         <ul class="dlist"><li><i class="marker marker--x">×</i><span class="base">Заявки только по прямым запросам: «купить модель корабля»</span></li><li><i class="marker marker--x">×</i><span class="base">Околотематические запросы не приносили обращений</span></li><li><i class="marker marker--x">×</i><span class="base">Ключевые запросы по моделям уже были в ТОП-10</span></li></ul></div>
+      <hr class="rule rule--dotted">
       <div><span class="caps caps--16 muted">НАЗНАЧЕНО</span>
         <ul class="dlist"><li><i class="marker">+</i><span class="base">Проработали подарочную тематику: подарок начальнику, директору</span></li><li><i class="marker">+</i><span class="base">Подборки с единой концепцией</span></li><li><i class="marker">+</i><span class="base">Контекстная реклама</span></li><li><i class="marker">+</i><span class="base">Контент-стратегия для укрепления позиций</span></li></ul></div>
-    </div>
-    <div class="modal__out"><span class="caps caps--16 muted">ВЫПИСАН С</span>
+      <hr class="rule rule--dotted">
+      <div class="modal__out"><span class="caps caps--16 muted">ВЫПИСАН С</span>
       <div class="stats"><div class="stat"><span class="stat__num">×2</span><span class="stat__cap">Трафик из поиска</span></div><div class="stat"><span class="stat__num">ТОП-30</span><span class="stat__cap">По большинству запросов</span></div></div>
       <p class="caption muted">Выросли обращения и заказы по подарочному направлению</p>
+      </div>
     </div>
+    </div>
+    <hr class="rule rule--dotted">
     <div class="modal__foot">
       <a class="caption" href="https://modeli-korabli.ru" target="_blank" rel="noopener">modeli-korabli.ru</a>
       <div class="pager"><span class="micro muted">02 / 05</span><button class="iconbtn" data-prev>←</button><button class="iconbtn" data-next>→</button></div>
@@ -589,18 +598,24 @@
   <div class="modal modal--case" data-modal="case-03">
     <button class="modal__close" data-close aria-label="Закрыть">×</button>
     <div class="modal__head"><span class="pill pill--pale">Выписка № 03 · медицинское оборудование</span></div>
-    <h3 class="h5">Увеличили объём заявок по приоритетным направлениям</h3>
+    <h3 class="h3">Увеличили объём заявок по приоритетным направлениям</h3>
+    <hr class="rule rule--dotted">
+    <div class="modal__body">
     <div class="modal__shot"><span class="pill pill--white">03 · аналитика · реклама</span></div>
-    <div class="modal__cols">
+    <div class="modal__info">
       <div><span class="caps caps--16 muted">ПОСТУПИЛ С</span>
         <ul class="dlist"><li><i class="marker marker--x">×</i><span class="base">Мало заявок и продаж</span></li><li><i class="marker marker--x">×</i><span class="base">Нет стабильных заявок по водолечебному оборудованию</span></li><li><i class="marker marker--x">×</i><span class="base">Ограниченный бюджет, а результат нужен ощутимый</span></li></ul></div>
+      <hr class="rule rule--dotted">
       <div><span class="caps caps--16 muted">НАЗНАЧЕНО</span>
         <ul class="dlist"><li><i class="marker">+</i><span class="base">Гипотезы по контекстной рекламе в рамках бюджета</span></li><li><i class="marker">+</i><span class="base">Реализация поочерёдно, до достижения результата</span></li><li><i class="marker">+</i><span class="base">Улучшили визуал страниц для конверсии</span></li></ul></div>
-    </div>
-    <div class="modal__out"><span class="caps caps--16 muted">ВЫПИСАН С</span>
+      <hr class="rule rule--dotted">
+      <div class="modal__out"><span class="caps caps--16 muted">ВЫПИСАН С</span>
       <div class="stats"><div class="stat"><span class="stat__num is-text">Новое направление</span><span class="stat__cap">заявки там, где их не было</span></div></div>
       <p class="caption muted">Заявки выросли в целом, пошли обращения по приоритетному водолечебному оборудованию</p>
+      </div>
     </div>
+    </div>
+    <hr class="rule rule--dotted">
     <div class="modal__foot">
       <a class="caption" href="https://pik-med.ru" target="_blank" rel="noopener">pik-med.ru</a>
       <div class="pager"><span class="micro muted">03 / 05</span><button class="iconbtn" data-prev>←</button><button class="iconbtn" data-next>→</button></div>
@@ -610,18 +625,24 @@
   <div class="modal modal--case" data-modal="case-04">
     <button class="modal__close" data-close aria-label="Закрыть">×</button>
     <div class="modal__head"><span class="pill pill--pale">Выписка № 04 · онлайн-курс по IT-рекрутингу</span></div>
-    <h3 class="h5">Сайт для онлайн-курса — первые заявки сразу после запуска рекламы</h3>
+    <h3 class="h3">Сайт для онлайн-курса — первые заявки сразу после запуска рекламы</h3>
+    <hr class="rule rule--dotted">
+    <div class="modal__body">
     <div class="modal__shot"><span class="pill pill--white">04 · тексты · сайт · метрика</span></div>
-    <div class="modal__cols">
+    <div class="modal__info">
       <div><span class="caps caps--16 muted">ПОСТУПИЛ С</span>
         <ul class="dlist"><li><i class="marker marker--x">×</i><span class="base">Нужен сайт, который передаёт ценности курса</span></li><li><i class="marker marker--x">×</i><span class="base">Ценности надо раскрыть на языке аудитории</span></li><li><i class="marker marker--x">×</i><span class="base">Подвести к бесплатному демо-курсу</span></li></ul></div>
+      <hr class="rule rule--dotted">
       <div><span class="caps caps--16 muted">НАЗНАЧЕНО</span>
         <ul class="dlist"><li><i class="marker">+</i><span class="base">Оффер и концепция на основе маркетингового анализа</span></li><li><i class="marker">+</i><span class="base">Тексты и дизайн под нишу</span></li><li><i class="marker">+</i><span class="base">Вёрстка и тестирование</span></li><li><i class="marker">+</i><span class="base">Метрика и настроенные цели</span></li><li><i class="marker">+</i><span class="base">Корректировки после запуска рекламы</span></li></ul></div>
-    </div>
-    <div class="modal__out"><span class="caps caps--16 muted">ВЫПИСАН С</span>
+      <hr class="rule rule--dotted">
+      <div class="modal__out"><span class="caps caps--16 muted">ВЫПИСАН С</span>
       <div class="stats"><div class="stat"><span class="stat__num">6–8%</span><span class="stat__cap">Конверсия сайта</span></div><div class="stat"><span class="stat__num">50%</span><span class="stat__cap">Откликов закрылись в продажу</span></div></div>
       <p class="caption muted">Клиент получил тёплые целевые отклики</p>
+      </div>
     </div>
+    </div>
+    <hr class="rule rule--dotted">
     <div class="modal__foot">
       <span class="caption muted">сайт не публикуем</span>
       <div class="pager"><span class="micro muted">04 / 05</span><button class="iconbtn" data-prev>←</button><button class="iconbtn" data-next>→</button></div>
@@ -631,18 +652,24 @@
   <div class="modal modal--case" data-modal="case-05">
     <button class="modal__close" data-close aria-label="Закрыть">×</button>
     <div class="modal__head"><span class="pill pill--pale">Выписка № 05 · салон красоты</span></div>
-    <h3 class="h5">Имиджевый сайт для салона красоты</h3>
+    <h3 class="h3">Имиджевый сайт для салона красоты</h3>
+    <hr class="rule rule--dotted">
+    <div class="modal__body">
     <div class="modal__shot"><span class="pill pill--white">05 · тексты · сайт · метрика</span></div>
-    <div class="modal__cols">
+    <div class="modal__info">
       <div><span class="caps caps--16 muted">ПОСТУПИЛ С</span>
         <ul class="dlist"><li><i class="marker marker--x">×</i><span class="base">Нужно отстроиться от конкурентов концепцией</span></li><li><i class="marker marker--x">×</i><span class="base">Передать атмосферу салона и вызвать доверие</span></li><li><i class="marker marker--x">×</i><span class="base">Привлечь аудиторию 20–35 лет</span></li></ul></div>
+      <hr class="rule rule--dotted">
       <div><span class="caps caps--16 muted">НАЗНАЧЕНО</span>
         <ul class="dlist"><li><i class="marker">+</i><span class="base">Оффер и концепция сайта</span></li><li><i class="marker">+</i><span class="base">Тексты с ценностями: честность, прямота, забота</span></li><li><i class="marker">+</i><span class="base">Визуальный стиль под разные категории аудитории</span></li></ul></div>
-    </div>
-    <div class="modal__out"><span class="caps caps--16 muted">ВЫПИСАН С</span>
+      <hr class="rule rule--dotted">
+      <div class="modal__out"><span class="caps caps--16 muted">ВЫПИСАН С</span>
       <div class="stats"><div class="stat"><span class="stat__num">2%</span><span class="stat__cap">Конверсия в лид</span></div></div>
       <p class="caption muted">Партнёры и клиенты сразу положительно оценили сайт</p>
+      </div>
     </div>
+    </div>
+    <hr class="rule rule--dotted">
     <div class="modal__foot">
       <a class="caption" href="https://salonkaksalon.ru" target="_blank" rel="noopener">salonkaksalon.ru</a>
       <div class="pager"><span class="micro muted">05 / 05</span><button class="iconbtn" data-prev>←</button><button class="iconbtn" data-next>→</button></div>
