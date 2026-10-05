@@ -35,6 +35,12 @@ var FORM_ENDPOINT = '';
   var current = null;
 
   function openModal(name) {
+    /* Меню закрываем здесь, а не вторым обработчиком на той же кнопке:
+       он снимал блокировку прокрутки сразу после того, как её поставила
+       модалка, и страница под модалкой скроллилась. */
+    var openMenu = document.querySelector('[data-menu]:not([hidden])');
+    if (openMenu) openMenu.hidden = true;
+    var closeMenuBeforeModal = true;
     var target = overlay.querySelector('[data-modal="' + name + '"]');
     if (!target) return;
     overlay.querySelectorAll('.modal').forEach(function (m) { m.classList.remove('is-open'); });
@@ -130,6 +136,9 @@ var FORM_ENDPOINT = '';
   document.querySelectorAll('[data-form]').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      /* Галочку проверяем сами: с required браузер перехватывает отправку
+         своим пузырём, событие submit не доходит, и наше сообщение никогда
+         не показывалось. Плюс пузырь цеплялся к невидимому полю. */
       var box = form.querySelector('.check input');
       var lab = form.querySelector('.check');
       var err = form.querySelector('.check__err');
