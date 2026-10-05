@@ -170,6 +170,14 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 }
 .iconbtn:hover{background:var(--ink-up-2);}
 
+/* Блистер в услугах: размер слоя из макета — 762×425 (узел 253:1057).
+   По x макет кладёт его на 1202, но там он ложится прямо на описание
+   услуги. Сдвинут вправо и ниже описания: список «что входит» кончается
+   на 1330, туда и встаёт. */
+#uslugi{position:relative;overflow:hidden;}
+.uslugi__photo{position:absolute;right:-1.7%;top:48%;width:39.7%;
+  aspect-ratio:762/425;object-fit:cover;border-radius:var(--r-16);pointer-events:none;}
+
 /* ui / pill */
 .pill{
   display:inline-flex;align-items:center;gap:8px;height:39px;padding:0 20px;
@@ -330,7 +338,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    03. Кто мы
    ========================================================================== */
 .kto{display:grid;grid-template-columns:820fr 940fr;gap:0;align-items:start;}
-#o-nas{overflow:hidden;}
+#o-nas{overflow:hidden;padding-bottom:calc(var(--section-y) + 12px);}
 .kto__text{display:flex;flex-direction:column;align-items:flex-start;gap:28px;}
 .kto__text .h2{margin:4px 0 0;}
 .promise{background:var(--ink);color:var(--white);border-radius:var(--r-20);padding:24px 28px;font-size:var(--t-big);line-height:1.32;}
@@ -341,7 +349,12 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    подложки бейджей склеиваются в один серый короб. */
 /* Бейджи приехали одной картинкой с готовыми тенями и прозрачностью —
    три позиционированных слоя с поворотами больше не нужны. */
-.kto__stage{position:relative;width:117.55%;margin-left:.1%;}
+/* В макете группа бейджей 1105×795, а в присланном файле под ними ещё
+   166 пикселей тени и пустоты. Рамка живёт по пропорции макета, а хвост
+   свешивается в нижнее поле секции — так он не добавляет пустого места
+   и при этом не режется. */
+.kto__stage{position:relative;width:117.55%;margin-left:.1%;aspect-ratio:1105/795;}
+.kto__stage img{position:absolute;left:0;top:0;width:100%;height:auto;display:block;}
 .kto__stage img{width:100%;height:auto;}
 .kto__stage .badge{position:absolute;margin:0;}
 .kto__stage .badge img{width:100%;}
@@ -437,7 +450,10 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .panel{display:none;}
 .panel.is-active{display:flex;flex-direction:column;align-items:flex-start;gap:16px;}
 .panel .h3{margin-bottom:4px;}
-.panel .checklist{width:100%;margin-top:4px;}
+/* Ширины из макета (узел 277:434): описание 900, список «что входит» 630
+   при панели 1140. Без этого текст тянулся во всю панель и лез под фото. */
+.panel .checklist{width:100%;max-width:55.3%;margin-top:4px;}
+.panel>p{max-width:79%;}
 .price{display:flex;align-items:baseline;gap:24px;margin-top:16px;}
 .price b{font-weight:400;font-size:var(--t-big);letter-spacing:-.02em;}
 .price em{font-style:normal;}
@@ -462,7 +478,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    08. Бесплатный аудит
    ========================================================================== */
 .audit{position:relative;overflow:hidden;}
-.audit__bg{position:absolute;right:0;bottom:0;width:26%;max-width:500px;pointer-events:none;display:block;}
+.audit__bg{position:absolute;right:0;bottom:0;width:54%;max-width:1038px;pointer-events:none;display:block;}
 .audit__bg img{width:100%;height:auto;display:block;}
 .audit__inner{position:relative;}
 .audit__cols{display:grid;grid-template-columns:560fr 741fr;gap:60px;align-items:start;max-width:1361px;}
