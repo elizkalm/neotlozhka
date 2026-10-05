@@ -617,12 +617,11 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .modal--case .modal__out{background:none;padding:0;border-radius:0;gap:12px;}
 .modal--case .modal__out .stat__num{color:var(--ink);font-size:var(--t-num-m);}
 .modal--case .muted{color:var(--text-2);}
-/* Фото проекта заполняет плашку, метка лежит поверх в левом верхнем углу */
-.modal--case .modal__shot{position:relative;min-height:420px;padding:20px;overflow:hidden;}
-/* Фотографии проектов разных пропорций: вписываем целиком, иначе портретный
-   кадр в широкой плашке показывает треть картинки */
-.modal--case .modal__shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
-.modal--case .modal__shot .pill{position:relative;z-index:1;}
+/* Фотографии проектов разных пропорций: плашка принимает высоту самой
+   фотографии, а не растягивает её в квадрат. Метка лежит поверх. */
+.modal--case .modal__shot{position:relative;min-height:0;padding:0;overflow:hidden;}
+.modal--case .modal__shot img{position:static;width:100%;height:auto;display:block;}
+.modal--case .modal__shot .pill{position:absolute;left:20px;top:20px;z-index:1;}
 .modal--case .modal__foot{border-top:0;padding-top:0;}
 .modal--case .modal__foot a{color:var(--accent);text-decoration:underline;text-underline-offset:4px;}
 .modal__link{line-height:1.32;}
@@ -725,17 +724,18 @@ body.is-locked{overflow:hidden;}
 
 /* планшет */
 @media (min-width:768px) and (max-width:1023px){
+  /* Тень у картинки команды лежит внутри файла, обрезать секцию нельзя */
+  #o-nas{overflow:visible;}
   :root{--gutter:32px;--section-y:96px;}
   .wrap{max-width:704px;}
   .h1,.h2{-webkit-text-stroke:0;}
+  .h2 .brk{display:inline;}
   .header__nav{display:none;}
   .header__right .btn--sm{display:none;}
   .header__right{margin-left:auto;}
   .burger{display:flex;}
 
   .hero__top{grid-template-columns:1fr;gap:32px;}
-  .hero__actions{flex-direction:column-reverse;align-items:stretch;}
-  .hero__actions .call__main{justify-content:center;}
   .hero__list{display:grid;grid-template-columns:1fr 1fr;gap:0 32px;width:100%;}
   /* Картинка показывается целиком, во всю ширину секции, как на десктопе */
   .hero__image{margin:16px 0 0;width:100%;}
@@ -759,6 +759,7 @@ body.is-locked{overflow:hidden;}
   /* Композиция бейджей — мобильная (узел 359:4996): десктопная на этой
      ширине сжимается в три марки размером с ноготь. */
   .kto__stage{width:calc(100% + var(--gutter));margin-left:0;margin-right:calc(-1 * var(--gutter));aspect-ratio:auto;}
+  .kto__stage img{width:100%;height:auto;}
   .badge--el{left:4.3%;top:17.1%;width:35.4%;}
   .badge--ig{left:31%;top:17%;width:34.3%;}
   .badge--so{left:70.7%;top:5.7%;width:36%;}
@@ -780,10 +781,22 @@ body.is-locked{overflow:hidden;}
   .arrowbtn{grid-column:3;grid-row:1 / span 3;}
   /* Услуги здесь аккордеон, как в мобильном макете: две колонки вкладок
      отрывали раскрытую услугу от её названия. */
+  .podborka{flex-direction:row;align-items:center;justify-content:space-between;gap:32px;}
+  .podborka .call{flex:0 0 auto;width:auto;}
   .uslugi{grid-template-columns:1fr;gap:24px;}
   .uslugi__tabs{display:flex;flex-direction:column;gap:12px;}
   .tab{min-height:0;height:auto;padding:16px 20px;}
   .tab.is-active{padding-right:16px;height:auto;}
+  /* Раскрытая услуга — белая карточка вместе со своей строкой, как в
+     мобильном макете. Раньше текст лежал прямо на фоне секции и выглядел
+     как потерянный кусок. */
+  .tab.is-active{background:var(--white);color:var(--ink);
+    border-radius:var(--r-16) var(--r-16) 0 0;padding:20px;}
+  .tab.is-active .tab__sign{background:var(--accent);}
+  .panel.is-active{background:var(--white);border-radius:0 0 var(--r-16) var(--r-16);
+    padding:0 20px 20px;margin-top:-12px;margin-bottom:12px;}
+  .panel .checklist li{border-bottom:1px dashed rgba(30,35,43,.22);}
+  .panel .checklist li:last-child{border-bottom:0;}
   .tab.is-active .tab__sign{width:44px;height:44px;border-radius:var(--r-13);}
   .btn,.call__main{height:56px;font-size:17px;}
   .call__sign{width:56px;height:56px;font-size:17px;border-radius:var(--r-18);}
@@ -792,7 +805,11 @@ body.is-locked{overflow:hidden;}
   .adv{padding:28px;}
   .audit__cols{grid-template-columns:1fr;gap:32px;}
   .field{font-size:16px;height:60px;padding:0 20px;}
-  .audit__bg{width:300px;max-width:34%;opacity:.5;}
+  .audit{display:flex;flex-direction:column;}
+  .audit__inner{order:1;}
+  .audit__bg{order:2;position:relative;right:auto;bottom:auto;
+    width:100%;max-width:none;opacity:1;margin-top:40px;margin-bottom:calc(-1 * var(--section-y));}
+  .audit__bg img{width:100%;height:auto;}
   .footer__inner{grid-template-columns:1fr 1fr 1fr;gap:32px;}
   .footer__brand{grid-column:1 / -1;}
   .modal__cols{grid-template-columns:1fr;gap:24px;}
@@ -927,12 +944,22 @@ body.is-locked{overflow:hidden;}
   .case-row__res{grid-column:1;justify-content:flex-start;}
 
   .arrowbtn{grid-column:2;grid-row:1 / span 4;align-self:center;}
-  .podborka{padding:20px;border-radius:var(--r-16);gap:20px;}
+  .podborka{padding:20px;border-radius:var(--r-16);gap:20px;flex-direction:column;align-items:stretch;}
 
   .uslugi{grid-template-columns:1fr;gap:24px;}
   .tab{min-height:0;padding:16px 20px;font-size:17px;border-radius:var(--r-16);}
   .tab.is-active{padding-right:16px;}
   .tab.is-active .tab__sign{width:38px;height:38px;border-radius:var(--r-13);}
+  /* Раскрытая услуга — белая карточка вместе со своей строкой, как в
+     мобильном макете. Раньше текст лежал прямо на фоне секции и выглядел
+     как потерянный кусок. */
+  .tab.is-active{background:var(--white);color:var(--ink);
+    border-radius:var(--r-16) var(--r-16) 0 0;padding:20px;}
+  .tab.is-active .tab__sign{background:var(--accent);}
+  .panel.is-active{background:var(--white);border-radius:0 0 var(--r-16) var(--r-16);
+    padding:0 20px 20px;margin-top:-12px;margin-bottom:12px;}
+  .panel .checklist li{border-bottom:1px dashed rgba(30,35,43,.22);}
+  .panel .checklist li:last-child{border-bottom:0;}
   .price{flex-direction:column;align-items:flex-start;gap:6px;}
 
 
