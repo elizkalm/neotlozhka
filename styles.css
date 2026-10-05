@@ -273,13 +273,17 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .hero__lead{margin:0;}
 .hero__actions{display:flex;flex-wrap:wrap;gap:10px;}
 .hero__list{display:flex;flex-direction:column;}
-.hero__list li{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);}
+/* Числа из макета (узел 140:35): пункт — горизонтальный ряд с выравниванием
+   по верху, промежуток 12, поля 8 сверху и снизу, разделитель пунктирный
+   со штрихом 2 и пробелом 4. Маркер 26, текст 20/132%. */
+.hero__list li{display:flex;align-items:flex-start;gap:12px;padding:8px 0;
+  border-bottom:1px dashed rgba(30,35,43,.22);}
 .hero__list li:last-child{border-bottom:0;}
-.hero__list span{font-size:var(--t-base);line-height:1.3;}
+.hero__list span{font-size:var(--t-base);line-height:1.32;}
 /* у картинки сверху пустое поле — обрезаем его окном, а не перекодированием файла */
-.hero__image{position:relative;width:100%;aspect-ratio:2880/956;overflow:hidden;}
+.hero__image{position:relative;width:100%;}
 .hero__image picture{display:block;}
-.hero__image img{position:absolute;left:0;top:0;width:100%;height:auto;transform:translateY(-17.66%);}
+.hero__image img{display:block;width:100%;height:auto;}
 
 /* ==========================================================================
    02. С чем приходят
@@ -325,7 +329,8 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 /* ==========================================================================
    03. Кто мы
    ========================================================================== */
-.kto{display:grid;grid-template-columns:820fr 880fr;gap:60px;align-items:start;}
+.kto{display:grid;grid-template-columns:820fr 940fr;gap:0;align-items:start;}
+#o-nas{overflow:hidden;}
 .kto__text{display:flex;flex-direction:column;align-items:flex-start;gap:28px;}
 .kto__text .h2{margin:4px 0 0;}
 .promise{background:var(--ink);color:var(--white);border-radius:var(--r-20);padding:24px 28px;font-size:var(--t-big);line-height:1.32;}
@@ -336,7 +341,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    подложки бейджей склеиваются в один серый короб. */
 /* Бейджи приехали одной картинкой с готовыми тенями и прозрачностью —
    три позиционированных слоя с поворотами больше не нужны. */
-.kto__stage{position:relative;width:100%;}
+.kto__stage{position:relative;width:117.55%;margin-left:.1%;}
 .kto__stage img{width:100%;height:auto;}
 .kto__stage .badge{position:absolute;margin:0;}
 .kto__stage .badge img{width:100%;}
