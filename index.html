@@ -568,11 +568,14 @@
         <span class="caps caps--16 muted">ЧТО ПОКАЗЫВАЕТ АНАЛИТИКА</span>
         <div class="shot__thumbs" role="tablist" aria-label="Снимки аналитики">
           <button class="shot__thumb is-active" role="tab" aria-selected="true" data-shot="0">позиции в поиске</button>
+          <button class="shot__thumb" role="tab" aria-selected="false" data-shot="1">группа «автокран 32»</button>
         </div>
       </div>
-      <button class="shot__img is-active" data-zoom="img/case01-seo.webp" aria-label="Увеличить снимок">
-        <img src="img/case01-seo.webp" alt="Динамика позиций в поиске по запросам аренды спецтехники" loading="lazy">
-        <span class="shot__zoom">Увеличить</span>
+      <button class="shot__img is-active" data-zoom="img/case01-pos.webp" aria-label="Увеличить снимок">
+        <img src="img/case01-pos.webp" alt="Дашборд позиций: видимость, средняя и медианная позиция по запросам аренды спецтехники" loading="lazy">
+      </button>
+      <button class="shot__img" data-zoom="img/case01-avtokran.webp" aria-label="Увеличить снимок">
+        <img src="img/case01-avtokran.webp" alt="Позиции по группе запросов «автокран 32» по неделям" loading="lazy">
       </button>
     </div>
     <hr class="rule rule--dotted">
@@ -600,6 +603,26 @@
       <p class="caption muted">Выросли обращения и заказы по подарочному направлению</p>
       </div>
     </div>
+    </div>
+    <hr class="rule rule--dotted">
+    <div class="shots" data-shots>
+      <div class="shots__head">
+        <span class="caps caps--16 muted">ЧТО ПОКАЗЫВАЕТ АНАЛИТИКА</span>
+        <div class="shot__thumbs" role="tablist" aria-label="Снимки аналитики">
+          <button class="shot__thumb is-active" role="tab" aria-selected="true" data-shot="0">позиции в поиске</button>
+          <button class="shot__thumb" role="tab" aria-selected="false" data-shot="1">подарочные запросы</button>
+          <button class="shot__thumb" role="tab" aria-selected="false" data-shot="2">трафик</button>
+        </div>
+      </div>
+      <button class="shot__img is-active" data-zoom="img/case02-pos.webp" aria-label="Увеличить снимок">
+        <img src="img/case02-pos.webp" alt="Дашборд позиций интернет-магазина моделей кораблей" loading="lazy">
+      </button>
+      <button class="shot__img" data-zoom="img/case02-podarki.webp" aria-label="Увеличить снимок">
+        <img src="img/case02-podarki.webp" alt="Позиции по подарочным запросам: подарок начальнику, руководителю, директору" loading="lazy">
+      </button>
+      <button class="shot__img" data-zoom="img/case02-trafik.webp" aria-label="Увеличить снимок">
+        <img src="img/case02-trafik.webp" alt="Клики из поиска по неделям: Яндекс, Google и прочие источники" loading="lazy">
+      </button>
     </div>
     <hr class="rule rule--dotted">
     <div class="modal__foot">
@@ -733,10 +756,10 @@
   </div>
 </div>
 
-<script src="script.js?v=2"></script>
 <div class="lightbox" data-lightbox hidden>
   <button class="lightbox__close" data-lightbox-close aria-label="Закрыть"><span>×</span></button>
   <div class="lightbox__stage"><img alt=""></div>
+<script src="script.js?v=2"></script>
   <p class="lightbox__hint micro">Снимок открыт полностью. Esc или клик по фону — закрыть</p>
 </div>
 </body>

@@ -561,11 +561,6 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
   overflow:hidden;background:var(--surface);cursor:zoom-in;}
 .shot__img.is-active{display:block;}
 .shot__img img{width:100%;height:auto;display:block;}
-.shot__zoom{position:absolute;right:16px;bottom:16px;height:34px;padding:0 14px;
-  display:inline-flex;align-items:center;border-radius:var(--r-10);
-  background:var(--ink);color:var(--white);font-size:14px;line-height:1;
-  opacity:0;transition:opacity .15s ease;}
-.shot__img:hover .shot__zoom,.shot__img:focus-visible .shot__zoom{opacity:1;}
 
 /* Просмотр снимка во весь экран */
 .lightbox{position:fixed;inset:0;z-index:90;display:flex;flex-direction:column;
