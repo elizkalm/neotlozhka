@@ -295,7 +295,14 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .exam:hover .exam__box{border-color:var(--accent);}
 .exam input:checked ~ .exam__box{border-color:var(--accent);background:var(--accent);}
 .exam input:checked ~ .exam__box::after{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3E%3Cpath d=%27M5 10.5l3.2 3.2L15 7%27 fill=%27none%27 stroke=%27%23fff%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E") center/contain no-repeat;}
-.exam input:checked ~ .exam__text{color:var(--text-2);}
+/* Отмеченный пункт должен становиться заметнее, а не бледнее: галочка тут
+   значит «да, это про меня». Поэтому строка подсвечивается, текст остаётся
+   тёмным, а метка ОСТРО/ХРОНИЧЕСКИ краснеет. Решение дизайнера 2026-10-05. */
+.exam input:checked ~ .exam__text{color:var(--ink);}
+.exam:has(input:checked){background:var(--surface-pale);border-radius:var(--r-10);
+  margin-left:-12px;margin-right:-12px;padding-left:12px;padding-right:12px;
+  border-bottom-color:transparent;}
+.exam:has(input:checked) .exam__label{color:var(--accent);}
 .exam__box{position:relative;flex:0 0 auto;width:20px;height:20px;border:1.4px solid var(--ink);border-radius:var(--r-3);transition:background .12s ease,border-color .12s ease;}
 .exam__text{flex:1;font-size:var(--t-base);line-height:1.3;}
 .exam__label{flex:0 0 auto;font-size:var(--t-caps14);letter-spacing:.06em;color:var(--accent);}
@@ -519,8 +526,13 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .modal--case .modal__head{align-items:flex-start;justify-content:space-between;gap:16px;padding-right:0;}
 .modal--case .modal__head-r{display:inline-flex;align-items:center;gap:12px;}
 .modal--case .modal__close{position:static;width:64px;height:64px;border-radius:var(--r-20);
-  background:var(--accent);color:var(--white);font-size:24px;}
-.modal--case .modal__close:hover{filter:brightness(1.08);background:var(--accent);}
+  background:var(--accent);color:var(--white);font-size:24px;
+  transition:background .15s ease,transform .18s ease;}
+/* Поворот крестика смысла не имеет: знак симметричный, после четверти
+   оборота выглядит так же. Поэтому реакция цветом — красный уходит в
+   тёмный, как у контурной кнопки. */
+.modal--case .modal__close:hover{background:var(--ink);transform:scale(1.04);}
+.modal--case .modal__close:active{transform:scale(.98);}
 .modal--case .h3{letter-spacing:-.02em;}
 .rule--dotted{height:0;border:0;border-top:1px dashed rgba(30,35,43,.22);margin:0;}
 .modal--case .modal__body{display:grid;grid-template-columns:420px minmax(0,1fr);gap:40px;align-items:start;}
@@ -543,6 +555,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .modal__close{position:absolute;top:24px;right:24px;width:50px;height:50px;border-radius:var(--r-20);
   background:var(--ink-up);color:var(--text-dark-bg);font-size:22px;line-height:1;transition:background .15s ease;}
 .modal__close:hover{background:var(--ink-up-2);}
+.modal__close span{display:block;}
 .modal__head{display:flex;flex-wrap:wrap;gap:8px;padding-right:60px;}
 .modal__shot{display:flex;align-items:flex-start;padding:20px;min-height:260px;border-radius:var(--r-16);background:var(--surface-pale);}
 /* Слот снимков кейса: картинка лежит на бледной плашке, метка кейса поверх,
