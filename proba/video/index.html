@@ -51,11 +51,14 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);
 .section__title{margin:0;font-size:48px;line-height:48px;font-weight:700;
   letter-spacing:-2.4px;color:var(--text);}
 
-/* minmax(0,1fr) обязателен: иначе колонка не может стать уже своего
-   содержимого, и на планшете сетка выталкивает страницу вбок. */
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;}
+/* Ряд собран на флексе с переносом, а не на сетке. Сетку импортёр не
+   понимает: он разворачивает её во флекс, но карточкам внутри нечего
+   сказать про растяжение, и они приходят в Tilda фиксированного размера.
+   У флекса каждая карточка несёт flex-grow — импортёр читает это как
+   «заполнить». 30% — основа, по которой встают три в ряд. */
+.grid{display:flex;flex-wrap:wrap;gap:18px;}
 
-.card{min-width:0;background:var(--card);border-radius:10px;padding:12px;
+.card{flex:1 1 30%;min-width:0;background:var(--card);border-radius:10px;padding:12px;
   display:flex;flex-direction:column;gap:18px;
   border:0;margin:0;text-align:left;color:inherit;font:inherit;cursor:pointer;}
 
@@ -85,7 +88,7 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);
 @media (max-width:1023px){
   .section{padding:64px 28px;gap:28px;}
   .section__title{font-size:40px;line-height:40px;letter-spacing:-1.8px;}
-  .grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .card{flex:1 1 45%;}   /* две в ряд */
 }
 
 /* Телефон. В оригинале этот блок не адаптирован вовсе: карточка остаётся
@@ -93,7 +96,8 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);
 @media (max-width:639px){
   .section{padding:56px 20px;gap:24px;}
   .section__title{font-size:34px;line-height:34px;letter-spacing:-1.4px;}
-  .grid{grid-template-columns:minmax(0,1fr);gap:14px;}
+  .grid{gap:14px;}
+  .card{flex:1 1 100%;}  /* одна в ряд */
 }
 
 @media (max-width:479px){
