@@ -295,9 +295,10 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    02. С чем приходят
    ========================================================================== */
 .symptoms{
-  display:grid;grid-template-columns:677fr 560fr;
-  column-gap:23.27%;margin-left:0;margin-right:8.4%;align-items:start;
+  display:grid;grid-template-columns:59.77% minmax(0,1fr);
+  gap:0;margin:0;align-items:start;
 }
+.symptoms .sheet{width:677px;max-width:100%;}
 .sheet{position:relative;background:var(--white);border-radius:var(--r-20);padding:32px 40px 28px;overflow:hidden;}
 .sheet::before{content:'';position:absolute;left:0;right:0;top:0;height:5px;background:var(--accent);}
 .sheet__head{display:flex;justify-content:space-between;gap:24px;padding:8px 0 24px;border-bottom:1px solid var(--line);}
@@ -423,7 +424,8 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 
 .cases{display:flex;flex-direction:column;gap:10px;margin-top:48px;}
 .case-row{
-  display:grid;grid-template-columns:60px 520px minmax(0,1fr) 300px 50px;
+  display:grid;
+  grid-template-columns:44px minmax(0,496fr) minmax(0,516fr) minmax(0,502fr) 50px;
   align-items:center;gap:24px;min-height:104px;padding:0 24px 0 32px;
   border-radius:var(--r-20);background:var(--white);
   cursor:pointer;transition:background .15s ease;
