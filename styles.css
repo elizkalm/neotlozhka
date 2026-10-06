@@ -619,8 +619,13 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .modal--case .muted{color:var(--text-2);}
 /* Фотографии проектов разных пропорций: плашка принимает высоту самой
    фотографии, а не растягивает её в квадрат. Метка лежит поверх. */
-.modal--case .modal__shot{position:relative;min-height:0;padding:0;overflow:hidden;}
-.modal--case .modal__shot img{position:static;width:100%;height:auto;display:block;}
+/* Фотографии проектов — один формат на все кейсы: квадрат 420×420 из
+   макета, кадрирование по центру. Снимки сайтов живут в своей пропорции:
+   первый экран страницы нельзя обрезать до квадрата. */
+.modal--case .modal__shot{position:relative;min-height:0;padding:0;overflow:hidden;aspect-ratio:1/1;}
+.modal--case .modal__shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
+.modal--case .modal__shot--site{aspect-ratio:auto;}
+.modal--case .modal__shot--site img{position:static;width:100%;height:auto;object-fit:fill;}
 .modal--case .modal__shot .pill{position:absolute;left:20px;top:20px;z-index:1;}
 .modal--case .modal__foot{border-top:0;padding-top:0;}
 .modal--case .modal__foot a{color:var(--accent);text-decoration:underline;text-underline-offset:4px;}
