@@ -344,13 +344,8 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    overflow здесь НЕ ставим: у файла снизу всего 37 прозрачных пикселей,
    любая обрезка съедает тень. */
 .kto{display:grid;grid-template-columns:46.65% 1fr;gap:0;align-items:center;}
-#o-nas{padding-top:0;padding-bottom:0;}
-/* Поля секции нулевые, чтобы картинка шла во всю высоту, как в макете.
-   Но тогда на узком экране текст упирался в края: картинка там ниже.
-   Поэтому минимальный воздух держит сама текстовая колонка — секция
-   растёт, как только текст с полями становится выше картинки. */
-.kto__text{display:flex;flex-direction:column;align-items:flex-start;gap:28px;
-  padding:var(--section-y) 0;}
+#o-nas{padding-top:var(--section-y);padding-bottom:var(--section-y);}
+.kto__text{display:flex;flex-direction:column;align-items:flex-start;gap:28px;}
 .kto__text .h2{margin:4px 0 0;}
 .promise{background:var(--ink);color:var(--white);border-radius:var(--r-20);padding:24px 28px;font-size:var(--t-big);line-height:1.32;}
 .honest{background:var(--surface-pale);border-radius:var(--r-20);padding:24px 28px;display:flex;flex-direction:column;gap:10px;}
@@ -366,14 +361,9 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 /* В макете группа начинается на y=93, а текстовый блок на 233 — то есть
    картинка выходит выше общего поля секции на 67. */
 /* В макете картинка начинается на y=93, а текст на 233 при поле секции 160 */
-/* Картинка ровно в высоту секции: файл 2228×2088 — это 2× от 1114×1044,
-   а 1044 и есть высота блока в макете. Поэтому у секции нет вертикальных
-   полей, картинка занимает её целиком и упирается в правый край экрана,
-   а текст стоит по центру по вертикали. Ничего не обрезается и не
-   пересчитывается. */
-.kto__stage{position:relative;width:58.02vw;align-self:stretch;margin-left:-4.95vw;}
-/* На дробных ширинах правый край может дать лишний пиксель прокрутки */
-#o-nas{overflow-x:clip;}
+/* Картинка живёт внутри своей колонки и никуда не вылезает: обрезать её
+   нечем и нечему. Поля секции обычные, воздух вокруг тени есть всегда. */
+.kto__stage{position:relative;width:100%;align-self:center;}
 .kto__stage img{width:100%;height:auto;display:block;}
 .kto__stage img{width:100%;height:auto;}
 .kto__stage .badge{position:absolute;margin:0;}
