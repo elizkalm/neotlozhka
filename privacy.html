@@ -8,26 +8,42 @@
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="fonts/liter-400-cyrillic.woff2" crossorigin>
 <link rel="stylesheet" href="fonts.css">
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="styles.css?v=3">
 <style>
-  .doc{max-width:900px;margin:0 auto;padding:80px 0;}
+  /* Страница документа: одна узкая колонка с текстом, шапка и подвал общие */
+  .doc{max-width:900px;margin:0 auto;padding:80px 0 120px;}
   .doc h1{margin:0 0 40px;font-weight:400;}
   .doc h2{margin:40px 0 12px;font-size:26px;font-weight:400;}
   .doc p{color:var(--text-2);}
   .todo{padding:24px 28px;border-radius:20px;background:var(--surface-pale);color:var(--ink);}
+  @media (max-width:767px){.doc{padding:40px 0 64px;}.doc h2{font-size:22px;}}
 </style>
 </head>
-<body>
+<body id="top">
 <header class="header">
-  <div class="container header__inner">
-    <a class="logo" href="index.html">
-      <span class="logo__mark" aria-hidden="true"></span>
-      <span class="logo__text"><b>Маркетинг-неотложка</b><i>для бизнеса</i></span>
-    </a>
+  <div class="wrap header__inner">
+    <a class="logo" href="index.html#top"><img src="img/logo-full.svg" alt="Маркетинг-неотложка для бизнеса"></a>
+
+    <nav class="header__nav">
+      <a class="pill pill--white" href="index.html#o-nas">О нас</a>
+      <a class="pill pill--white" href="index.html#keysy">Кейсы</a>
+      <a class="pill pill--white" href="index.html#uslugi">Услуги и цены</a>
+      <a class="pill pill--white" href="index.html#etapy">Как работаем</a>
+    </nav>
+
+    <div class="header__right">
+      <span class="socials">
+        <a href="https://t.me/neotlozhka" target="_blank" rel="noopener" aria-label="MAX"><img src="img/social-max.svg" alt=""></a>
+        <a href="https://t.me/neotlozhka" target="_blank" rel="noopener" aria-label="Telegram"><img src="img/social-tg.svg" alt=""></a>
+        <a href="https://t.me/neotlozhka" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="img/social-wa.svg" alt=""></a>
+      </span>
+      <button class="btn btn--dark btn--sm" data-modal-open="audit">Вызвать неотложку</button>
+      <button class="burger" aria-label="Меню" data-menu-open><span></span><span></span></button>
+    </div>
   </div>
 </header>
 
-<main class="container">
+<main class="wrap">
   <div class="doc">
     <h1 class="h2">Политика конфиденциальности</h1>
 
@@ -54,5 +70,114 @@
     <p style="margin-top:40px"><a href="index.html">← Вернуться на главную</a></p>
   </div>
 </main>
+
+<footer class="footer">
+  <div class="wrap">
+    <hr class="rule">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a class="logo" href="index.html#top"><img src="img/logo-full.svg" alt="Маркетинг-неотложка для бизнеса"></a>
+        <p class="base muted">Спасаем бизнес быстро, с учётом ваших возможностей и ситуации.</p>
+        <span class="dot small">Отвечаем в течение 30 минут</span>
+      </div>
+
+      <nav class="footer__col">
+        <span class="caps caps--14 muted">РАЗДЕЛЫ</span>
+        <a class="caption" href="index.html#simptomy">С чем приходят</a>
+        <a class="caption" href="index.html#o-nas">О нас</a>
+        <a class="caption" href="index.html#etapy">Как работаем</a>
+        <a class="caption" href="index.html#keysy">Кейсы</a>
+        <a class="caption" href="index.html#uslugi">Услуги и цены</a>
+      </nav>
+
+      <nav class="footer__col">
+        <span class="caps caps--14 muted">УСЛУГИ</span>
+        <a class="caption" href="index.html#uslugi" data-tab-link="u1">Маркетинговая стратегия</a>
+        <a class="caption" href="index.html#uslugi" data-tab-link="u4">Контекстная реклама</a>
+        <a class="caption" href="index.html#uslugi" data-tab-link="u5">Проджект и маркетолог на аутсорсе</a>
+        <a class="caption" href="index.html#uslugi" data-tab-link="u3">Разработка сайта</a>
+        <a class="caption" href="index.html#uslugi" data-tab-link="u2">Реализация стратегии</a>
+        <a class="caption" href="index.html#uslugi" data-tab-link="u6">Подбор подрядчиков</a>
+      </nav>
+
+      <div class="footer__col">
+        <span class="caps caps--14 muted">СВЯЗАТЬСЯ</span>
+        <a class="big" href="tel:+79213455321">+7 921 345-53-21</a>
+        <a class="big" href="https://t.me/neotlozhka" target="_blank" rel="noopener">t.me/neotlozhka</a>
+        <span class="socials">
+          <a href="https://t.me/neotlozhka" target="_blank" rel="noopener" aria-label="MAX"><img src="img/social-max.svg" alt=""></a>
+          <a href="https://t.me/neotlozhka" target="_blank" rel="noopener" aria-label="Telegram"><img src="img/social-tg.svg" alt=""></a>
+          <a href="https://t.me/neotlozhka" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="img/social-wa.svg" alt=""></a>
+        </span>
+        <span class="call footer__cta" data-modal-open="audit" role="button" tabindex="0">
+          <span class="call__main">Вызвать неотложку</span><span class="call__sign">+</span>
+        </span>
+      </div>
+    </div>
+    <hr class="rule">
+    <div class="footer__bottom">
+      <span class="caption muted">© 2026 Маркетинг-неотложка</span>
+      <a class="caption muted" href="privacy.html">Политика конфиденциальности</a>
+    </div>
+  </div>
+</footer>
+
+
+
+<div class="menu" data-menu hidden>
+  <div class="menu__head">
+    <a class="logo" href="index.html#top"><img src="img/logo-full-light.svg" alt="Маркетинг-неотложка"></a>
+    <button class="menu__close" data-menu-close aria-label="Закрыть"><span>×</span></button>
+  </div>
+  <nav class="menu__nav">
+    <a href="index.html#simptomy" data-menu-close>С чем приходят</a>
+    <a href="index.html#o-nas" data-menu-close>О нас</a>
+    <a href="index.html#etapy" data-menu-close>Как работаем</a>
+    <a href="index.html#keysy" data-menu-close>Кейсы</a>
+    <a href="index.html#uslugi" data-menu-close>Услуги и цены</a>
+    <a href="index.html#audit" data-menu-close>Бесплатный аудит</a>
+  </nav>
+  <div class="menu__foot">
+    <a class="menu__phone" href="tel:+79213455321">+7 921 345-53-21</a>
+    <a class="menu__tg" href="https://t.me/neotlozhka" target="_blank" rel="noopener">t.me/neotlozhka</a>
+    <span class="call call--wide call--light" data-modal-open="audit" role="button" tabindex="0">
+      <span class="call__main">Вызвать неотложку</span><span class="call__sign">+</span>
+    </span>
+  </div>
+</div>
+
+<div class="overlay" data-overlay hidden>
+  <div class="overlay__scrim" data-close></div>
+
+  <div class="modal modal--form" data-modal="audit">
+    <button class="modal__close" data-close aria-label="Закрыть"><span>×</span></button>
+    <span class="caps caps--16 muted">ЗАЯВКА НА АУДИТ</span>
+    <h3 class="h5">Разберём вашу ситуацию за 30 минут</h3>
+    <form class="form" data-form="audit">
+      <div class="form__row">
+        <input class="field" type="text" name="name" placeholder="Имя">
+        <input class="field" type="tel" name="phone" placeholder="Телефон*" required>
+      </div>
+      <input class="field" type="text" name="site" placeholder="Ссылка на сайт/соц.сети (если есть)">
+      <label class="check">
+        <input type="checkbox" data-consent><span class="check__box"></span>
+        <span class="check__text micro">Даю согласие на обработку персональных данных и принимаю <a href="privacy.html">политику конфиденциальности</a></span>
+          <span class="check__err micro" hidden>Без согласия заявку отправить нельзя</span>
+      </label>
+      <button class="btn btn--accent btn--wide" type="submit">Записаться на аудит</button>
+      <p class="small muted">Больше ничего не нужно — остальное спросим на встрече</p>
+    </form>
+  </div>
+
+  <div class="modal modal--form" data-modal="otpravleno">
+    <button class="modal__close" data-close aria-label="Закрыть"><span>×</span></button>
+    <span class="caps caps--12 muted">ЗАЯВКА ПРИНЯТА</span>
+    <h3 class="h5">Спасибо! Ответим в течение тридцати минут</h3>
+    <p class="caption muted">Напишем в мессенджер или позвоним — как вам удобнее. Если сейчас нерабочее время, ответим утром.</p>
+    <button class="btn btn--white btn--wide" data-close>Закрыть</button>
+  </div>
+</div>
+
+<script src="script.js?v=4"></script>
 </body>
 </html>
