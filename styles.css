@@ -857,19 +857,22 @@ body.is-locked{overflow:hidden;}
   .pill{height:34px;font-size:13px;padding:0 14px;}
   .tag{height:28px;font-size:12px;padding:0 10px;}
 
-    .hero{padding-top:32px;}
+  /* Первый экран в мобильном макете белый (узел 330:314), шапка над ним
+     серая — так в макете. Картинка hero-mob.webp сведена на белый. */
+  .hero{padding-top:32px;background:var(--white);}
   .hero__top{grid-template-columns:1fr;gap:24px;}
   .hero__col{gap:24px;width:100%;}
   .hero__list{width:100%;}
   .hero__actions{flex-direction:column-reverse;align-items:stretch;width:100%;}
   .hero__actions .call__main{justify-content:center;}
   .hero__list span{font-size:15px;}
-  /* Кадр первого экрана на телефоне — отдельная картинка hero-mob.webp:
-     в макете (узел 340:4791) это свой вырез фотографии, 390×403, а не
-     сдвинутая десктопная. Поэтому просто показываем её целиком. */
-  .hero__image{position:relative;margin-top:41px;aspect-ratio:390/268.3;overflow:hidden;}
-  .hero__image img{position:static;width:100%;max-width:100%;height:100%;
-    object-fit:cover;object-position:center;margin-left:0;transform:none;}
+  /* Кадр первого экрана на телефоне — hero-mob.webp, вырез из той же
+     фотографии ровно по макету (узел 340:4791: фото 999 px шириной,
+     низ по низу экрана). В файле сверху ~13 px воздуха над подписями,
+     поэтому до списка 37 px, а подписи начинаются через 41, как в макете.
+     Картинка стоит во всю ширину и до низа секции. */
+  .hero__image{margin-top:37px;}
+  .hero__image img{width:100%;height:auto;}
 
   /* Порядок мобильного макета (узел 331:301): заголовок → список симптомов →
      легенда → кнопка. display:contents распускает боковой блок в общую колонку —
