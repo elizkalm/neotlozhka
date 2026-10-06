@@ -1,7 +1,7 @@
 /* Адрес приёмника заявок. Пока пустой — заявки никуда не уходят,
    человек всё равно видит экран «принято». Как получить адрес —
    в _backend/apps-script.gs, там пошаговая инструкция. */
-var FORM_ENDPOINT = '';
+var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwN0aWKKjX0Aj9yPdonaeJQyFLPtC1SiguUTA-RdZ-M3w8fbKEUmfrdhbTe2e-50NSS/exec';
 
 /* Маркетинг-неотложка — поведение лендинга.
    Четыре вещи: вкладки услуг, модалки, листание кейсов, мобильное меню. */
