@@ -340,41 +340,27 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 /* ==========================================================================
    03. Кто мы
    ========================================================================== */
-/* Секция повторяет макет один в один (узел 192:38, 1920×1044):
-   текст 820 от левого поля, картинка 968 на позиции 901, то есть её
-   правый край уходит в поле страницы. Доли от содержимого 1760:
-   821/1760 = 46.65 % и 968/1760 = 55 % — в сумме больше ста, и это
-   нормально: картинка намеренно заходит за правое поле.
-   overflow здесь НЕ ставим: у файла снизу всего 37 прозрачных пикселей,
-   любая обрезка съедает тень. */
-.kto{display:grid;grid-template-columns:46.65% 1fr;gap:0;align-items:center;}
-#o-nas{padding-top:var(--section-y);padding-bottom:var(--section-y);}
-.kto__text{display:flex;flex-direction:column;align-items:flex-start;gap:28px;}
-.kto__text .h2{margin:4px 0 0;}
+/* Макет: узел 192:38, секция 1920×1044.
+   Текст: x 80–900 (820), y 233–804.
+   Картинка team-pc.webp вырезана из макета ровно по прямоугольнику
+   x 940–1840, y 40–1044 (900×1004) вместе с тенью и прозрачным полем,
+   поэтому её правый край совпадает с правым полем страницы и вылезать
+   ей никуда не нужно, а тень внутри файла затухает до нуля — резать нечего.
+   Колонки 820 : 900 с зазором 40 — пропорция держится на любой ширине.
+   Текст по центру картинки со сдвигом вверх на 23,5 px (233 вместо 256,5):
+   +47 px к нижнему отступу (5.7 % от колонки 820).
+   Отступы текста сверху/снизу = ¾ поля секции: на 1920 они ни на что
+   не влияют (текст по центру), а когда текст выше картинки (1024–1440),
+   не дают ему прилипнуть к соседним секциям. */
+#o-nas{padding-top:calc(var(--section-y) * .25);padding-bottom:0;}
+.kto{display:grid;grid-template-columns:minmax(0,820fr) minmax(0,900fr);column-gap:40px;align-items:center;}
+.kto__text{display:flex;flex-direction:column;align-items:flex-start;gap:28px;
+  margin-top:calc(var(--section-y) * .75);margin-bottom:calc(var(--section-y) * .75 + 5.7%);}
+.kto__text .h2{margin:0;}
 .promise{background:var(--ink);color:var(--white);border-radius:var(--r-20);padding:24px 28px;font-size:var(--t-big);line-height:1.32;}
 .honest{background:var(--surface-pale);border-radius:var(--r-20);padding:24px 28px;display:flex;flex-direction:column;gap:10px;}
-
-/* Углы наклона и сдвиги сняты из макета: 10,8° / −3,8° / −15,5°.
-   Тремя отдельными картинками, а не сведённой: у сведённой светлые
-   подложки бейджей склеиваются в один серый короб. */
-/* Бейджи приехали одной картинкой с готовыми тенями и прозрачностью —
-   три позиционированных слоя с поворотами больше не нужны. */
-/* Одно правило для всех декоративных картинок: задана ширина в пикселях,
-   высота считается сама, cover не используется. Файл команды обрезан по
-   содержимому, поэтому его ширина — это ширина самих бейджей с тенями. */
-/* В макете группа начинается на y=93, а текстовый блок на 233 — то есть
-   картинка выходит выше общего поля секции на 67. */
-/* В макете картинка начинается на y=93, а текст на 233 при поле секции 160 */
-/* Картинка живёт внутри своей колонки и никуда не вылезает: обрезать её
-   нечем и нечему. Поля секции обычные, воздух вокруг тени есть всегда. */
-.kto__stage{position:relative;width:100%;align-self:center;}
+.kto__stage{margin:0;}
 .kto__stage img{width:100%;height:auto;display:block;}
-.kto__stage img{width:100%;height:auto;}
-.kto__stage .badge{position:absolute;margin:0;}
-.kto__stage .badge img{width:100%;}
-.badge--el{left:0;top:0;width:40.6%;transform:rotate(10.8deg);z-index:1;}
-.badge--so{left:60.7%;top:-2.7%;width:39.3%;transform:rotate(-15.5deg);z-index:1;}
-.badge--ig{left:30.3%;top:31%;width:39.4%;transform:rotate(-3.8deg);z-index:2;}
 
 /* ==========================================================================
    04. Как устроен приём
@@ -732,8 +718,6 @@ body.is-locked{overflow:hidden;}
 
 /* планшет */
 @media (min-width:768px) and (max-width:1023px){
-  /* Тень у картинки команды лежит внутри файла, обрезать секцию нельзя */
-  #o-nas{overflow:visible;}
   :root{--gutter:32px;--section-y:96px;}
   .wrap{max-width:704px;}
   .h1,.h2{-webkit-text-stroke:0;}
@@ -762,16 +746,12 @@ body.is-locked{overflow:hidden;}
   .sheet .call{width:100%;margin-top:16px;}
   .symptoms__side>.note{order:5;width:100%;}
 
-  .kto{grid-template-columns:1fr;gap:40px;align-items:start;}
-  #o-nas{padding-top:var(--section-y);padding-bottom:var(--section-y);}
-  /* Композиция бейджей — мобильная (узел 359:4996): десктопная на этой
-     ширине сжимается в три марки размером с ноготь. */
-  .kto__stage{width:calc(100% + var(--gutter));margin-left:0;margin-right:calc(-1 * var(--gutter));aspect-ratio:auto;}
-  .kto__stage img{width:100%;height:auto;}
-  .badge--el{left:4.3%;top:17.1%;width:35.4%;}
-  .badge--ig{left:31%;top:17%;width:34.3%;}
-  .badge--so{left:70.7%;top:5.7%;width:36%;}
-  #o-nas{overflow:hidden;}
+  /* Кто мы: одна колонка, бейджи под текстом. Картинка та же, что на
+     десктопе, — у мобильной на этой ширине не хватает разрешения. */
+  .kto{grid-template-columns:1fr;gap:16px;align-items:start;}
+  .kto__text{margin:0;}
+  #o-nas{padding-top:var(--section-y);padding-bottom:calc(var(--section-y) * .25);}
+  .kto__stage{width:100%;max-width:640px;margin:0 auto;}
   /* Этапы: на этой ширине десктопные координаты номера и заголовка
      накладывались друг на друга. */
   .steps{grid-template-columns:1fr;gap:24px;}
@@ -923,22 +903,18 @@ body.is-locked{overflow:hidden;}
   #o-nas{padding-top:var(--section-y);padding-bottom:var(--section-y);}
   .kto{display:flex;flex-direction:column;align-items:flex-start;gap:20px;}
   .kto__text{display:contents;}
-  .kto__text>.caption{order:1;}
+  .kto__text>.pill{order:1;}
   .kto__text>.h2{order:2;width:100%;}
   .kto__stage{order:3;}
   .kto__text>.lead{order:4;width:100%;}
   .kto__text>p{order:5;width:100%;}
   .kto__text>.promise{order:6;width:100%;}
   .kto__text>.honest{order:7;width:100%;}
-  /* Повёрнутый бейдж вылезал за правый край на 3 px и давал горизонтальную
-     прокрутку. Сдвигаем внутрь, а не режем: тени у бейджей обрезать нельзя. */
-  /* Мобильная композиция бейджей своя (узел 359:4996): группа 460 в ширину
-     от −35, то есть выходит за оба края экрана и режется им. */
-  .kto__stage{width:117.9vw;margin-left:-14.1vw;aspect-ratio:585/433;}
-  .badge--el{left:4.3%;top:17.1%;width:35.4%;}
-  .badge--ig{left:31%;top:17%;width:34.3%;}
-  .badge--so{left:70.7%;top:5.7%;width:36%;}
-  #o-nas{overflow:hidden;}
+  /* Мобильная композиция (узел 359:4996): группа шире экрана и уходит
+     за оба края. Режем только по горизонтали — overflow-x:clip,
+     вертикаль и тени остаются целыми. */
+  .kto__stage{width:117.9vw;margin-left:-14.1vw;}
+  #o-nas{overflow-x:clip;}
   .promise,.honest{padding:20px;border-radius:var(--r-16);font-size:16px;}
 
 
