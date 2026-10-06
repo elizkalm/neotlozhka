@@ -24,7 +24,8 @@
 <meta name="twitter:image" content="https://elizkalm.github.io/neotlozhka/img/og-image.jpg">
 <link rel="preload" as="font" type="font/woff2" href="fonts/liter-400-cyrillic.woff2" crossorigin>
 <link rel="stylesheet" href="fonts.css">
-<link rel="preload" as="image" href="img/hero-blisters.webp" type="image/webp" fetchpriority="high">
+<link rel="preload" as="image" href="img/hero-blisters.webp" type="image/webp" media="(min-width:768px)" fetchpriority="high">
+<link rel="preload" as="image" href="img/hero-mob.webp" type="image/webp" media="(max-width:767px)" fetchpriority="high">
 <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
@@ -79,6 +80,8 @@
 
   <div class="hero__image">
     <picture>
+      <!-- На телефоне кадр свой: в макете это отдельный вырез фотографии (узел 340:4791), а не уменьшенный десктопный -->
+      <source media="(max-width:767px)" srcset="img/hero-mob.webp" type="image/webp" width="390" height="403">
       <source srcset="img/hero-blisters.webp" type="image/webp">
       <img src="img/hero-blisters.jpg" alt="" width="1920" height="774" fetchpriority="high">
     </picture>
@@ -749,8 +752,8 @@
     <div class="modal__head"><span class="pill pill--pale">Выписка № 04 · онлайн-курс по IT-рекрутингу</span><span class="modal__head-r"><button class="modal__close" data-close aria-label="Закрыть"><span>×</span></button></span></div>
     <h3 class="h3">Сайт для онлайн-курса — первые заявки сразу после запуска рекламы</h3>
     <hr class="rule rule--dotted">
-    <div class="modal__body">
-    <div class="modal__shot modal__shot--site"><img src="img/case04-photo.webp" alt="Первый экран сайта курса по IT-рекрутингу" loading="lazy"><span class="pill pill--white">04 · тексты · сайт · метрика</span></div>
+    <div class="modal__body modal__body--wide">
+      <span class="pill pill--pale modal__tagline">04 · тексты · сайт · метрика</span>
     <div class="modal__info">
       <div><span class="caps caps--16 muted">ПОСТУПИЛ С</span>
         <ul class="dlist"><li><i class="marker marker--x">×</i><span class="base">Нужен сайт, который передаёт ценности курса</span></li><li><i class="marker marker--x">×</i><span class="base">Ценности надо раскрыть на языке аудитории</span></li><li><i class="marker marker--x">×</i><span class="base">Подвести к бесплатному демо-курсу</span></li></ul></div>
@@ -768,19 +771,19 @@
     <div class="shots" data-shots>
       <span class="caps caps--16 muted">СТРАНИЦЫ САЙТА</span>
       <figure class="shot">
-        <button class="shot__img" data-zoom="img/case04-page1.webp" aria-label="Увеличить снимок">
+        <button class="shot__img" data-site-shot data-zoom="img/case04-page1.webp" aria-label="Увеличить снимок">
           <img src="img/case04-page1.webp" alt="Главная страница курса по IT-рекрутингу" loading="lazy">
         </button>
         <figcaption class="shot__cap caption muted">Главная: оффер, программа и первый шаг</figcaption>
       </figure>
       <figure class="shot">
-        <button class="shot__img" data-zoom="img/case04-page2.webp" aria-label="Увеличить снимок">
+        <button class="shot__img" data-site-shot data-zoom="img/case04-page2.webp" aria-label="Увеличить снимок">
           <img src="img/case04-page2.webp" alt="Блок с историей ученицы" loading="lazy">
         </button>
         <figcaption class="shot__cap caption muted">История ученицы: «точка А» и «точка Б» с видеоотзывом</figcaption>
       </figure>
       <figure class="shot">
-        <button class="shot__img" data-zoom="img/case04-page3.webp" aria-label="Увеличить снимок">
+        <button class="shot__img" data-site-shot data-zoom="img/case04-page3.webp" aria-label="Увеличить снимок">
           <img src="img/case04-page3.webp" alt="Блок авторов курса и цен" loading="lazy">
         </button>
         <figcaption class="shot__cap caption muted">Авторы курса и стоимость</figcaption>
@@ -797,8 +800,8 @@
     <div class="modal__head"><span class="pill pill--pale">Выписка № 05 · салон красоты</span><span class="modal__head-r"><button class="modal__close" data-close aria-label="Закрыть"><span>×</span></button></span></div>
     <h3 class="h3">Имиджевый сайт для салона красоты</h3>
     <hr class="rule rule--dotted">
-    <div class="modal__body">
-    <div class="modal__shot modal__shot--site"><img src="img/case05-photo.webp" alt="Первый экран сайта салона красоты" loading="lazy"><span class="pill pill--white">05 · тексты · сайт · метрика</span></div>
+    <div class="modal__body modal__body--wide">
+      <span class="pill pill--pale modal__tagline">05 · тексты · сайт · метрика</span>
     <div class="modal__info">
       <div><span class="caps caps--16 muted">ПОСТУПИЛ С</span>
         <ul class="dlist"><li><i class="marker marker--x">×</i><span class="base">Нужно отстроиться от конкурентов концепцией</span></li><li><i class="marker marker--x">×</i><span class="base">Передать атмосферу салона и вызвать доверие</span></li><li><i class="marker marker--x">×</i><span class="base">Привлечь аудиторию 20–35 лет</span></li></ul></div>
@@ -816,7 +819,7 @@
     <div class="shots" data-shots>
       <span class="caps caps--16 muted">СТРАНИЦЫ САЙТА</span>
       <figure class="shot">
-        <button class="shot__img" data-zoom="img/case05-page1.webp" aria-label="Увеличить снимок">
+        <button class="shot__img" data-site-shot data-zoom="img/case05-page1.webp" aria-label="Увеличить снимок">
           <img src="img/case05-page1.webp" alt="Страница сайта салона красоты" loading="lazy">
         </button>
         <figcaption class="shot__cap caption muted">Сайт салона целиком — от первого экрана до записи</figcaption>
