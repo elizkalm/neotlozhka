@@ -857,10 +857,7 @@ body.is-locked{overflow:hidden;}
   .pill{height:34px;font-size:13px;padding:0 14px;}
   .tag{height:28px;font-size:12px;padding:0 10px;}
 
-  /* Первый экран в мобильном макете белый (узел 330:314), шапка над ним
-     остаётся серой — так и задумано. Без этого белый верх фотографии
-     читается как заплатка на сером. */
-  .hero{padding-top:32px;background:var(--white);}
+    .hero{padding-top:32px;}
   .hero__top{grid-template-columns:1fr;gap:24px;}
   .hero__col{gap:24px;width:100%;}
   .hero__list{width:100%;}
@@ -870,7 +867,7 @@ body.is-locked{overflow:hidden;}
   /* Кадр первого экрана на телефоне — отдельная картинка hero-mob.webp:
      в макете (узел 340:4791) это свой вырез фотографии, 390×403, а не
      сдвинутая десктопная. Поэтому просто показываем её целиком. */
-  .hero__image{position:relative;margin-top:16px;aspect-ratio:390/403;overflow:hidden;}
+  .hero__image{position:relative;margin-top:41px;aspect-ratio:390/268.3;overflow:hidden;}
   .hero__image img{position:static;width:100%;max-width:100%;height:100%;
     object-fit:cover;object-position:center;margin-left:0;transform:none;}
 
