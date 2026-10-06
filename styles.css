@@ -7,6 +7,10 @@
    ========================================================================== */
 
 :root{
+  /* Направляющая правой колонки: доля из макета, но не уже, чем лист
+     приёма 677 плюс межколонник 60 — иначе на средних экранах текст
+     прилипал к листу вплотную. */
+  --guide:max(59.77%, 737px);
   --ink:#1E232B;
   --ink-up:#2B3039;
   --ink-up-2:#333944;
@@ -274,7 +278,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    колонку вправо — стоял на 1269 вместо 1137 и тянулся до правого поля. */
 /* Левая кромка списка совпадает с правой колонкой следующей секции:
    левая колонка 1052 из 1760, список начинается на 1132 — та же доля, что у правой колонки секции симптомов. */
-.hero__top{display:grid;grid-template-columns:59.77% minmax(0,1fr);gap:0;align-items:start;}
+.hero__top{display:grid;grid-template-columns:var(--guide) minmax(0,1fr);gap:0;align-items:start;}
 .hero__col{display:flex;flex-direction:column;align-items:flex-start;gap:46px;}
 .hero__lead{margin:0;}
 .hero__actions{display:flex;flex-wrap:wrap;gap:10px;}
@@ -295,7 +299,7 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    02. С чем приходят
    ========================================================================== */
 .symptoms{
-  display:grid;grid-template-columns:59.77% minmax(0,1fr);
+  display:grid;grid-template-columns:var(--guide) minmax(0,1fr);
   gap:0;margin:0;align-items:start;
 }
 .symptoms .sheet{width:677px;max-width:100%;}
