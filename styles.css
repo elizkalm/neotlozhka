@@ -344,7 +344,12 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    любая обрезка съедает тень. */
 .kto{display:grid;grid-template-columns:46.65% 1fr;gap:0;align-items:center;}
 #o-nas{padding-top:0;padding-bottom:0;}
-.kto__text{display:flex;flex-direction:column;align-items:flex-start;gap:28px;}
+/* Поля секции нулевые, чтобы картинка шла во всю высоту, как в макете.
+   Но тогда на узком экране текст упирался в края: картинка там ниже.
+   Поэтому минимальный воздух держит сама текстовая колонка — секция
+   растёт, как только текст с полями становится выше картинки. */
+.kto__text{display:flex;flex-direction:column;align-items:flex-start;gap:28px;
+  padding:var(--section-y) 0;}
 .kto__text .h2{margin:4px 0 0;}
 .promise{background:var(--ink);color:var(--white);border-radius:var(--r-20);padding:24px 28px;font-size:var(--t-big);line-height:1.32;}
 .honest{background:var(--surface-pale);border-radius:var(--r-20);padding:24px 28px;display:flex;flex-direction:column;gap:10px;}
