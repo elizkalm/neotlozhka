@@ -6,18 +6,25 @@
 <title>Вот что вы получите — Видео на выставке</title>
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
-<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600&display=swap">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600,700&display=swap">
 <style>
 /* ==========================================================================
-   Экран «Вот что вы получите» — пересборка под перенос в Tilda Zero Block.
+   Экран «Вот что вы получите» — повтор исходного блока под перенос в Tilda.
 
-   Что взято с исходной страницы без изменений: тексты карточек, фотографии,
-   шрифт Clash Grotesk, цвета (фон 0B0C0D, текст F3F4F0, акцент B6F66B).
+   Все размеры сняты с живой страницы, не на глаз:
+     секция      padding 72/32, ширина 1180, gap 36
+     заголовок   48 / 700, межстрочное 48, трекинг −2.4
+     лента       flex, gap 18, горизонтальная прокрутка
+     карточка    420 ширина, фон #141617, радиус 10, padding 12, gap 18
+     кадр        396×290, радиус 6, object-fit cover
+     play        44×44, круг #B6F66B, значок 18×18 чёрный, 16 от края
+     подпись     строка, padding 0 4 4, прижата по нижнему краю
+     название    17 / 600, межстрочное 18.7, #F3F4F0
+     мета        13 / 500, межстрочное 13, #868B87
 
-   Что сделано иначе: карточки стоят сеткой и не обрезаются правым краем,
-   у всех одинаковая пропорция кадра 16:9, подпись и мета в одной строке
-   по базовой линии. Контейнер 1200 — сетка Zero Block, чтобы импорт лёг
-   без подгонки. Брейкпоинты те же, что у Тильды: 1200 / 980 / 640 / 480.
+   Исходник на узких ширинах не адаптирован: карточка остаётся 420, заголовок
+   48, и на телефоне блок уезжает за экран. Ниже 640 сделано по-человечески —
+   это единственное отступление от оригинала.
    ========================================================================== */
 
 :root{
@@ -26,7 +33,6 @@
   --text:#F3F4F0;
   --muted:#868B87;
   --accent:#B6F66B;
-  --radius:16px;
   --font:'Clash Grotesk','Inter',-apple-system,'Segoe UI',Arial,sans-serif;
 }
 
@@ -34,145 +40,131 @@
 body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);
   -webkit-font-smoothing:antialiased;}
 
-.section{padding:120px 0;background:var(--bg);}
-.container{max-width:1200px;margin:0 auto;padding:0 24px;}
+.section{max-width:1180px;margin:0 auto;padding:72px 32px;
+  display:flex;flex-direction:column;align-items:flex-start;gap:36px;}
 
-.section__head{display:flex;align-items:flex-end;justify-content:space-between;
-  gap:32px;margin:0 0 48px;}
-.section__title{margin:0;font-size:56px;line-height:1.02;font-weight:500;
-  letter-spacing:-.02em;}
-.section__count{margin:0;font-size:16px;line-height:1.4;color:var(--muted);
-  white-space:nowrap;}
+.section__title{margin:0;font-size:48px;line-height:48px;font-weight:700;
+  letter-spacing:-2.4px;color:var(--text);}
 
-/* Сетка примеров: три в ряд, карточки равной высоты, ничего не обрезается */
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+/* Лента: в исходнике это горизонтальная прокрутка, третья карточка
+   намеренно выглядывает за край. Прокрутку оставляю, добавляю только
+   прилипание к карточке и прячу полосу — вида это не меняет. */
+.strip{display:flex;gap:18px;width:100%;overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;}
+.strip::-webkit-scrollbar{display:none;}
 
-.card{display:flex;flex-direction:column;gap:16px;background:transparent;
-  border:0;padding:0;margin:0;text-align:left;color:inherit;font:inherit;
-  cursor:pointer;}
+.card{flex:0 0 420px;width:420px;background:var(--card);border-radius:10px;
+  padding:12px;display:flex;flex-direction:column;gap:18px;
+  border:0;margin:0;text-align:left;color:inherit;font:inherit;cursor:pointer;
+  scroll-snap-align:start;}
 
-.card__frame{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;
-  border-radius:var(--radius);background:var(--card);}
-.card__frame img{width:100%;height:100%;object-fit:cover;display:block;
-  transition:transform .4s ease;}
-.card:hover .card__frame img{transform:scale(1.04);}
+.card__frame{position:relative;width:100%;aspect-ratio:396/290;
+  border-radius:6px;overflow:hidden;background:#0B0C0D;}
+.card__frame img{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;display:block;}
 
 .card__play{position:absolute;left:16px;bottom:16px;width:44px;height:44px;
-  border-radius:50%;background:var(--accent);display:flex;align-items:center;
-  justify-content:center;transition:transform .2s ease;}
-.card:hover .card__play{transform:scale(1.08);}
+  border-radius:100px;background:var(--accent);display:flex;
+  align-items:center;justify-content:center;}
 
-/* Название и мета стоят друг под другом, а не в строку: в исходнике они были
-   в одну строку, но там карточки шире. На трёх в ряд длинное название
-   переносится, мета остаётся у первой строки — ряд выглядит рваным. */
-.card__row{display:flex;flex-direction:column;gap:4px;}
-.card__name{font-size:18px;line-height:1.25;font-weight:500;letter-spacing:-.01em;}
-.card__meta{font-size:14px;line-height:1.3;color:var(--muted);}
+.card__row{display:flex;align-items:flex-end;justify-content:space-between;
+  gap:12px;padding:0 4px 4px;}
+/* Название в одну строку: в исходнике оно занимает ровно 228 и не переносится,
+   перенос добавлял карточке лишние 18 px высоты. */
+.card__name{font-size:17px;line-height:18.7px;font-weight:600;color:var(--text);
+  white-space:nowrap;}
+.card__meta{font-size:13px;line-height:13px;font-weight:500;color:var(--muted);
+  white-space:nowrap;}
 
-@media (max-width:1199px){
-  .section{padding:96px 0;}
-  .section__title{font-size:48px;}
-}
-
-@media (max-width:979px){
-  .grid{grid-template-columns:repeat(2,1fr);}
-  .section__title{font-size:40px;}
-  .section__head{margin-bottom:40px;}
-}
-
+/* Узкие ширины — отступление от исходника, см. комментарий выше.
+   Карточка сжимается по экрану, следующая выглядывает краем. */
 @media (max-width:639px){
-  .section{padding:72px 0;}
-  .grid{grid-template-columns:1fr;gap:20px;}
-  .section__head{flex-direction:column;align-items:flex-start;gap:12px;
-    margin-bottom:32px;}
-  .section__title{font-size:34px;}
+  .section{padding:56px 20px;gap:28px;}
+  .section__title{font-size:34px;line-height:34px;letter-spacing:-1.4px;}
+  .strip{gap:12px;}
+  .card{flex:0 0 82vw;width:82vw;}
+  /* Название и мета в строку на телефоне не помещаются — ставлю друг под друга */
+  .card__row{flex-direction:column;align-items:flex-start;gap:6px;}
 }
 
 @media (max-width:479px){
-  .container{padding:0 20px;}
-  .section__title{font-size:30px;}
+  .section__title{font-size:30px;line-height:30px;letter-spacing:-1.2px;}
 }
 </style>
 </head>
 <body>
 
 <section class="section">
-  <div class="container">
+  <h2 class="section__title">Вот что вы получите</h2>
 
-    <div class="section__head">
-      <h2 class="section__title">Вот что вы получите</h2>
-      <p class="section__count">6 роликов · снято на выставках</p>
-    </div>
+  <div class="strip">
 
-    <div class="grid">
+    <button class="card" type="button">
+      <span class="card__frame">
+        <img src="img/shot-prom.webp" alt="Кадр из ролика: производитель оборудования" loading="lazy">
+        <span class="card__play"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M15.5 8.13397C16.1667 8.51887 16.1667 9.48113 15.5 9.86603L5.75 15.5C5.08333 15.8849 4.25 15.4037 4.25 14.634V3.36603C4.25 2.59623 5.08333 2.11511 5.75 2.50001L15.5 8.13397Z" fill="#000"/></svg></span>
+      </span>
+      <span class="card__row">
+        <span class="card__name">Производитель оборудования</span>
+        <span class="card__meta">Промышленность · 01:24</span>
+      </span>
+    </button>
 
-      <button class="card" type="button">
-        <span class="card__frame">
-          <img src="img/shot-prom.webp" alt="Кадр из ролика: производитель оборудования" loading="lazy">
-          <span class="card__play"><svg width="14" height="16" viewBox="0 0 14 16" fill="none" aria-hidden="true"><path d="M13 7.13397C13.6667 7.51887 13.6667 8.48113 13 8.86603L1.75 15.3604C1.08333 15.7453 0.25 15.2641 0.25 14.4944L0.25 1.50559C0.25 0.735786 1.08333 0.254661 1.75 0.639561L13 7.13397Z" fill="#0B0C0D"/></svg></span>
-        </span>
-        <span class="card__row">
-          <span class="card__name">Производитель оборудования</span>
-          <span class="card__meta">Промышленность · 01:24</span>
-        </span>
-      </button>
+    <button class="card" type="button">
+      <span class="card__frame">
+        <img src="img/shot-prom.webp" alt="Кадр из ролика: производитель оборудования" loading="lazy">
+        <span class="card__play"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M15.5 8.13397C16.1667 8.51887 16.1667 9.48113 15.5 9.86603L5.75 15.5C5.08333 15.8849 4.25 15.4037 4.25 14.634V3.36603C4.25 2.59623 5.08333 2.11511 5.75 2.50001L15.5 8.13397Z" fill="#000"/></svg></span>
+      </span>
+      <span class="card__row">
+        <span class="card__name">Производитель оборудования</span>
+        <span class="card__meta">Промышленность · 01:24</span>
+      </span>
+    </button>
 
-      <button class="card" type="button">
-        <span class="card__frame">
-          <img src="img/shot-farma.webp" alt="Кадр из ролика: фармацевтическая компания" loading="lazy">
-          <span class="card__play"><svg width="14" height="16" viewBox="0 0 14 16" fill="none" aria-hidden="true"><path d="M13 7.13397C13.6667 7.51887 13.6667 8.48113 13 8.86603L1.75 15.3604C1.08333 15.7453 0.25 15.2641 0.25 14.4944L0.25 1.50559C0.25 0.735786 1.08333 0.254661 1.75 0.639561L13 7.13397Z" fill="#0B0C0D"/></svg></span>
-        </span>
-        <span class="card__row">
-          <span class="card__name">Фармацевтическая компания</span>
-          <span class="card__meta">Фарма · 01:12</span>
-        </span>
-      </button>
+    <button class="card" type="button">
+      <span class="card__frame">
+        <img src="img/shot-prom.webp" alt="Кадр из ролика: производитель оборудования" loading="lazy">
+        <span class="card__play"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M15.5 8.13397C16.1667 8.51887 16.1667 9.48113 15.5 9.86603L5.75 15.5C5.08333 15.8849 4.25 15.4037 4.25 14.634V3.36603C4.25 2.59623 5.08333 2.11511 5.75 2.50001L15.5 8.13397Z" fill="#000"/></svg></span>
+      </span>
+      <span class="card__row">
+        <span class="card__name">Производитель оборудования</span>
+        <span class="card__meta">Промышленность · 01:24</span>
+      </span>
+    </button>
 
-      <button class="card" type="button">
-        <span class="card__frame">
-          <img src="img/shot-prom.webp" alt="Кадр из ролика: производитель оборудования" loading="lazy">
-          <span class="card__play"><svg width="14" height="16" viewBox="0 0 14 16" fill="none" aria-hidden="true"><path d="M13 7.13397C13.6667 7.51887 13.6667 8.48113 13 8.86603L1.75 15.3604C1.08333 15.7453 0.25 15.2641 0.25 14.4944L0.25 1.50559C0.25 0.735786 1.08333 0.254661 1.75 0.639561L13 7.13397Z" fill="#0B0C0D"/></svg></span>
-        </span>
-        <span class="card__row">
-          <span class="card__name">Производитель оборудования</span>
-          <span class="card__meta">Промышленность · 01:24</span>
-        </span>
-      </button>
+    <button class="card" type="button">
+      <span class="card__frame">
+        <img src="img/shot-farma.webp" alt="Кадр из ролика: фармацевтическая компания" loading="lazy">
+        <span class="card__play"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M15.5 8.13397C16.1667 8.51887 16.1667 9.48113 15.5 9.86603L5.75 15.5C5.08333 15.8849 4.25 15.4037 4.25 14.634V3.36603C4.25 2.59623 5.08333 2.11511 5.75 2.50001L15.5 8.13397Z" fill="#000"/></svg></span>
+      </span>
+      <span class="card__row">
+        <span class="card__name">Фармацевтическая компания</span>
+        <span class="card__meta">Фарма · 01:12</span>
+      </span>
+    </button>
 
-      <button class="card" type="button">
-        <span class="card__frame">
-          <img src="img/shot-farma.webp" alt="Кадр из ролика: фармацевтическая компания" loading="lazy">
-          <span class="card__play"><svg width="14" height="16" viewBox="0 0 14 16" fill="none" aria-hidden="true"><path d="M13 7.13397C13.6667 7.51887 13.6667 8.48113 13 8.86603L1.75 15.3604C1.08333 15.7453 0.25 15.2641 0.25 14.4944L0.25 1.50559C0.25 0.735786 1.08333 0.254661 1.75 0.639561L13 7.13397Z" fill="#0B0C0D"/></svg></span>
-        </span>
-        <span class="card__row">
-          <span class="card__name">Фармацевтическая компания</span>
-          <span class="card__meta">Фарма · 01:12</span>
-        </span>
-      </button>
+    <button class="card" type="button">
+      <span class="card__frame">
+        <img src="img/shot-farma.webp" alt="Кадр из ролика: фармацевтическая компания" loading="lazy">
+        <span class="card__play"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M15.5 8.13397C16.1667 8.51887 16.1667 9.48113 15.5 9.86603L5.75 15.5C5.08333 15.8849 4.25 15.4037 4.25 14.634V3.36603C4.25 2.59623 5.08333 2.11511 5.75 2.50001L15.5 8.13397Z" fill="#000"/></svg></span>
+      </span>
+      <span class="card__row">
+        <span class="card__name">Фармацевтическая компания</span>
+        <span class="card__meta">Фарма · 01:12</span>
+      </span>
+    </button>
 
-      <button class="card" type="button">
-        <span class="card__frame">
-          <img src="img/shot-prom.webp" alt="Кадр из ролика: производитель оборудования" loading="lazy">
-          <span class="card__play"><svg width="14" height="16" viewBox="0 0 14 16" fill="none" aria-hidden="true"><path d="M13 7.13397C13.6667 7.51887 13.6667 8.48113 13 8.86603L1.75 15.3604C1.08333 15.7453 0.25 15.2641 0.25 14.4944L0.25 1.50559C0.25 0.735786 1.08333 0.254661 1.75 0.639561L13 7.13397Z" fill="#0B0C0D"/></svg></span>
-        </span>
-        <span class="card__row">
-          <span class="card__name">Производитель оборудования</span>
-          <span class="card__meta">Промышленность · 01:24</span>
-        </span>
-      </button>
+    <button class="card" type="button">
+      <span class="card__frame">
+        <img src="img/shot-farma.webp" alt="Кадр из ролика: фармацевтическая компания" loading="lazy">
+        <span class="card__play"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M15.5 8.13397C16.1667 8.51887 16.1667 9.48113 15.5 9.86603L5.75 15.5C5.08333 15.8849 4.25 15.4037 4.25 14.634V3.36603C4.25 2.59623 5.08333 2.11511 5.75 2.50001L15.5 8.13397Z" fill="#000"/></svg></span>
+      </span>
+      <span class="card__row">
+        <span class="card__name">Фармацевтическая компания</span>
+        <span class="card__meta">Фарма · 01:12</span>
+      </span>
+    </button>
 
-      <button class="card" type="button">
-        <span class="card__frame">
-          <img src="img/shot-farma.webp" alt="Кадр из ролика: фармацевтическая компания" loading="lazy">
-          <span class="card__play"><svg width="14" height="16" viewBox="0 0 14 16" fill="none" aria-hidden="true"><path d="M13 7.13397C13.6667 7.51887 13.6667 8.48113 13 8.86603L1.75 15.3604C1.08333 15.7453 0.25 15.2641 0.25 14.4944L0.25 1.50559C0.25 0.735786 1.08333 0.254661 1.75 0.639561L13 7.13397Z" fill="#0B0C0D"/></svg></span>
-        </span>
-        <span class="card__row">
-          <span class="card__name">Фармацевтическая компания</span>
-          <span class="card__meta">Фарма · 01:12</span>
-        </span>
-      </button>
-
-    </div>
   </div>
 </section>
 
