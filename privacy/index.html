@@ -20,6 +20,19 @@
   .todo{padding:24px 28px;border-radius:20px;background:var(--surface-pale);color:var(--ink);}
   @media (max-width:767px){.doc{padding:40px 0 64px;}.doc h2{font-size:22px;}}
 </style>
+<!-- Яндекс Метрика -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113757663', 'ym');
+
+    ym(113757663, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/113757663" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Яндекс Метрика -->
 </head>
 <body id="top">
 <header class="header">
@@ -144,10 +157,10 @@
     <h3 class="h5">Разберём вашу ситуацию за 30 минут</h3>
     <form class="form" data-form="audit">
       <div class="form__row">
-        <input class="field" type="text" name="name" placeholder="Имя">
-        <input class="field" type="tel" name="phone" placeholder="Телефон*" required>
+        <input class="field ym-hide-content" type="text" name="name" placeholder="Имя">
+        <input class="field ym-hide-content" type="tel" name="phone" placeholder="Телефон*" required>
       </div>
-      <input class="field" type="text" name="site" placeholder="Ссылка на сайт/соц.сети (если есть)">
+      <input class="field ym-hide-content" type="text" name="site" placeholder="Ссылка на сайт/соц.сети (если есть)">
       <label class="check">
         <input type="checkbox" data-consent><span class="check__box"></span>
         <span class="check__text micro">Даю согласие на обработку персональных данных и принимаю <a href="/privacy/">политику конфиденциальности</a></span>
@@ -165,6 +178,6 @@
     <button class="btn btn--white btn--wide" data-close>Закрыть</button>
   </div>
 </div>
-<script src="/script.js?v=4"></script>
+<script src="/script.js?v=5"></script>
 </body>
 </html>

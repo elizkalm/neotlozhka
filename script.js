@@ -149,6 +149,9 @@ var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwN0aWKKjX0Aj9yPdon
       if (!form.reportValidity()) return;
       send(form);
       form.reset();
+      /* Цель Метрики: по ней считается стоимость заявки из рекламы.
+         Идентификатор zayavka должен совпадать с целью в интерфейсе. */
+      if (window.ym) ym(113757663, 'reachGoal', 'zayavka');
       openModal('otpravleno');
     });
   });
