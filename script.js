@@ -276,4 +276,23 @@ var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwN0aWKKjX0Aj9yPdon
     else if (href.indexOf('t.me') > -1 || label === 'telegram') goal('telegram_click');
     else if (href.indexOf('max.ru') > -1 || label === 'max') goal('max_click');
   });
+
+  /* Отметка симптома в листе приёма. Это сильный сигнал: человек не просто
+     читает, а примеряет проблему на себя. Вместе с целью отправляем, какой
+     именно пункт отметили — в отчётах будет видно, что болит чаще всего,
+     и это прямая подсказка, про что писать в рекламе.
+     Снятие галочки целью не считаем. */
+  document.querySelectorAll('.exam input[type="checkbox"]').forEach(function (box) {
+    box.addEventListener('change', function () {
+      if (!box.checked) return;
+      var label = box.closest('.exam');
+      var text = label ? (label.querySelector('.exam__text') || {}).textContent || '' : '';
+      /* В отчёт кладём короткое начало пункта — целиком предложение
+         в разрезах читать неудобно. */
+      var short = text.replace(/\s+/g, ' ').trim().split(' — ')[0].slice(0, 60);
+      try {
+        if (window.ym) ym(113757663, 'reachGoal', 'simptom', { simptom: short });
+      } catch (e) {}
+    });
+  });
 })();
