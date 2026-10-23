@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /proba/
 
-Sitemap: https://elizkalm.github.io/neotlozhka/sitemap.xml
+Sitemap: https://marketing-neotlozhka.ru/sitemap.xml
