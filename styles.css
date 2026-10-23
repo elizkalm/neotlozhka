@@ -607,7 +607,9 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
 .modal--case .modal__body{display:grid;grid-template-columns:420px minmax(0,1fr);gap:40px;align-items:start;}
 /* У кейсов с сайтами плашки с фото нет: следом идёт тот же первый экран */
 .modal--case .modal__body--wide{grid-template-columns:1fr;}
-.modal__tagline{align-self:flex-start;margin-bottom:4px;}
+/* В сетке за горизонталь отвечает justify-self, а не align-self:
+   без него плашка растягивалась во всю ширину модалки. */
+.modal__tagline{justify-self:start;align-self:start;margin-bottom:4px;}
 .modal--case .modal__info{display:flex;flex-direction:column;gap:20px;}
 .modal--case .modal__info>div{display:flex;flex-direction:column;gap:12px;}
 /* «Выписан с» в макете без тёмной плашки — обычный блок на белом */
