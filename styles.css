@@ -151,7 +151,9 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
   border-top-right-radius:0;border-bottom-right-radius:0;
 }
 .call:hover .call__sign{
-  height:64px;background-clip:border-box;
+  /* Не 64 жёстко: в подвале и в меню кнопка 56, и плашка вылезала за неё.
+     stretch растягивает плашку ровно по высоте своей кнопки. */
+  align-self:stretch;height:auto;background-clip:border-box;
   border-top-left-radius:0;border-bottom-left-radius:0;
   border-top-right-radius:var(--r-20);border-bottom-right-radius:var(--r-20);
 }
@@ -730,6 +732,17 @@ body.is-locked{overflow:hidden;}
 }
 
 /* планшет */
+
+/* Аккордеон услуг на планшете и телефоне раскрывается плавно.
+   display:none анимировать нельзя, поэтому панель всегда в потоке,
+   а меняется её предельная высота. 1200 — с запасом под самую длинную. */
+@media (max-width:1023px){
+  .panel{display:flex;flex-direction:column;align-items:flex-start;gap:16px;
+    max-height:0;overflow:hidden;
+    transition:max-height .32s ease,padding .32s ease,margin .32s ease;}
+  .panel.is-active{max-height:1200px;}
+}
+
 @media (min-width:768px) and (max-width:1023px){
   :root{--gutter:32px;--section-y:96px;}
   .wrap{max-width:704px;}
@@ -792,7 +805,7 @@ body.is-locked{overflow:hidden;}
   .tab{position:relative;padding-right:72px;}
   .tab:not(.is-active)::after{content:"+";position:absolute;right:16px;top:50%;
     transform:translateY(-50%);width:38px;height:38px;border-radius:var(--r-13);
-    background:var(--accent);color:var(--white);font-size:20px;line-height:38px;
+    background:var(--ink);color:var(--white);font-size:20px;line-height:38px;
     text-align:center;}
   .uslugi__tabs{gap:12px;}
   .tab.is-active{padding-right:16px;height:auto;}
@@ -830,6 +843,13 @@ body.is-locked{overflow:hidden;}
 
 /* мобильная: собственная шкала DS/Моб */
 @media (max-width:767px){
+  /* Текст в кнопках по центру: у широкого варианта стоял space-between,
+     и надпись прижималась к левому краю. */
+  .call .call__main{justify-content:center;}
+  /* Маркеры приведены к размеру плюса у закрытой услуги: на одном экране
+     было три разных красных плюса — 26, 38 и 56. 56 это плашка кнопки,
+     её не трогаем, а два маркера теперь одного размера. */
+  .marker{width:38px;height:38px;border-radius:var(--r-13);font-size:20px;}
   /* Страницу сайта на телефоне увеличивать бессмысленно: это полотно
      в несколько тысяч пикселей, читать его всё равно нельзя */
   .shot__img[data-site-shot]{cursor:default;pointer-events:none;}
@@ -965,7 +985,7 @@ body.is-locked{overflow:hidden;}
   .tab{position:relative;padding-right:72px;}
   .tab:not(.is-active)::after{content:"+";position:absolute;right:16px;top:50%;
     transform:translateY(-50%);width:38px;height:38px;border-radius:var(--r-13);
-    background:var(--accent);color:var(--white);font-size:20px;line-height:38px;
+    background:var(--ink);color:var(--white);font-size:20px;line-height:38px;
     text-align:center;}
   .uslugi__tabs{gap:12px;}
   .tab.is-active{padding-right:16px;}
