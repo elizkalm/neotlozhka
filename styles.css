@@ -581,7 +581,23 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
   display:inline-flex;align-items:center;justify-content:center;transition:background .15s ease;}
 .lightbox__close:hover{background:var(--ink);}
 .lightbox__hint{color:#9AA1AE;}
+
+/* Уведомление про cookie. Висит внизу поверх страницы, не перекрывая
+   контент целиком: одна строка текста и кнопка. Прячется навсегда
+   после нажатия — выбор хранится в браузере, на сервер не уходит. */
+.cookie{position:fixed;left:var(--gutter);right:var(--gutter);bottom:24px;z-index:60;
+  display:flex;align-items:center;gap:24px;
+  padding:20px 24px;border-radius:var(--r-16);
+  background:var(--white);box-shadow:0 10px 40px rgba(30,35,43,.16);}
+.cookie[hidden]{display:none;}
+.cookie__text{margin:0;color:var(--text-2);}
+.cookie__text a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;}
+.cookie__ok{flex:0 0 auto;}
+
 @media (max-width:767px){
+  .cookie{left:12px;right:12px;bottom:12px;flex-direction:column;align-items:stretch;
+    gap:14px;padding:16px;border-radius:var(--r-13);}
+
   .lightbox{padding:16px;}
   .lightbox__close{top:12px;right:12px;width:48px;height:48px;}
 }

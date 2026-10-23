@@ -1,94 +1,102 @@
 /**
  * Приёмник заявок с лендинга «Маркетинг-неотложка».
  *
- * Что делает: принимает POST из формы, дописывает строку в Google-таблицу
- * и присылает уведомление в Telegram.
+ * Что делает: принимает POST из формы и рассылает заявку —
+ * на почту, в Telegram и, если задана таблица, строкой в Google-таблицу.
  *
  * Зачем так, а не напрямую из браузера: токен бота нельзя класть в код
- * страницы — его увидит любой, кто откроет исходник, и сможет писать от
- * имени бота. Здесь токен лежит в свойствах скрипта, наружу не попадает.
+ * страницы — его увидит любой, кто откроет исходник. Здесь он лежит
+ * в свойствах скрипта и наружу не попадает.
  *
  * --------------------------------------------------------------------------
- * КАК ПОДКЛЮЧИТЬ (делается один раз, ~10 минут)
+ * ЧТО НАСТРОИТЬ
  *
- * 1. Создать бота
- *    В Telegram написать @BotFather → /newbot → имя и логин бота.
- *    Он пришлёт токен вида 1234567890:AAF... — это TELEGRAM_TOKEN.
+ * Почта — работает сразу, ничего подключать не надо. Адреса ниже, в MAIL_TO.
  *
- * 2. Узнать, куда слать
- *    Написать своему боту любое сообщение (или добавить его в общий чат
- *    и написать там). Затем открыть в браузере:
- *    https://api.telegram.org/bot<ТОКЕН>/getUpdates
- *    Найти "chat":{"id":...} — это TELEGRAM_CHAT_ID. У группы id с минусом.
+ * Telegram — по желанию. В «Настройках проекта» → «Свойства скрипта»:
+ *   TELEGRAM_TOKEN  — токен бота от @BotFather
+ *   TELEGRAM_CHAT_ID — куда слать, у группы id с минусом
  *
- * 3. Завести таблицу
- *    Создать Google-таблицу, скопировать её id из адреса:
- *    docs.google.com/spreadsheets/d/ВОТ_ЭТО/edit — это SHEET_ID.
+ * Таблица — по желанию. Там же:
+ *   SHEET_ID — из адреса таблицы, кусок между /d/ и /edit
  *
- * 4. Создать скрипт
- *    script.google.com → Новый проект → вставить этот файл целиком.
- *    Слева «Настройки проекта» → «Свойства скрипта» → добавить три штуки:
- *      TELEGRAM_TOKEN, TELEGRAM_CHAT_ID, SHEET_ID
- *
- * 5. Опубликовать
- *    «Начать развёртывание» → «Веб-приложение»
- *      Запуск от имени: я
- *      Доступ: все
- *    Скопировать полученный адрес /exec.
- *
- * 6. Вставить адрес в сайт
- *    В файле site/script.js в самом верху заменить пустую строку:
- *    var FORM_ENDPOINT = 'https://script.google.com/macros/s/..../exec';
+ * После правки кода обязательно «Начать развёртывание» → «Управление
+ * развёртываниями» → карандаш → «Создать» → новая версия. Без этого
+ * сайт продолжит обращаться к старому коду.
  * --------------------------------------------------------------------------
  */
+
+/** Куда присылать заявки. Можно указать несколько адресов через запятую. */
+var MAIL_TO = 'landlizz@yandex.ru, neotlozhka-limar@yandex.ru';
 
 function doPost(e) {
   try {
     var data = (e && e.parameter) ? e.parameter : {};
     var props = PropertiesService.getScriptProperties();
 
-    var row = [
-      new Date(),
-      data.form || '',      // audit | podborka
-      data.name || '',
-      data.phone || data.contact || '',
-      data.site || data.nisha || '',
-      data.page || ''
-    ];
+    var isPodborka = data.form === 'podborka';
+    var title = isPodborka ? 'Запрос подборки кейсов' : 'Заявка на аудит';
 
+    var name = data.name || '—';
+    var contact = data.phone || data.contact || '—';
+    var extra = data.site || data.nisha || '';
+    var extraLabel = data.site ? 'Сайт' : (data.nisha ? 'Ниша' : '');
+    var page = data.page || '';
+    var when = Utilities.formatDate(new Date(), 'Europe/Moscow', 'dd.MM.yyyy HH:mm');
+
+    // ---------- почта ----------
+    // Главный канал: письмо приходит даже если Telegram отвалился.
+    var lines = [
+      '<b>' + title + '</b>',
+      '',
+      'Имя: ' + name,
+      'Контакт: ' + contact,
+      extraLabel ? (extraLabel + ': ' + extra) : '',
+      '',
+      'Время: ' + when + ' (МСК)',
+      page ? ('Страница: ' + page) : '',
+    ].filter(String);
+
+    MailApp.sendEmail({
+      to: MAIL_TO,
+      subject: title + ' — ' + name + ', ' + contact,
+      htmlBody: lines.join('<br>'),
+      name: 'Сайт Маркетинг-неотложка',
+    });
+
+    // ---------- таблица (если задана) ----------
     var sheetId = props.getProperty('SHEET_ID');
     if (sheetId) {
       var sheet = SpreadsheetApp.openById(sheetId).getSheets()[0];
       if (sheet.getLastRow() === 0) {
         sheet.appendRow(['Дата', 'Форма', 'Имя', 'Контакт', 'Сайт или ниша', 'Страница']);
       }
-      sheet.appendRow(row);
+      sheet.appendRow([new Date(), data.form || '', name, contact, extra, page]);
     }
 
+    // ---------- Telegram (если задан) ----------
     var token = props.getProperty('TELEGRAM_TOKEN');
     var chat = props.getProperty('TELEGRAM_CHAT_ID');
     if (token && chat) {
-      var title = data.form === 'podborka' ? 'Запрос подборки кейсов' : 'Заявка на аудит';
       var text = [
         '🚑 ' + title,
         '',
-        'Имя: ' + (data.name || '—'),
-        'Контакт: ' + (data.phone || data.contact || '—'),
-        (data.site ? 'Сайт: ' + data.site : ''),
-        (data.nisha ? 'Ниша: ' + data.nisha : '')
+        'Имя: ' + name,
+        'Контакт: ' + contact,
+        extraLabel ? (extraLabel + ': ' + extra) : '',
       ].filter(String).join('\n');
 
       UrlFetchApp.fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
         method: 'post',
         payload: { chat_id: chat, text: text },
-        muteHttpExceptions: true
+        muteHttpExceptions: true,
       });
     }
 
     return json({ ok: true });
   } catch (err) {
-    // Заявку терять нельзя: пишем ошибку в журнал выполнения,
-    // но наружу отвечаем спокойно, чтобы человек увидел «принято».
+    /* Заявку терять нельзя: пишем ошибку в журнал выполнения, но наружу
+       отвечаем спокойно, чтобы человек увидел «принято». */
     console.error(err);
     return json({ ok: false });
   }

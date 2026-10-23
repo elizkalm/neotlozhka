@@ -230,4 +230,21 @@ var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwN0aWKKjX0Aj9yPdon
   var onScroll = function () { header.classList.toggle('is-scrolled', window.scrollY > 8); };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  /* ---------- уведомление про cookie ----------
+     Показываем один раз. Выбор храним в localStorage: это внутри
+     браузера посетителя, никуда не отправляется. Если хранилище
+     недоступно (режим инкогнито с запретом), просто не показываем
+     повторно в рамках сессии — падать из-за этого нельзя. */
+  var cookieBar = document.querySelector('[data-cookie]');
+  if (cookieBar) {
+    var agreed = false;
+    try { agreed = localStorage.getItem('cookie-ok') === '1'; } catch (e) {}
+    if (!agreed) cookieBar.hidden = false;
+    cookieBar.addEventListener('click', function (e) {
+      if (!e.target.closest('[data-cookie-ok]')) return;
+      cookieBar.hidden = true;
+      try { localStorage.setItem('cookie-ok', '1'); } catch (e2) {}
+    });
+  }
 })();

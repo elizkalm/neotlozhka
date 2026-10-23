@@ -922,8 +922,15 @@
 <div class="lightbox" data-lightbox hidden>
   <button class="lightbox__close" data-lightbox-close aria-label="Закрыть"><span>×</span></button>
   <div class="lightbox__stage"><img alt=""></div>
-<script src="script.js?v=5"></script>
-  <p class="lightbox__hint micro">Снимок открыт полностью. Esc или клик по фону — закрыть</p>
+  <p class="lightbox__hint micro">Снимок открыт полностью. Esc или клик по фону — закрыть</p>
 </div>
+
+<!-- Уведомление про cookie: показывается один раз, выбор хранится в браузере -->
+<div class="cookie" data-cookie hidden>
+  <p class="cookie__text caption">Сайт использует файлы cookie и Яндекс Метрику, чтобы мы понимали, как им пользуются. Подробности — в <a href="/privacy/">политике конфиденциальности</a>.</p>
+  <button class="btn btn--dark btn--sm cookie__ok" type="button" data-cookie-ok>Хорошо</button>
+</div>
+
+<script src="script.js?v=5"></script>
 </body>
-</html>
+</html>
