@@ -366,7 +366,10 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
    04. Как устроен приём
    ========================================================================== */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;}
-.step{position:relative;min-height:437px;display:flex;flex-direction:column;justify-content:space-between;
+/* Тело прижато к верху, а не растянуто по краям: при space-between
+   карточка с коротким текстом опускала его ниже соседних. Кнопки-плашки
+   всё равно остаются внизу, у них margin-top:auto. */
+.step{position:relative;min-height:437px;display:flex;flex-direction:column;justify-content:flex-start;
   background:var(--ink-up);border-radius:var(--r-20);overflow:hidden;}
 .step__top{position:relative;height:165px;}
 .step__num{
@@ -375,9 +378,14 @@ hr.rule{height:0;margin:0;border:0;border-top:1px solid var(--line);}
   color:var(--ink-up-2);user-select:none;
 }
 .step__top .h4{position:absolute;left:23.8%;top:111px;color:var(--text-dark-bg);}
-.step__body{display:flex;flex-direction:column;gap:30px;padding:0 40px 40px;}
+.step__body{flex:1;display:flex;flex-direction:column;gap:30px;padding:0 40px 40px;}
 .step__body .pills{margin-top:auto;padding-top:16px;}
 .step__body p{color:#9AA1AE;}
+/* Второй строкой — что человек получает на выходе этапа. Светлее основного
+   текста: это результат, а не описание процесса. Обёртка нужна, чтобы
+   промежуток между строками был 12, а не 30 как между блоками карточки. */
+.step__text{display:flex;flex-direction:column;gap:12px;}
+.step__body .step__gain{color:var(--text-dark-bg);}
 /* на карточке фон уже ink-up, поэтому метки поднимаем на шаг выше */
 .step .pill--raised{background:var(--ink-up-2);}
 
