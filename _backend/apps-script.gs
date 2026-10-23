@@ -41,7 +41,6 @@ function testMail() {
     'Если вы видите это письмо, отправка заявок с сайта работает.'
   );
   Logger.log('Отправлено на: ' + MAIL_TO);
-  Logger.log('Остаток писем на сегодня: ' + MailApp.getRemainingDailyQuota());
 }
 
 function doPost(e) {
