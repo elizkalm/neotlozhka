@@ -22,7 +22,10 @@ var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwN0aWKKjX0Aj9yPdon
     if (typeof placePanel === 'function') placePanel();
   }
   tabs.forEach(function (t) {
-    t.addEventListener('click', function () { showTab(t.dataset.tab); });
+    t.addEventListener('click', function () {
+      showTab(t.dataset.tab);
+      goal('usluga_open');
+    });
   });
   // ссылки на услуги из подвала открывают нужную вкладку
   document.querySelectorAll('[data-tab-link]').forEach(function (a) {
@@ -49,6 +52,10 @@ var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwN0aWKKjX0Aj9yPdon
     document.body.classList.add('is-locked');
     overlay.scrollTop = 0;
     current = name;
+    /* Открытие формы и открытие кейса — промежуточные шаги воронки.
+       По ним видно, сколько людей дошли до формы и бросили её. */
+    if (name === 'audit' || name === 'podborka') goal('form_open');
+    else if (CASES.indexOf(name) > -1) goal('case_open');
     /* Фокус уводим на саму карточку, а не на поле ввода.
        Поле, получившее фокус программно, Chrome считает "focus-visible" —
        вокруг него вспыхивает красная рамка, — и сразу открывает свой список
@@ -247,4 +254,21 @@ var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwN0aWKKjX0Aj9yPdon
       try { localStorage.setItem('cookie-ok', '1'); } catch (e2) {}
     });
   }
+
+  /* ---------- цели Метрики ----------
+     Одна точка на все события. Если счётчик не загрузился — например,
+     его срезал блокировщик — просто ничего не произойдёт. */
+  function goal(name) {
+    try { if (window.ym) ym(113757663, 'reachGoal', name); } catch (e) {}
+  }
+
+  /* Клики по телефону и мессенджеру: это тоже обращения, просто
+     мимо формы. Без них картина обращений неполная. */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (href.indexOf('tel:') === 0) goal('tel_click');
+    else if (href.indexOf('wa.me') > -1) goal('whatsapp_click');
+  });
 })();
