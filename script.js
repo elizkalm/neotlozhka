@@ -268,7 +268,12 @@ var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwN0aWKKjX0Aj9yPdon
     var a = e.target.closest('a[href]');
     if (!a) return;
     var href = a.getAttribute('href') || '';
+    var label = (a.getAttribute('aria-label') || '').toLowerCase();
     if (href.indexOf('tel:') === 0) goal('tel_click');
-    else if (href.indexOf('wa.me') > -1) goal('whatsapp_click');
+    else if (href.indexOf('wa.me') > -1 || label === 'whatsapp') goal('whatsapp_click');
+    /* Telegram и MAX ловим по подписи иконки, а не по адресу: адресов
+       пока нет, а цель должна заработать сразу, как их подставим. */
+    else if (href.indexOf('t.me') > -1 || label === 'telegram') goal('telegram_click');
+    else if (href.indexOf('max.ru') > -1 || label === 'max') goal('max_click');
   });
 })();
