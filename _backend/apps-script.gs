@@ -14,20 +14,35 @@
  * Почта — работает сразу, ничего подключать не надо. Адреса ниже, в MAIL_TO.
  *
  * Telegram — по желанию. В «Настройках проекта» → «Свойства скрипта»:
- *   TELEGRAM_TOKEN  — токен бота от @BotFather
+ *   TELEGRAM_TOKEN   — токен бота от @BotFather
  *   TELEGRAM_CHAT_ID — куда слать, у группы id с минусом
  *
  * Таблица — по желанию. Там же:
  *   SHEET_ID — из адреса таблицы, кусок между /d/ и /edit
  *
  * После правки кода обязательно «Начать развёртывание» → «Управление
- * развёртываниями» → карандаш → «Создать» → новая версия. Без этого
- * сайт продолжит обращаться к старому коду.
+ * развёртываниями» → карандаш → новая версия. Без этого сайт продолжит
+ * обращаться к старому коду.
  * --------------------------------------------------------------------------
  */
 
 /** Куда присылать заявки. Можно указать несколько адресов через запятую. */
 var MAIL_TO = 'landlizz@yandex.ru, neotlozhka-limar@yandex.ru';
+
+/**
+ * Проверка почты вручную. Выберите эту функцию в списке над кодом
+ * и нажмите «Выполнить» — разворачивать ничего не нужно.
+ * Что произошло, покажет «Журнал выполнения» внизу.
+ */
+function testMail() {
+  GmailApp.sendEmail(
+    MAIL_TO,
+    'Проверка связи с сайтом',
+    'Если вы видите это письмо, отправка заявок с сайта работает.'
+  );
+  Logger.log('Отправлено на: ' + MAIL_TO);
+  Logger.log('Остаток писем на сегодня: ' + MailApp.getRemainingDailyQuota());
+}
 
 function doPost(e) {
   try {
@@ -44,27 +59,35 @@ function doPost(e) {
     var page = data.page || '';
     var when = Utilities.formatDate(new Date(), 'Europe/Moscow', 'dd.MM.yyyy HH:mm');
 
-    // ---------- почта ----------
-    // Главный канал: письмо приходит даже если Telegram отвалился.
     var lines = [
-      '<b>' + title + '</b>',
+      title,
       '',
       'Имя: ' + name,
       'Контакт: ' + contact,
       extraLabel ? (extraLabel + ': ' + extra) : '',
       '',
       'Время: ' + when + ' (МСК)',
-      page ? ('Страница: ' + page) : '',
+      page ? ('Страница: ' + page) : ''
     ].filter(String);
 
-    MailApp.sendEmail({
-      to: MAIL_TO,
-      subject: title + ' — ' + name + ', ' + contact,
-      htmlBody: lines.join('<br>'),
-      name: 'Сайт Маркетинг-неотложка',
-    });
+    /* Почта. GmailApp, а не MailApp: письмо уходит от вашего же адреса как
+       обычное, и его копия остаётся в «Отправленных» — всегда можно
+       проверить, ушло ли. Ошибку ловим отдельно, чтобы она не обрывала
+       Telegram и возвращалась в ответе: иначе причина не видна снаружи. */
+    var mailError = '';
+    try {
+      GmailApp.sendEmail(
+        MAIL_TO,
+        title + ' — ' + name + ', ' + contact,
+        lines.join('\n'),
+        { name: 'Сайт Маркетинг-неотложка' }
+      );
+    } catch (mErr) {
+      mailError = String(mErr);
+      console.error('Почта не ушла: ' + mailError);
+    }
 
-    // ---------- таблица (если задана) ----------
+    /* Таблица, если задана */
     var sheetId = props.getProperty('SHEET_ID');
     if (sheetId) {
       var sheet = SpreadsheetApp.openById(sheetId).getSheets()[0];
@@ -74,7 +97,7 @@ function doPost(e) {
       sheet.appendRow([new Date(), data.form || '', name, contact, extra, page]);
     }
 
-    // ---------- Telegram (если задан) ----------
+    /* Telegram, если задан */
     var token = props.getProperty('TELEGRAM_TOKEN');
     var chat = props.getProperty('TELEGRAM_CHAT_ID');
     if (token && chat) {
@@ -83,22 +106,22 @@ function doPost(e) {
         '',
         'Имя: ' + name,
         'Контакт: ' + contact,
-        extraLabel ? (extraLabel + ': ' + extra) : '',
+        extraLabel ? (extraLabel + ': ' + extra) : ''
       ].filter(String).join('\n');
 
       UrlFetchApp.fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
         method: 'post',
         payload: { chat_id: chat, text: text },
-        muteHttpExceptions: true,
+        muteHttpExceptions: true
       });
     }
 
-    return json({ ok: true });
+    return json({ ok: true, mail: mailError ? mailError : ('отправлено на ' + MAIL_TO) });
   } catch (err) {
     /* Заявку терять нельзя: пишем ошибку в журнал выполнения, но наружу
        отвечаем спокойно, чтобы человек увидел «принято». */
     console.error(err);
-    return json({ ok: false });
+    return json({ ok: false, error: String(err) });
   }
 }
 
